@@ -6,75 +6,88 @@ export default function Home() {
     <div className="flex min-h-screen flex-col">
       <Navigation />
       <main className="flex-1">
-        <section className="bg-slate-950 text-white">
-          <div className="mx-auto grid min-h-[620px] w-full max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="max-w-2xl">
-              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-cyan-300">
-                Protection with precision
-              </p>
-              <h1 className="text-5xl font-semibold leading-tight tracking-normal sm:text-6xl">
+        <section id="home" className="hero-section">
+          <div className="mx-auto flex min-h-[620px] w-full max-w-6xl items-center px-6 py-20">
+            <div>
+              <h1 className="hero-title font-semibold leading-tight tracking-normal">
                 The Silver Guardian
               </h1>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
-                A modern guardian platform for people who need clear guidance,
-                dependable oversight, and calm support when the stakes are high.
+              <p className="hero-message mt-5 max-w-3xl">
+                Support a New Kind of Pediatric Care Experience
+              </p>
+              <p className="hero-copy mt-6 max-w-3xl">
+                The Silver Guardian is gathering community support for a
+                proposed charitable pediatric cancer and cardiovascular research
+                hospital concept designed to bring hope, healing, and
+                family-centered care to children facing life-threatening
+                conditions.
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a
-                  className="inline-flex h-12 items-center justify-center rounded-md bg-cyan-300 px-6 text-sm font-bold text-slate-950 transition hover:bg-cyan-200"
-                  href="#"
+                  className="site-button site-button--secondary"
+                  href="/contact"
                 >
-                  Request a Consultation
+                  Contact Us
                 </a>
                 <a
-                  className="inline-flex h-12 items-center justify-center rounded-md border border-white/25 px-6 text-sm font-semibold text-white transition hover:bg-white/10"
-                  href="#"
+                  className="site-button site-button--outline"
+                  href="#fundraising"
                 >
                   Learn More
                 </a>
               </div>
             </div>
-            <div className="rounded-lg border border-white/15 bg-white/10 p-6 shadow-2xl shadow-black/30">
-              <div className="grid gap-4">
-                {[
-                  ["Response", "Clear next steps for urgent decisions."],
-                  ["Oversight", "Organized care, assets, and communication."],
-                  ["Continuity", "Steady support as situations evolve."],
-                ].map(([title, text]) => (
-                  <div
-                    key={title}
-                    className="rounded-md border border-white/10 bg-slate-900/70 p-5"
-                  >
-                    <h2 className="text-base font-semibold text-white">
-                      {title}
-                    </h2>
-                    <p className="mt-2 text-sm leading-6 text-slate-300">
-                      {text}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 
-        <section className="bg-white py-18">
-          <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-16 md:grid-cols-3">
+        <section className="mission-note-section">
+          <div className="mx-auto w-full max-w-6xl px-6 py-12">
+            <p>
+              The Silver Guardian is a group of anonymous business owners and
+              community advocates who have joined together to gather community
+              support for a new charitable pediatric cancer/cardiovascular
+              hospital facility with a family friendly ice hockey theme. Please
+              visit the pages of this website to see how you can demonstrate
+              your support for brave children and their families in their fight
+              for survival. Thank you, The Silver Guardian
+            </p>
+          </div>
+        </section>
+
+        <section id="fundraising" className="content-section">
+          <div className="mx-auto w-full max-w-6xl px-6 py-16">
+            <div className="max-w-3xl">
+              <p className="section-kicker">Ways to help</p>
+              <h2 className="section-title">
+                Every act of support helps move the mission forward.
+              </h2>
+            </div>
+            <div className="mt-10 grid gap-8 md:grid-cols-3">
             {[
-              "Trusted planning",
-              "Human-centered support",
-              "Documented accountability",
-            ].map((item) => (
-              <div key={item} className="border-l-4 border-cyan-400 pl-5">
-                <h2 className="text-xl font-semibold text-slate-950">
-                  {item}
-                </h2>
-                <p className="mt-3 leading-7 text-slate-600">
-                  Practical infrastructure for responsible decisions, clean
-                  communication, and confidence across every engagement.
+              [
+                "Fundraising",
+                "Seasonal events and community campaigns will help gather the resources needed to support the hospital concept and the families it aims to serve.",
+              ],
+              [
+                "Movement Therapy",
+                "Future movement therapy centers will encourage patients, families, and community members to build strength through artistic and competitive exercise.",
+              ],
+              [
+                "Newsletter",
+                "Progress updates will keep supporters connected as fundraising, partnerships, and community programs continue to take shape.",
+              ],
+            ].map(([title, text]) => (
+              <div key={title} className="feature-callout">
+                <h3 className="text-xl font-semibold">{title}</h3>
+                <p className="mt-3 leading-7">
+                  {text}
                 </p>
+                <a className="feature-link" href="#">
+                  Learn more
+                </a>
               </div>
             ))}
+            </div>
           </div>
         </section>
       </main>

@@ -2,7 +2,12 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111111;
+  --color-primary: #001c57;
+  --color-secondary: #bcc6cc;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-charcoal: #2f3437;
 }
 
 @theme inline {
@@ -12,19 +17,845 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  padding-top: 76px;
 }
 
 a {
   text-decoration: none;
+}
+
+.site-navbar {
+  min-height: 76px;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-secondary) 70%, white);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 10px 30px rgba(0, 28, 87, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.site-navbar__inner {
+  max-width: 1160px;
+}
+
+.site-navbar__brand {
+  color: var(--color-primary);
+  font-size: 1.55rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.site-navbar__brand:hover,
+.site-navbar__brand:focus {
+  color: var(--color-primary);
+}
+
+.site-navbar__toggle {
+  border-color: var(--color-secondary);
+  border-radius: 6px;
+}
+
+.site-navbar__toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 28, 87, 0.18);
+}
+
+.site-navbar__links {
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.site-navbar__links .nav-link {
+  color: var(--color-charcoal);
+  padding: 0.5rem 0.7rem;
+}
+
+.site-navbar__links .nav-link:hover,
+.site-navbar__links .nav-link:focus {
+  color: var(--color-primary);
+}
+
+.site-offcanvas {
+  color: var(--color-charcoal);
+}
+
+.site-offcanvas .offcanvas-title {
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+.hero-section {
+  background:
+    linear-gradient(135deg, rgba(0, 28, 87, 0.96), rgba(47, 52, 55, 0.92)),
+    var(--color-primary);
+  color: var(--color-white);
+}
+
+.hero-section p {
+  color: color-mix(in srgb, var(--color-white) 78%, var(--color-secondary));
+}
+
+.hero-title {
+  color: var(--color-white);
+  font-size: clamp(4rem, 9vw, 7rem);
+}
+
+.hero-message {
+  color: var(--color-white);
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.hero-copy {
+  color: color-mix(in srgb, var(--color-white) 78%, var(--color-secondary));
+  font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+  line-height: 1.7;
+}
+
+.hero-section > div {
+  padding-top: 5rem;
+}
+
+.site-button {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.site-button--secondary {
+  background: var(--color-secondary);
+  color: var(--color-black);
+}
+
+.site-button--secondary:hover,
+.site-button--secondary:focus {
+  background: var(--color-white);
+  color: var(--color-primary);
+}
+
+.site-button--outline {
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  color: var(--color-white);
+}
+
+.site-button--outline:hover,
+.site-button--outline:focus {
+  border-color: var(--color-secondary);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-white);
+}
+
+.site-button--primary {
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.site-button--primary:hover,
+.site-button--primary:focus {
+  border-color: var(--color-charcoal);
+  background: var(--color-charcoal);
+  color: var(--color-white);
+}
+
+.site-button--primary:disabled {
+  border-color: var(--color-secondary);
+  background: var(--color-secondary);
+  color: var(--color-charcoal);
+  opacity: 1;
+}
+
+.content-section {
+  background: var(--color-white);
+}
+
+.page-hero {
+  background:
+    linear-gradient(135deg, rgba(0, 28, 87, 0.96), rgba(47, 52, 55, 0.92)),
+    var(--color-primary);
+  color: var(--color-white);
+}
+
+.page-hero--compact {
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+}
+
+.page-hero h1 {
+  margin: 0;
+  color: var(--color-white);
+  font-size: clamp(2.75rem, 6vw, 5rem);
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.page-content {
+  background: var(--color-white);
+}
+
+.contact-layout {
+  display: grid;
+  gap: 2rem;
+  max-width: 820px;
+}
+
+.contact-email {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.contact-email a {
+  color: var(--color-primary);
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.contact-email a:hover,
+.contact-email a:focus {
+  color: var(--color-charcoal);
+}
+
+.newsletter-signup {
+  display: grid;
+  gap: 1.5rem;
+  border: 1px solid rgba(0, 28, 87, 0.24);
+  border-radius: 8px;
+  background: var(--color-charcoal);
+  color: var(--color-white);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.newsletter-signup .section-kicker {
+  color: var(--color-secondary);
+}
+
+.newsletter-signup h2 {
+  margin: 0;
+  color: var(--color-white);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 800;
+}
+
+.newsletter-signup p {
+  margin: 0.75rem 0 0;
+  color: var(--color-secondary);
+  line-height: 1.7;
+}
+
+.newsletter-form {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) auto;
+  align-items: end;
+}
+
+.newsletter-form label {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--color-white);
+  font-weight: 800;
+}
+
+.newsletter-form input {
+  width: 100%;
+  border: 1px solid rgba(188, 198, 204, 0.42);
+  border-radius: 6px;
+  background: var(--color-white);
+  color: var(--color-charcoal);
+  font: inherit;
+  font-weight: 500;
+  padding: 0.8rem 0.9rem;
+}
+
+.newsletter-form input:focus {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 0.2rem rgba(188, 198, 204, 0.18);
+  outline: none;
+}
+
+.newsletter-form .site-button {
+  white-space: nowrap;
+}
+
+.contact-form {
+  display: grid;
+  gap: 1.25rem;
+  border: 1px solid rgba(188, 198, 204, 0.8);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-secondary) 14%, white);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.contact-form__row {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.contact-form label {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--color-charcoal);
+  font-weight: 800;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid rgba(0, 28, 87, 0.2);
+  border-radius: 6px;
+  background: var(--color-white);
+  color: var(--color-charcoal);
+  font: inherit;
+  font-weight: 500;
+  padding: 0.8rem 0.9rem;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(0, 28, 87, 0.12);
+  outline: none;
+}
+
+.privacy-policy {
+  display: grid;
+  gap: 2rem;
+  max-width: 860px;
+  color: var(--color-charcoal);
+}
+
+.privacy-policy section {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.privacy-policy h2 {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+  font-weight: 800;
+}
+
+.privacy-policy p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.privacy-policy a {
+  color: var(--color-primary);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.privacy-policy a:hover,
+.privacy-policy a:focus {
+  color: var(--color-charcoal);
+}
+
+.wishes-grid {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.wishes-region {
+  flex: 1 1 0;
+  min-width: 0;
+  border: 1px solid rgba(188, 198, 204, 0.8);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-secondary) 16%, white);
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.wishes-region h2 {
+  margin: 0 0 1.25rem;
+  color: var(--color-primary);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.wishes-placeholder-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.wish-skyline-card {
+  display: grid;
+  gap: 0.8rem;
+  min-height: 150px;
+  border: 1px solid rgba(0, 28, 87, 0.18);
+  border-radius: 8px;
+  background: var(--color-white);
+  color: var(--color-charcoal);
+  overflow: hidden;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.wish-skyline-card > span {
+  color: var(--color-primary);
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.wish-skyline-card__sky {
+  position: relative;
+  min-height: 104px;
+  border-radius: 6px;
+  background:
+    radial-gradient(
+      circle at 78% 24%,
+      rgba(255, 255, 255, 0.9) 0 5px,
+      transparent 6px
+    ),
+    linear-gradient(180deg, #d7e2e8 0%, #edf2f4 56%, #f8fafb 100%);
+  box-shadow: inset 0 -1px 0 rgba(0, 28, 87, 0.1);
+  overflow: hidden;
+}
+
+.wish-skyline-card__sky::after {
+  position: absolute;
+  right: -8%;
+  bottom: 0;
+  left: -8%;
+  height: 18px;
+  background: rgba(0, 28, 87, 0.12);
+  content: "";
+  transform: skewX(-18deg);
+}
+
+.wish-skyline-card__buildings {
+  position: absolute;
+  right: 7%;
+  bottom: 10px;
+  left: 7%;
+  display: flex;
+  height: 78px;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 2px;
+}
+
+.wish-building {
+  position: relative;
+  display: block;
+  min-width: 10px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0 27%,
+      rgba(255, 255, 255, 0.08) 28% 33%,
+      transparent 34% 64%,
+      rgba(255, 255, 255, 0.08) 65% 70%,
+      transparent 71% 100%
+    ),
+    linear-gradient(180deg, #101820 0%, #07111a 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.wish-building--cap::before,
+.wish-building--step::before,
+.wish-building--antenna::before,
+.wish-building--dome::before,
+.wish-building--slope::before {
+  position: absolute;
+  right: 0;
+  left: 0;
+  content: "";
+}
+
+.wish-building--cap::before {
+  top: -7px;
+  height: 7px;
+  margin: 0 18%;
+  background: #101820;
+}
+
+.wish-building--step::before {
+  top: -10px;
+  height: 10px;
+  margin: 0 12%;
+  border-top: 4px solid #101820;
+  border-right: 7px solid transparent;
+  border-left: 7px solid transparent;
+  background: #101820;
+  background-clip: content-box;
+}
+
+.wish-building--antenna::before {
+  top: -18px;
+  width: 2px;
+  height: 18px;
+  margin: 0 auto;
+  background: #101820;
+}
+
+.wish-building--dome::before {
+  top: -9px;
+  height: 14px;
+  border-radius: 999px 999px 0 0;
+  background: #101820;
+}
+
+.wish-building--slope::before {
+  top: -10px;
+  border-right: 18px solid transparent;
+  border-bottom: 10px solid #101820;
+}
+
+.movement-intro {
+  max-width: 950px;
+}
+
+.movement-intro p {
+  margin: 0;
+  color: var(--color-charcoal);
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  font-weight: 600;
+  line-height: 1.75;
+}
+
+.stats-section {
+  margin-top: 3rem;
+}
+
+.stats-section h2 {
+  margin: 0 0 1.5rem;
+  color: var(--color-primary);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+}
+
+.stats-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.stats-card {
+  border: 1px solid rgba(188, 198, 204, 0.8);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--color-secondary) 16%, white);
+  padding: 1.5rem;
+}
+
+.stats-card h3 {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.stats-card p {
+  margin: 1rem 0 0;
+  color: var(--color-charcoal);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fundraising-layout {
+  display: grid;
+  gap: 3rem;
+}
+
+.fundraising-intro {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.fundraising-intro > p {
+  margin: 0;
+  max-width: 780px;
+  color: var(--color-charcoal);
+  font-size: 1.15rem;
+  line-height: 1.75;
+}
+
+.fundraising-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.fundraising-card {
+  min-height: 100%;
+  border: 1px solid rgba(188, 198, 204, 0.8);
+  border-radius: 8px;
+  background: var(--color-white);
+  box-shadow: 0 16px 40px rgba(0, 28, 87, 0.08);
+  color: var(--color-charcoal);
+  padding: 1.5rem;
+}
+
+.fundraising-card--featured {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-secondary) 18%, white);
+}
+
+.fundraising-card__season {
+  margin: 0 0 0.75rem;
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.fundraising-card h3 {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+
+.fundraising-card p {
+  margin: 1rem 0 0;
+  line-height: 1.65;
+}
+
+.fundraising-card span {
+  display: inline-flex;
+  margin-top: 1.25rem;
+  border-radius: 999px;
+  background: var(--color-secondary);
+  color: var(--color-charcoal);
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.35rem 0.75rem;
+  text-transform: uppercase;
+}
+
+.fundraising-card__note {
+  color: var(--color-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.fundraising-card .site-button {
+  margin-top: 1.25rem;
+  width: 100%;
+}
+
+.fundraising-tracker {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
+  align-items: center;
+  border-radius: 8px;
+  background: var(--color-charcoal);
+  color: var(--color-white);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.fundraising-tracker h2 {
+  margin: 0;
+  color: var(--color-white);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.fundraising-tracker p {
+  margin: 1rem 0 0;
+  color: var(--color-secondary);
+  line-height: 1.7;
+}
+
+.fundraising-tracker .section-kicker {
+  color: var(--color-secondary);
+}
+
+.fundraising-tracker__meter {
+  border: 1px solid rgba(188, 198, 204, 0.28);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 1.25rem;
+}
+
+.fundraising-tracker__numbers {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
+  color: var(--color-white);
+  font-weight: 800;
+}
+
+.fundraising-tracker .progress {
+  height: 1.1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.fundraising-tracker .progress-bar {
+  background: var(--color-secondary);
+}
+
+.donation-modal__intro,
+.donation-modal__note {
+  color: var(--color-charcoal);
+  line-height: 1.6;
+}
+
+.donation-modal__note {
+  margin: 1rem 0 0;
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+.mission-note-section {
+  background: color-mix(in srgb, var(--color-secondary) 20%, white);
+  color: var(--color-charcoal);
+}
+
+.mission-note-section p {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 600;
+  line-height: 1.75;
+}
+
+.section-kicker {
+  margin: 0 0 0.75rem;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  color: var(--color-charcoal);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.12;
+}
+
+.feature-callout {
+  border-left: 4px solid var(--color-secondary);
+  color: var(--color-charcoal);
+  padding-left: 1.25rem;
+}
+
+.feature-callout h3 {
+  color: var(--color-primary);
+}
+
+.feature-callout p {
+  color: var(--color-charcoal);
+}
+
+.feature-link {
+  display: inline-flex;
+  margin-top: 1rem;
+  color: var(--color-primary);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.feature-link:hover,
+.feature-link:focus {
+  color: var(--color-black);
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-secondary);
+  background: var(--color-charcoal);
+  color: var(--color-white);
+}
+
+.site-disclaimer {
+  border-top: 1px solid rgba(188, 198, 204, 0.6);
+  background: color-mix(in srgb, var(--color-secondary) 28%, white);
+  color: var(--color-charcoal);
+}
+
+.site-disclaimer p {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.site-footer a {
+  color: var(--color-secondary);
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: var(--color-white);
+}
+
+@media (max-width: 767.98px) {
+  body {
+    padding-top: 68px;
+  }
+
+  .site-navbar {
+    min-height: 68px;
+  }
+
+  .site-navbar__brand {
+    font-size: 1.25rem;
+  }
+
+  .site-navbar__links {
+    align-items: stretch;
+    gap: 0.25rem;
+    padding-top: 1rem;
+  }
+
+  .site-navbar__links .nav-link {
+    border-bottom: 1px solid rgba(188, 198, 204, 0.45);
+    padding: 0.85rem 0;
+  }
+
+  .fundraising-grid,
+  .fundraising-tracker,
+  .contact-form__row,
+  .newsletter-form,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fundraising-tracker__numbers {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 749.98px) {
+  .wishes-grid {
+    flex-direction: column;
+  }
+
+  .wishes-region {
+    width: 100%;
+  }
 }

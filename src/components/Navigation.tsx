@@ -1,26 +1,51 @@
-const links = ["Services", "Approach", "Insights", "Contact"];
+"use client";
+
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import Offcanvas from "react-bootstrap/Offcanvas";
+
+const links = [
+  { label: "Home", href: "/" },
+  { label: "Fundraising", href: "/fundraising" },
+  { label: "32 Wishes", href: "/32-wishes" },
+  { label: "Movement", href: "/movement-therapy-center" },
+  { label: "Contact Us", href: "/contact" },
+];
 
 export function Navigation() {
   return (
-    <header className="border-b border-slate-200 bg-white/95 backdrop-blur">
-      <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
-        <a className="text-lg font-semibold tracking-normal text-slate-950" href="#">
+    <Navbar expand="md" className="site-navbar" fixed="top">
+      <Container className="site-navbar__inner">
+        <Navbar.Brand className="site-navbar__brand h3 mb-0" href="/">
           The Silver Guardian
-        </a>
-        <div className="hidden items-center gap-8 text-sm font-medium text-slate-600 md:flex">
-          {links.map((link) => (
-            <a key={link} className="transition hover:text-slate-950" href="#">
-              {link}
-            </a>
-          ))}
-        </div>
-        <a
-          className="inline-flex h-10 items-center justify-center rounded-md bg-slate-950 px-4 text-sm font-semibold text-white transition hover:bg-slate-800"
-          href="#"
+        </Navbar.Brand>
+        <Navbar.Toggle
+          aria-controls="site-navigation"
+          className="site-navbar__toggle"
+        />
+        <Navbar.Offcanvas
+          id="site-navigation"
+          aria-labelledby="site-navigation-label"
+          placement="end"
+          className="site-offcanvas"
         >
-          Get Started
-        </a>
-      </nav>
-    </header>
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title id="site-navigation-label">
+              The Silver Guardian
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav className="ms-md-auto site-navbar__links">
+              {links.map((link) => (
+                <Nav.Link key={link.label} href={link.href}>
+                  {link.label}
+                </Nav.Link>
+              ))}
+            </Nav>
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+      </Container>
+    </Navbar>
   );
 }
