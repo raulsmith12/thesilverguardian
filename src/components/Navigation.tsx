@@ -7,7 +7,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 
 const links = [
   { label: "Home", href: "/" },
-  { label: "Fundraising", href: "/fundraising" },
+  { label: "Score a Goal", href: "/fundraising" },
   { label: "32 Wishes", href: "/32-wishes" },
   { label: "Movement", href: "/movement-therapy-center" },
   { label: "Contact Us", href: "/contact" },

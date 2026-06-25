@@ -1,10 +1,14 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import ProgressBar from "react-bootstrap/ProgressBar";
+import ballroomDanceImage from "@/img/preillumination-seth-cNlQpTstCK8-unsplash.jpg";
+import golfTournamentImage from "@/img/e4f884df0b93d4eb7d893f327084b05c3ccbf956-1.jpg";
+import scoreAGoalImage from "@/img/gerhard-crous-doivHPaG-Vw-unsplash.jpg";
 
 const currentAmount = 0;
 const goalAmount = 5000000;
@@ -17,78 +21,95 @@ export function FundraisingContent() {
     <div className="fundraising-layout">
       <section className="fundraising-intro">
         <div>
-          <p className="section-kicker">Community support</p>
           <h2 className="section-title">
-            Donate time, resources, or $1 per household member.
+            Community Campaign
           </h2>
         </div>
         <p>
-          The Silver Guardian is preparing seasonal fundraising efforts to help
-          gather support for a proposed charitable pediatric cancer and
-          cardiovascular hospital concept. Dates and event details are still
-          being finalized, but the community can begin preparing to take part.
+          The Silver Guardian is preparing seasonal events to help demonstrate support for communities battling pediatric conditions such as cancer and heart disease. Dates and events details are still being finalized, please sign up to receive regular updates via our newsletter.
         </p>
       </section>
 
       <section className="fundraising-grid" aria-label="Fundraising options">
         <article className="fundraising-card">
           <p className="fundraising-card__season">Spring / Summer</p>
-          <h3>Golf Fundraiser</h3>
+          <h3>Annual Golf Tournaments</h3>
+          <div className="fundraising-card__image">
+            <Image
+              src={golfTournamentImage}
+              alt="Golf ball resting beside a hole on a golf course"
+              fill
+              placeholder="blur"
+              sizes="(max-width: 767px) 100vw, 33vw"
+              unoptimized
+            />
+          </div>
           <p>
-            A community golf event is being planned as one of the signature
-            fundraising opportunities for The Silver Guardian.
+            Charity golf events are planned as signature opportunities to demonstrate support for the pediatric cancer/heart disease community.
           </p>
           <span>Coming soon</span>
         </article>
 
         <article className="fundraising-card">
           <p className="fundraising-card__season">Fall</p>
-          <h3>Ballroom Dance Fundraiser</h3>
+          <h3>Annual Ballroom Dance Tournament</h3>
+          <div className="fundraising-card__image">
+            <Image
+              src={ballroomDanceImage}
+              alt="Ballroom dancers performing together"
+              fill
+              placeholder="blur"
+              sizes="(max-width: 767px) 100vw, 33vw"
+              unoptimized
+            />
+          </div>
           <p>
-            A ballroom dance event is being developed to bring supporters
-            together around movement, resilience, and family-centered care.
+            A one of a kind ballroom dance competition is being developed to strengthen pediatric cancer/heart disease communities through artistic movement and competitive resilience.
           </p>
           <span>Coming soon</span>
         </article>
 
         <article className="fundraising-card fundraising-card--featured">
-          <p className="fundraising-card__season">Community campaign</p>
+          <p className="fundraising-card__season">Score a Goal Campaign</p>
           <h3>$1 Per Person</h3>
+          <div className="fundraising-card__image">
+            <Image
+              src={scoreAGoalImage}
+              alt="Ice hockey player taking a shot"
+              fill
+              placeholder="blur"
+              sizes="(max-width: 767px) 100vw, 33vw"
+              unoptimized
+            />
+          </div>
           <p>
-            If someone in your family has been affected by cancer or heart
-            disease, especially as a pediatric patient, please contribute $1 per
-            person in your immediate household as a demonstration of support.
+            If someone in your family has been affected by cancer or heart disease, especially as a pediatric patient, or you are a fan of the sport of ice hockey, please contribute $1 per person in your immediate household as a demonstration of support.
           </p>
           <p className="fundraising-card__note">
-            Contributions are limited to the exact number of immediate household
-            members. Please contact customer support if you would like to give
-            more.
+            Support tokens are limited to the exact number of immediate household members.
           </p>
           <Button
             className="site-button site-button--primary"
             onClick={() => setShowDonationModal(true)}
           >
-            Donate $1 Per Person
+            Support Here
           </Button>
         </article>
       </section>
 
       <section className="fundraising-tracker" aria-label="Fundraising tracker">
         <div>
-          <p className="section-kicker">Fundraising tracker</p>
-          <h2>Progress toward the first major fundraising goal</h2>
-          <p>
-            This tracker will give supporters a visual understanding of where
-            The Silver Guardian stands as donations and sponsorships begin.
-          </p>
+          <h2 className="section-kicker">Goal Tracker</h2>
         </div>
         <div className="fundraising-tracker__meter">
           <div className="fundraising-tracker__numbers">
             <span>${currentAmount.toLocaleString()} raised</span>
-            <span>${goalAmount.toLocaleString()} goal</span>
+            <span>Goal: {goalAmount.toLocaleString()} people</span>
           </div>
           <ProgressBar now={progressPercent} aria-label="Fundraising progress" />
-          <p>{progressPercent}% funded</p>
+          <div className="fundraising-tracker__numbers">
+            <span>Support Percentage: {progressPercent}%</span>
+          </div>
         </div>
       </section>
 

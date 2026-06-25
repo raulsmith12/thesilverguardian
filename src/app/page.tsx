@@ -13,7 +13,7 @@ export default function Home() {
                 The Silver Guardian
               </h1>
               <p className="hero-message mt-5 max-w-3xl">
-                Support a New Kind of Pediatric Care Experience
+                Support an Innovative Pediatric Care Experience
               </p>
               <p className="hero-copy mt-6 max-w-3xl">
                 The Silver Guardian is gathering community support for a
@@ -31,7 +31,7 @@ export default function Home() {
                 </a>
                 <a
                   className="site-button site-button--outline"
-                  href="#fundraising"
+                  href="/fundraising"
                 >
                   Learn More
                 </a>
@@ -65,24 +65,32 @@ export default function Home() {
             <div className="mt-10 grid gap-8 md:grid-cols-3">
             {[
               [
-                "Fundraising",
+                "Score a Goal",
                 "Seasonal events and community campaigns will help gather the resources needed to support the hospital concept and the families it aims to serve.",
+                "/fundraising",
+              ],
+              [
+                "32 Wishes in 32 Cities",
+                "Our goal is to fulfill wishes in 32 major cities throughout the United States and Canada, but we can only do it with your help.",
+                "/32-wishes",
               ],
               [
                 "Movement Therapy",
                 "Future movement therapy centers will encourage patients, families, and community members to build strength through artistic and competitive exercise.",
+                "/movement-therapy-center",
               ],
               [
                 "Newsletter",
-                "Progress updates will keep supporters connected as fundraising, partnerships, and community programs continue to take shape.",
+                "Progress updates will keep supporters connected as goals, partnerships, and community programs continue to take shape.",
+                "/contact",
               ],
-            ].map(([title, text]) => (
+            ].map(([title, text, url]) => (
               <div key={title} className="feature-callout">
                 <h3 className="text-xl font-semibold">{title}</h3>
                 <p className="mt-3 leading-7">
                   {text}
                 </p>
-                <a className="feature-link" href="#">
+                <a className="feature-link" href={url}>
                   Learn more
                 </a>
               </div>

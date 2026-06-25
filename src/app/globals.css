@@ -87,11 +87,47 @@ a {
   font-weight: 800;
 }
 
-.hero-section {
-  background:
-    linear-gradient(135deg, rgba(0, 28, 87, 0.96), rgba(47, 52, 55, 0.92)),
-    var(--color-primary);
+.hero-section,
+.page-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #f1f2f2;
   color: var(--color-white);
+}
+
+.hero-section::before,
+.hero-section::after,
+.page-hero::before,
+.page-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.hero-section::before,
+.page-hero::before {
+  z-index: -2;
+  background: #f1f2f2
+    url("../img/gerhard-crous-doivHPaG-Vw-unsplash.jpg") right center / contain
+    no-repeat;
+}
+
+.hero-section::after,
+.page-hero::after {
+  z-index: -1;
+  background: rgba(0, 28, 87, 0.4);
+}
+
+.hero-section h1,
+.hero-section p,
+.page-hero h1,
+.page-hero p {
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.7),
+    0 0 18px rgba(188, 198, 204, 0.55),
+    0 2px 5px rgba(0, 28, 87, 0.9);
 }
 
 .hero-section p {
@@ -180,13 +216,6 @@ a {
 
 .content-section {
   background: var(--color-white);
-}
-
-.page-hero {
-  background:
-    linear-gradient(135deg, rgba(0, 28, 87, 0.96), rgba(47, 52, 55, 0.92)),
-    var(--color-primary);
-  color: var(--color-white);
 }
 
 .page-hero--compact {
@@ -571,6 +600,20 @@ a {
   font-weight: 800;
 }
 
+.stats-card__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin-top: 1rem;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--color-secondary);
+}
+
+.stats-card__image img {
+  object-fit: cover;
+}
+
 .stats-card p {
   margin: 1rem 0 0;
   color: var(--color-charcoal);
@@ -633,6 +676,20 @@ a {
   color: var(--color-primary);
   font-size: 1.45rem;
   font-weight: 800;
+}
+
+.fundraising-card__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin-top: 1rem;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--color-secondary);
+}
+
+.fundraising-card__image img {
+  object-fit: cover;
 }
 
 .fundraising-card p {
@@ -791,19 +848,6 @@ a {
   color: var(--color-white);
 }
 
-.site-disclaimer {
-  border-top: 1px solid rgba(188, 198, 204, 0.6);
-  background: color-mix(in srgb, var(--color-secondary) 28%, white);
-  color: var(--color-charcoal);
-}
-
-.site-disclaimer p {
-  margin: 0;
-  font-size: 0.95rem;
-  font-weight: 700;
-  line-height: 1.6;
-}
-
 .site-footer a {
   color: var(--color-secondary);
 }
@@ -852,7 +896,7 @@ a {
 
 @media (max-width: 749.98px) {
   .wishes-grid {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .wishes-region {

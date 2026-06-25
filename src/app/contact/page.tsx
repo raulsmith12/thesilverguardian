@@ -32,8 +32,7 @@ export default function ContactPage() {
                   <p className="section-kicker">Newsletter</p>
                   <h2 id="newsletter-title">Sign up for updates</h2>
                   <p>
-                    Join the Silver Guardian newsletter for future announcements,
-                    progress updates, and community news.
+                    Join the Silver Guardian newsletter for future announcements and progress updates.
                   </p>
                 </div>
 

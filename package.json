@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "dev:backend": "tsx watch server/index.ts",
-    "build": "next build",
-    "start": "next start",
+    "build": "next build --webpack",
+    "export:frontend": "next build --webpack",
+    "start": "NODE_ENV=production node server.js",
     "start:backend": "tsx server/index.ts",
     "lint": "eslint"
   },

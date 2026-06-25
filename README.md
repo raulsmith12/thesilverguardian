@@ -20,6 +20,16 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Export the frontend
+
+The Next.js frontend is configured for static export. Run:
+
+```bash
+npm run export:frontend
+```
+
+Next.js writes the exported HTML, CSS, JavaScript, and public assets to `out/`. The Express backend under `server/` is separate and is not included in that static frontend export.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

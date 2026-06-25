@@ -462,6 +462,7 @@ export default function WishesPage() {
             <div className="wishes-grid">
               <section className="wishes-region" aria-labelledby="west-title">
                 <h2 id="west-title">West</h2>
+                <h4 className="text-center">Who Will Be First?</h4>
                 <div className="wishes-placeholder-grid">
                   {westSkylines.map((skyline) => (
                     <SkylineCard
@@ -474,6 +475,7 @@ export default function WishesPage() {
 
               <section className="wishes-region" aria-labelledby="east-title">
                 <h2 id="east-title">East</h2>
+                <h4 className="text-center">Who Will Be First?</h4>
                 <div className="wishes-placeholder-grid">
                   {eastSkylines.map((skyline) => (
                     <SkylineCard
