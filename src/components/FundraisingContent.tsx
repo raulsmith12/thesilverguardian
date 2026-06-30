@@ -26,7 +26,7 @@ export function FundraisingContent() {
           </h2>
         </div>
         <p>
-          The Silver Guardian is preparing seasonal events to help demonstrate support for communities battling pediatric conditions such as cancer and heart disease. Dates and events details are still being finalized, please sign up to receive regular updates via our newsletter.
+          The Silver Guardian is preparing seasonal events to help demonstrate support for communities battling pediatric conditions such as cancer and heart disease. Events details are still being finalized, please sign up to receive regular updates via our newsletter.
         </p>
       </section>
 
@@ -45,7 +45,7 @@ export function FundraisingContent() {
             />
           </div>
           <p>
-            Charity golf events are planned as signature opportunities to demonstrate support for the pediatric cancer/heart disease community.
+            Charity golf events will be signature opportunities to demonstrate support for the pediatric cancer/heart disease community.
           </p>
           <span>Coming soon</span>
         </article>

@@ -13,7 +13,7 @@ export default function MovementTherapyCenterPage() {
       alt: "Dancers performing together",
     },
     {
-      title: "Kickboxing / Boxing",
+      title: "Kickboxing",
       image: kickboxingImage,
       alt: "Athlete training with boxing gloves",
     },
@@ -38,8 +38,7 @@ export default function MovementTherapyCenterPage() {
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
             <section className="movement-intro">
               <p>
-                The Silver Guardian will be contributing to the nonclinical care of patients by directly investing in a chain of specially designed “movement therapy” centers that encourage patients battling cancer and other mobility limiting diseases,
-                such as Parkinson’s disease, as well as the general community, to positively improve their health through both artistic and competitive exercise. Please check back soon for more details.
+                The Silver Guardian will be contributing to the everyday care of patients and communities by directly investing in a chain of unique &ldquo;movement therapy centers&rdquo; to encourage positive life quality through artistic and competitive exercise. Please check back soon for more details.
               </p>
             </section>
 

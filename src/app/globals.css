@@ -117,7 +117,8 @@ a {
 .hero-section::after,
 .page-hero::after {
   z-index: -1;
-  background: rgba(0, 28, 87, 0.4);
+  background: #001c5766;
+  background: linear-gradient(90deg,rgba(0, 28, 87, 1) 0%, rgba(0, 28, 87, 1) 55%, rgba(209, 209, 209, 0) 100%);
 }
 
 .hero-section h1,

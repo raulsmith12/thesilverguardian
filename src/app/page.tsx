@@ -15,13 +15,6 @@ export default function Home() {
               <p className="hero-message mt-5 max-w-3xl">
                 Support an Innovative Pediatric Care Experience
               </p>
-              <p className="hero-copy mt-6 max-w-3xl">
-                The Silver Guardian is gathering community support for a
-                proposed charitable pediatric cancer and cardiovascular research
-                hospital concept designed to bring hope, healing, and
-                family-centered care to children facing life-threatening
-                conditions.
-              </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a
                   className="site-button site-button--secondary"
@@ -43,14 +36,10 @@ export default function Home() {
         <section className="mission-note-section">
           <div className="mx-auto w-full max-w-6xl px-6 py-12">
             <p>
-              The Silver Guardian is a group of anonymous business owners and
-              community advocates who have joined together to gather community
-              support for a new charitable pediatric cancer/cardiovascular
-              hospital facility with a family friendly ice hockey theme. Please
-              visit the pages of this website to see how you can demonstrate
-              your support for brave children and their families in their fight
-              for survival. Thank you, The Silver Guardian
+              The Silver Guardian is a group of anonymous business owners and community advocates who have joined together to gather community support for an innovative pediatric care facility with a kid friendly ice hockey theme designed to inspire hope and healing in the face of life threatening conditions, primarily cancer and heart disease.
             </p>
+            <p>Thank you,</p>
+            <p>The Silver Guardian Team</p>
           </div>
         </section>
 
@@ -66,22 +55,22 @@ export default function Home() {
             {[
               [
                 "Score a Goal",
-                "Seasonal events and community campaigns will help gather the resources needed to support the hospital concept and the families it aims to serve.",
+                "Seasonal events and community campaigns will help gather the resources needed to both construct and support the care facility concept.",
                 "/fundraising",
               ],
               [
                 "32 Wishes in 32 Cities",
-                "Our goal is to fulfill wishes in 32 major cities throughout the United States and Canada, but we can only do it with your help.",
+                "Every year, one of our goals is to grant 32 hockey related wishes to brave kids in 32 cities across the US and Canada.",
                 "/32-wishes",
               ],
               [
                 "Movement Therapy",
-                "Future movement therapy centers will encourage patients, families, and community members to build strength through artistic and competitive exercise.",
+                "Innovative movement therapy centers will encourage patients and community members to build strength through artistic and competitive exercise.",
                 "/movement-therapy-center",
               ],
               [
                 "Newsletter",
-                "Progress updates will keep supporters connected as goals, partnerships, and community programs continue to take shape.",
+                "Progress updates will keep you connected as goals, partnerships, and concepts continue to take shape.",
                 "/contact",
               ],
             ].map(([title, text, url]) => (
