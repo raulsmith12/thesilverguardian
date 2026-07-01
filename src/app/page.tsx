@@ -49,12 +49,14 @@ export default function Home() {
         </section>
 
         <section id="fundraising" className="content-section">
-          <div className="mx-auto w-full max-w-6xl px-6 pt-16 pb-10">
-            <div className="max-w-3xl">
-              <p className="section-kicker">Ways to help</p>
-              <h2 className="section-title">
-                Every act of support helps move the mission forward.
-              </h2>
+          <div className="home-callouts-heading">
+            <div className="mx-auto w-full max-w-6xl px-6 pt-16 pb-10">
+              <div className="max-w-3xl">
+                <p className="section-kicker">Ways to help</p>
+                <h2 className="section-title">
+                  Every act of support helps move the mission forward.
+                </h2>
+              </div>
             </div>
           </div>
           <div className="feature-callout-list">

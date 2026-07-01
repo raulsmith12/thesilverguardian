@@ -457,7 +457,7 @@ export default function WishesPage() {
           </div>
         </section>
 
-        <section className="page-content">
+        <section className="page-content page-content--green">
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
             <div className="wishes-grid">
               <section className="wishes-region" aria-labelledby="west-title">
@@ -493,4 +493,3 @@ export default function WishesPage() {
     </div>
   );
 }
-

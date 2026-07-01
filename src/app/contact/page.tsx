@@ -12,7 +12,10 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="page-content" aria-label="Contact content">
+        <section
+          className="page-content page-content--green"
+          aria-label="Contact content"
+        >
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
             <div className="contact-layout">
               <section className="contact-email" aria-labelledby="email-title">

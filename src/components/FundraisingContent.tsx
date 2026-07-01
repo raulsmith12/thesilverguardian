@@ -26,16 +26,7 @@ export function FundraisingContent() {
           </h2>
         </div>
         <p>
-          Has someone in your family been affected by cancer, Parkinson&rsquo;s, or heart disease?
-        </p>
-        <p>
-          Are you an ice hockey fan?
-        </p>
-        <p>
-          If so, please contribute $1 US as a demonstration of community support for this initiative.
-        </p>
-        <p>
-          Tokens of support are limited to the exact number of people in immediate households: 4 people = $4 US.
+          The Silver Guardian is preparing seasonal events to help demonstrate support for communities battling pediatric conditions such as cancer and heart disease. Dates and events details are still being finalized, please sign up to receive regular updates via our newsletter.
         </p>
       </section>
 
@@ -92,10 +83,16 @@ export function FundraisingContent() {
             />
           </div>
           <p>
-            If someone in your family has been affected by cancer or heart disease, especially as a pediatric patient, or you are a fan of the sport of ice hockey, please contribute $1 US per person in your immediate household as a demonstration of support.
+            Has someone in your family been affected by cancer, Parkinson&rsquo;s, or heart disease?
           </p>
-          <p className="fundraising-card__note">
-            Support tokens are limited to the exact number of immediate household members.
+          <p>
+            Are you an ice hockey fan?
+          </p>
+          <p>
+            If so, please contribute $1 US as a demonstration of community support for this initiative.
+          </p>
+          <p>
+            Tokens of support are limited to the exact number of people in immediate households: 4 people = $4 US.
           </p>
           <Button
             className="site-button site-button--primary"

@@ -237,6 +237,17 @@ a {
   background: var(--color-white);
 }
 
+.page-content--green {
+  background: #04672f;
+}
+
+.page-content--green .fundraising-intro > p,
+.page-content--green .contact-email a,
+.page-content--green .contact-email .section-kicker,
+.page-content--green .section-title {
+  color: var(--color-white);
+}
+
 .contact-layout {
   display: grid;
   gap: 2rem;
@@ -822,6 +833,18 @@ a {
   font-size: clamp(1.15rem, 2vw, 1.35rem);
   font-weight: 600;
   line-height: 1.75;
+}
+
+.home-callouts-heading {
+  background: #001c56;
+}
+
+.home-callouts-heading .section-kicker {
+  color: var(--color-secondary);
+}
+
+.home-callouts-heading .section-title {
+  color: var(--color-white);
 }
 
 .section-kicker {
