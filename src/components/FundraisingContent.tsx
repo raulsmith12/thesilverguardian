@@ -6,9 +6,9 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import ballroomDanceImage from "@/img/preillumination-seth-cNlQpTstCK8-unsplash.jpg";
+import ballroomDanceImage from "@/img/c3a93a8777a0af0f74eb8ff120553e56fb08dd2d-1.jpeg";
 import golfTournamentImage from "@/img/e4f884df0b93d4eb7d893f327084b05c3ccbf956-1.jpg";
-import scoreAGoalImage from "@/img/gerhard-crous-doivHPaG-Vw-unsplash.jpg";
+import scoreAGoalImage from "@/img/samantha-gades-iks9hBNKa6E-unsplash.jpg";
 
 const currentAmount = 0;
 const goalAmount = 5000000;
@@ -26,7 +26,16 @@ export function FundraisingContent() {
           </h2>
         </div>
         <p>
-          The Silver Guardian is preparing seasonal events to help demonstrate support for communities battling pediatric conditions such as cancer and heart disease. Events details are still being finalized, please sign up to receive regular updates via our newsletter.
+          Has someone in your family been affected by cancer, Parkinson&rsquo;s, or heart disease?
+        </p>
+        <p>
+          Are you an ice hockey fan?
+        </p>
+        <p>
+          If so, please contribute $1 US as a demonstration of community support for this initiative.
+        </p>
+        <p>
+          Tokens of support are limited to the exact number of people in immediate households: 4 people = $4 US.
         </p>
       </section>
 
@@ -71,7 +80,7 @@ export function FundraisingContent() {
 
         <article className="fundraising-card fundraising-card--featured">
           <p className="fundraising-card__season">Score a Goal Campaign</p>
-          <h3>$1 Per Person</h3>
+          <h3>$1 US Per Person</h3>
           <div className="fundraising-card__image">
             <Image
               src={scoreAGoalImage}
@@ -83,7 +92,7 @@ export function FundraisingContent() {
             />
           </div>
           <p>
-            If someone in your family has been affected by cancer or heart disease, especially as a pediatric patient, or you are a fan of the sport of ice hockey, please contribute $1 per person in your immediate household as a demonstration of support.
+            If someone in your family has been affected by cancer or heart disease, especially as a pediatric patient, or you are a fan of the sport of ice hockey, please contribute $1 US per person in your immediate household as a demonstration of support.
           </p>
           <p className="fundraising-card__note">
             Support tokens are limited to the exact number of immediate household members.

@@ -1,26 +1,41 @@
 import Image from "next/image";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
-import danceImage from "@/img/preillumination-seth-cNlQpTstCK8-unsplash.jpg";
+import danceImage from "@/img/c3a93a8777a0af0f74eb8ff120553e56fb08dd2d-1.jpeg";
 import generalExerciseImage from "@/img/gabin-vallet-J154nEkpzlQ-unsplash.jpg";
-import kickboxingImage from "@/img/alex-harmuth-R1ODafbCoIY-unsplash.jpg";
+import kickboxingImage from "@/img/lorenzo-fatto-offidani-de5OZMjb5ww-unsplash.jpg";
 
 export default function MovementTherapyCenterPage() {
   const stats = [
     {
-      title: "Dance",
+      title: "Dancing",
       image: danceImage,
       alt: "Dancers performing together",
+      summary:
+        "According to Oxford Academic in the United Kingdom, just 45 minutes of community dancing per week can improve the health of a cancer patient.",
+      details:
+        "To learn more or for more details, please visit the website listed below containing a formal research study on the effects of community dancing and how it helps cancer patients in their fight to survive:",
+      url: "https://academic.oup.com/heapro/article/38/4/daad077/7236781?login=false",
     },
     {
-      title: "Kickboxing",
+      title: "Non-Contact Boxing",
       image: kickboxingImage,
       alt: "Athlete training with boxing gloves",
+      summary:
+        "According to the National Library of Medicine in Bethesda, MD, Non-contact boxing, particularly in a community setting, can increase the quality of life for patients with Parkinson's Disease, a mobility impairing condition.",
+      details:
+        "To learn more or for more details, please visit the website listed below containing a formal research study on the effects of Non-contact, community boxing and how it helps Parkinson's patients in their fight to maintain their mobility:",
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8758155/",
     },
     {
       title: "General Exercise",
       image: generalExerciseImage,
       alt: "Athlete exercising in a gym",
+      summary:
+        "According to the National Library of Medicine in Bethesda, MD, exercise in general, when adapted to a patient's specific needs, can positively impact the quality of life for patients on their cancer journey.",
+      details:
+        "To learn more or for more details, please visit the website listed below containing a formal research study on the effects of general exercise and the cancer journey:",
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11264125/",
     },
   ];
 
@@ -38,7 +53,7 @@ export default function MovementTherapyCenterPage() {
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
             <section className="movement-intro">
               <p>
-                The Silver Guardian will be contributing to the everyday care of patients and communities by directly investing in a chain of unique &ldquo;movement therapy centers&rdquo; to encourage positive life quality through artistic and competitive exercise. Please check back soon for more details.
+                The Silver Guardian will be contributing to the everyday care of patients and communities by directly investing in a chain of unique &ldquo;movement therapy centers&rdquo; to encourage positive quality of life through artistic and competitive exercise. Please check back soon for more details.
               </p>
             </section>
 
@@ -58,7 +73,16 @@ export default function MovementTherapyCenterPage() {
                         unoptimized
                       />
                     </div>
-                    <p>Coming soon</p>
+                    <p>{stat.summary}</p>
+                    <p>{stat.details}</p>
+                    <a
+                      className="stats-card__link"
+                      href={stat.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Learn More
+                    </a>
                   </article>
                 ))}
               </div>
