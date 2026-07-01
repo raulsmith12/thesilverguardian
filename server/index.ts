@@ -17,6 +17,11 @@ import {
   isDuplicateNewsletterEmailError,
   validateNewsletterSubscriber,
 } from "./newsletterSubscribers";
+import {
+  captureAndRecordPaypalDonation,
+  createPaypalDonationOrder,
+  isDuplicatePaypalDonationError,
+} from "./paypalDonations";
 
 dotenv.config();
 
@@ -146,6 +151,69 @@ app.post("/api/newsletter", async (req, res) => {
     res.status(500).json({
       ok: false,
       error: "server_error",
+    });
+  }
+});
+
+app.post("/api/paypal/orders", async (_req, res) => {
+  try {
+    const order = await createPaypalDonationOrder();
+
+    res.status(201).json({
+      ok: true,
+      ...order,
+    });
+  } catch (error) {
+    console.error("PayPal order creation failed", error);
+
+    res.status(500).json({
+      ok: false,
+      error: "paypal_order_error",
+    });
+  }
+});
+
+app.post("/api/paypal/orders/:orderId/capture", async (req, res) => {
+  const orderId =
+    typeof req.params.orderId === "string" ? req.params.orderId.trim() : "";
+
+  if (!orderId) {
+    res.status(400).json({
+      ok: false,
+      error: "validation_error",
+    });
+    return;
+  }
+
+  try {
+    const result = await captureAndRecordPaypalDonation(orderId);
+
+    if (!result.ok) {
+      res.status(409).json({
+        ok: false,
+        error: result.reason,
+      });
+      return;
+    }
+
+    res.status(201).json({
+      ok: true,
+      id: result.id,
+    });
+  } catch (error) {
+    if (isDuplicatePaypalDonationError(error)) {
+      res.status(409).json({
+        ok: false,
+        error: "duplicate_email",
+      });
+      return;
+    }
+
+    console.error("PayPal capture workflow failed", error);
+
+    res.status(500).json({
+      ok: false,
+      error: "paypal_capture_error",
     });
   }
 });

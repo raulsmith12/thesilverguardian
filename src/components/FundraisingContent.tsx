@@ -1,21 +1,160 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import ballroomDanceImage from "@/img/c3a93a8777a0af0f74eb8ff120553e56fb08dd2d-1.jpeg";
 import golfTournamentImage from "@/img/e4f884df0b93d4eb7d893f327084b05c3ccbf956-1.jpg";
 import scoreAGoalImage from "@/img/samantha-gades-iks9hBNKa6E-unsplash.jpg";
+import { apiBaseUrl } from "@/lib/api";
 
 const currentAmount = 0;
 const goalAmount = 5000000;
 const progressPercent = Math.round((currentAmount / goalAmount) * 100);
 
+type DonationStatus =
+  | {
+      type: "idle";
+      message: "";
+    }
+  | {
+      type: "success" | "error";
+      message: string;
+    };
+
 export function FundraisingContent() {
-  const [showDonationModal, setShowDonationModal] = useState(false);
+  const [donationStatus, setDonationStatus] = useState<DonationStatus>({
+    type: "idle",
+    message: "",
+  });
+  const [isStartingDonation, setIsStartingDonation] = useState(false);
+  const [isConfirmingDonation, setIsConfirmingDonation] = useState(false);
+  const hasHandledPaypalReturn = useRef(false);
+
+  useEffect(() => {
+    if (hasHandledPaypalReturn.current) {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const paypalStatus = params.get("paypal");
+    const orderId = params.get("token");
+
+    if (paypalStatus === "cancel") {
+      hasHandledPaypalReturn.current = true;
+      window.history.replaceState({}, "", window.location.pathname);
+      window.setTimeout(() => {
+        setDonationStatus({
+          type: "error",
+          message: "PayPal checkout was canceled.",
+        });
+      }, 0);
+      return;
+    }
+
+    if (paypalStatus !== "return" || !orderId) {
+      return;
+    }
+
+    hasHandledPaypalReturn.current = true;
+    const paypalOrderId = orderId;
+
+    async function confirmDonation() {
+      setIsConfirmingDonation(true);
+      setDonationStatus({
+        type: "idle",
+        message: "",
+      });
+
+      try {
+        const response = await fetch(
+          `${apiBaseUrl}/api/paypal/orders/${encodeURIComponent(
+            paypalOrderId,
+          )}/capture`,
+          {
+            method: "POST",
+          },
+        );
+
+        if (!response.ok) {
+          const message =
+            response.status === 409
+              ? "That person has already donated, please try again."
+              : "PayPal donation could not be confirmed. Please try again.";
+
+          setDonationStatus({
+            type: "error",
+            message,
+          });
+          return;
+        }
+
+        setDonationStatus({
+          type: "success",
+          message: "Thank you. Your PayPal donation was completed.",
+        });
+      } catch {
+        setDonationStatus({
+          type: "error",
+          message: "PayPal donation could not be confirmed. Please try again.",
+        });
+      } finally {
+        setIsConfirmingDonation(false);
+        window.history.replaceState({}, "", window.location.pathname);
+      }
+    }
+
+    void confirmDonation();
+  }, []);
+
+  async function handleSupportClick() {
+    const paypalWindow = window.open("", "_blank");
+
+    if (!paypalWindow) {
+      setDonationStatus({
+        type: "error",
+        message: "Please allow pop-ups so PayPal can open in a new tab.",
+      });
+      return;
+    }
+
+    setIsStartingDonation(true);
+    setDonationStatus({
+      type: "idle",
+      message: "",
+    });
+
+    try {
+      const response = await fetch(`${apiBaseUrl}/api/paypal/orders`, {
+        method: "POST",
+      });
+      const data = (await response.json().catch(() => null)) as
+        | {
+            approvalUrl?: string;
+          }
+        | null;
+
+      if (!response.ok || !data?.approvalUrl) {
+        paypalWindow.close();
+        setDonationStatus({
+          type: "error",
+          message: "PayPal checkout could not be started. Please try again.",
+        });
+        return;
+      }
+
+      paypalWindow.location.href = data.approvalUrl;
+    } catch {
+      paypalWindow.close();
+      setDonationStatus({
+        type: "error",
+        message: "PayPal checkout could not be started. Please try again.",
+      });
+    } finally {
+      setIsStartingDonation(false);
+    }
+  }
 
   return (
     <div className="fundraising-layout">
@@ -26,7 +165,7 @@ export function FundraisingContent() {
           </h2>
         </div>
         <p>
-          The Silver Guardian is preparing seasonal events to help demonstrate support for communities battling pediatric conditions such as cancer and heart disease. Dates and events details are still being finalized, please sign up to receive regular updates via our newsletter.
+          The Silver Guardian is preparing seasonal events to help demonstrate support for communities battling pediatric conditions such as cancer and heart disease. Events details are still being finalized, please sign up to receive regular updates via our newsletter.
         </p>
       </section>
 
@@ -46,25 +185,6 @@ export function FundraisingContent() {
           </div>
           <p>
             Charity golf events will be signature opportunities to demonstrate support for the pediatric cancer/heart disease community.
-          </p>
-          <span>Coming soon</span>
-        </article>
-
-        <article className="fundraising-card">
-          <p className="fundraising-card__season">Fall</p>
-          <h3>Annual Ballroom Dance Tournament</h3>
-          <div className="fundraising-card__image">
-            <Image
-              src={ballroomDanceImage}
-              alt="Ballroom dancers performing together"
-              fill
-              placeholder="blur"
-              sizes="(max-width: 767px) 100vw, 33vw"
-              unoptimized
-            />
-          </div>
-          <p>
-            A one of a kind ballroom dance competition is being developed to strengthen pediatric cancer/heart disease communities through artistic movement and competitive resilience.
           </p>
           <span>Coming soon</span>
         </article>
@@ -96,10 +216,43 @@ export function FundraisingContent() {
           </p>
           <Button
             className="site-button site-button--primary"
-            onClick={() => setShowDonationModal(true)}
+            onClick={handleSupportClick}
+            disabled={isStartingDonation || isConfirmingDonation}
           >
-            Support Here
+            {isStartingDonation ? "Opening PayPal..." : "Support Here"}
           </Button>
+          {isConfirmingDonation ? (
+            <p className="form-status" role="status">
+              Confirming your PayPal donation...
+            </p>
+          ) : null}
+          {donationStatus.type !== "idle" ? (
+            <p
+              className={`form-status form-status--${donationStatus.type}`}
+              role="status"
+            >
+              {donationStatus.message}
+            </p>
+          ) : null}
+        </article>
+
+        <article className="fundraising-card">
+          <p className="fundraising-card__season">Fall</p>
+          <h3>Annual Ballroom Dance Tournament</h3>
+          <div className="fundraising-card__image">
+            <Image
+              src={ballroomDanceImage}
+              alt="Ballroom dancers performing together"
+              fill
+              placeholder="blur"
+              sizes="(max-width: 767px) 100vw, 33vw"
+              unoptimized
+            />
+          </div>
+          <p>
+            A one of a kind ballroom dance competition is being developed to strengthen pediatric cancer/heart disease communities through artistic movement and competitive resilience.
+          </p>
+          <span>Coming soon</span>
         </article>
       </section>
 
@@ -118,50 +271,6 @@ export function FundraisingContent() {
           </div>
         </div>
       </section>
-
-      <Modal
-        show={showDonationModal}
-        onHide={() => setShowDonationModal(false)}
-        centered
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>$1 Per Person Donation</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p className="donation-modal__intro">
-            Please share your contact information. Email will be used as the
-            unique supporter key when donation processing is connected.
-          </p>
-          <Form>
-            <Form.Group className="mb-3" controlId="donorName">
-              <Form.Label>Name</Form.Label>
-              <Form.Control type="text" placeholder="Your full name" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="donorPhone">
-              <Form.Label>Phone Number</Form.Label>
-              <Form.Control type="tel" placeholder="Your phone number" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="donorEmail">
-              <Form.Label>Email Address</Form.Label>
-              <Form.Control type="email" placeholder="you@example.com" />
-            </Form.Group>
-          </Form>
-          <p className="donation-modal__note">
-            PayPal donation processing is coming soon.
-          </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="outline-secondary"
-            onClick={() => setShowDonationModal(false)}
-          >
-            Close
-          </Button>
-          <Button className="site-button site-button--primary" disabled>
-            Continue to PayPal
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 }

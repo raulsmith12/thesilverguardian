@@ -603,9 +603,12 @@ a {
 }
 
 .stats-section {
+  width: 100vw;
   margin-top: 3rem;
+  margin-right: calc(50% - 50vw);
+  margin-left: calc(50% - 50vw);
   background: #04672f;
-  padding: 2rem;
+  padding: 2rem max(1.5rem, calc((100vw - 72rem) / 2 + 1.5rem));
 }
 
 .stats-section h2 {
@@ -775,6 +778,10 @@ a {
 .fundraising-card .site-button {
   margin-top: 1.25rem;
   width: 100%;
+}
+
+.fundraising-card .form-status {
+  margin-top: 1rem;
 }
 
 .fundraising-tracker {
