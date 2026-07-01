@@ -333,6 +333,10 @@ a {
   white-space: nowrap;
 }
 
+.newsletter-form .form-status {
+  grid-column: 1 / -1;
+}
+
 .contact-form {
   display: grid;
   gap: 1.25rem;
@@ -376,6 +380,23 @@ a {
   border-color: var(--color-primary);
   box-shadow: 0 0 0 0.2rem rgba(0, 28, 87, 0.12);
   outline: none;
+}
+
+.form-status {
+  margin: 0;
+  border-radius: 6px;
+  font-weight: 800;
+  padding: 0.8rem 0.9rem;
+}
+
+.form-status--success {
+  background: rgba(4, 103, 47, 0.12);
+  color: #04672f;
+}
+
+.form-status--error {
+  background: rgba(122, 29, 29, 0.12);
+  color: #7a1d1d;
 }
 
 .privacy-policy {

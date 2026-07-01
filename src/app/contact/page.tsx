@@ -1,5 +1,7 @@
+import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
+import { NewsletterSignupForm } from "@/components/NewsletterSignupForm";
 
 export default function ContactPage() {
   return (
@@ -39,58 +41,10 @@ export default function ContactPage() {
                   </p>
                 </div>
 
-                <form className="newsletter-form">
-                  <label>
-                    <span>Name</span>
-                    <input
-                      name="newsletter_name"
-                      type="text"
-                      autoComplete="name"
-                    />
-                  </label>
-
-                  <label>
-                    <span>Email</span>
-                    <input
-                      name="newsletter_email"
-                      type="email"
-                      autoComplete="email"
-                    />
-                  </label>
-
-                  <button className="site-button site-button--primary" type="submit">
-                    Sign Up
-                  </button>
-                </form>
+                <NewsletterSignupForm />
               </section>
 
-              <form className="contact-form">
-                <div className="contact-form__row">
-                  <label>
-                    <span>Name</span>
-                    <input name="name" type="text" autoComplete="name" />
-                  </label>
-
-                  <label>
-                    <span>Email</span>
-                    <input name="email" type="email" autoComplete="email" />
-                  </label>
-                </div>
-
-                <label>
-                  <span>Subject</span>
-                  <input name="subject" type="text" />
-                </label>
-
-                <label>
-                  <span>Message</span>
-                  <textarea name="message" rows={6} />
-                </label>
-
-                <button className="site-button site-button--primary" type="submit">
-                  Send Message
-                </button>
-              </form>
+              <ContactForm />
             </div>
           </div>
         </section>
