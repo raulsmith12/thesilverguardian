@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import ballroomDanceImage from "@/img/c3a93a8777a0af0f74eb8ff120553e56fb08dd2d-1.jpeg";
 import golfTournamentImage from "@/img/e4f884df0b93d4eb7d893f327084b05c3ccbf956-1.jpg";
@@ -28,6 +29,7 @@ export function FundraisingContent() {
     type: "idle",
     message: "",
   });
+  const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
   const [isStartingDonation, setIsStartingDonation] = useState(false);
   const [isConfirmingDonation, setIsConfirmingDonation] = useState(false);
   const hasHandledPaypalReturn = useRef(false);
@@ -108,7 +110,11 @@ export function FundraisingContent() {
     void confirmDonation();
   }, []);
 
-  async function handleSupportClick() {
+  function handleSupportClick() {
+    setIsDonationModalOpen(true);
+  }
+
+  async function handleConfirmDonation() {
     const paypalWindow = window.open("", "_blank");
 
     if (!paypalWindow) {
@@ -119,6 +125,7 @@ export function FundraisingContent() {
       return;
     }
 
+    setIsDonationModalOpen(false);
     setIsStartingDonation(true);
     setDonationStatus({
       type: "idle",
@@ -165,7 +172,7 @@ export function FundraisingContent() {
           </h2>
         </div>
         <p>
-          The Silver Guardian is preparing seasonal events to help demonstrate support for communities battling pediatric conditions such as cancer and heart disease. Events details are still being finalized, please sign up to receive regular updates via our newsletter.
+          The Silver Guardian is preparing seasonal events to help demonstrate support for communities battling pediatric conditions such as cancer and heart disease. Event details are still being finalized, please sign up to receive regular updates via our newsletter.
         </p>
       </section>
 
@@ -271,6 +278,45 @@ export function FundraisingContent() {
           </div>
         </div>
       </section>
+
+      <Modal
+        show={isDonationModalOpen}
+        onHide={() => setIsDonationModalOpen(false)}
+        centered
+        aria-labelledby="donation-newsletter-modal-title"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="donation-newsletter-modal-title">
+            Newsletter Signup
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p className="donation-modal__intro">
+            By donating to The Silver Guardian, you agree to sign up for our
+            newsletter so we can share campaign updates and future
+            announcements.
+          </p>
+          <p className="donation-modal__note">
+            You are welcome to unsubscribe at any time.
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            className="site-button site-button--secondary"
+            onClick={() => setIsDonationModalOpen(false)}
+            disabled={isStartingDonation}
+          >
+            Cancel
+          </Button>
+          <Button
+            className="site-button site-button--primary"
+            onClick={handleConfirmDonation}
+            disabled={isStartingDonation}
+          >
+            {isStartingDonation ? "Opening PayPal..." : "Continue to PayPal"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

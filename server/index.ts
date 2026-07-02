@@ -10,6 +10,7 @@ import { closeDatabasePool, pingDatabase } from "./database";
 import {
   sendContactSubmissionEmail,
   sendNewsletterSignupEmail,
+  sendNewsletterWelcomeEmail,
   verifyEmailTransport,
 } from "./emailNotifications";
 import {
@@ -132,6 +133,7 @@ app.post("/api/newsletter", async (req, res) => {
   try {
     const id = await createNewsletterSubscriber(validation.data);
     await sendNewsletterSignupEmail(validation.data);
+    await sendNewsletterWelcomeEmail(validation.data);
 
     res.status(201).json({
       ok: true,

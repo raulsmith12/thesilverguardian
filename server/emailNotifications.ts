@@ -5,6 +5,13 @@ import type { NewsletterSubscriberInput } from "./newsletterSubscribers";
 const DEFAULT_SMTP_PORT = 587;
 const DEFAULT_MAIL_TO = "team@thesilverguardian.com";
 
+export type PaypalDonationReceiptInput = {
+  name: string;
+  email: string;
+  amountCents: number;
+  currency: string;
+};
+
 function getRequiredEnv(name: string) {
   const value = process.env[name];
 
@@ -126,6 +133,65 @@ export async function sendNewsletterSignupEmail(
       <h2>New newsletter signup</h2>
       <p><strong>Name:</strong> ${safeName}</p>
       <p><strong>Email:</strong> ${safeEmail}</p>
+    `,
+  });
+}
+
+export async function sendNewsletterWelcomeEmail(
+  subscriber: NewsletterSubscriberInput,
+) {
+  const safeName = escapeHtml(subscriber.name);
+
+  await getEmailTransporter().sendMail({
+    from: getMailFrom(),
+    to: subscriber.email,
+    subject: "Welcome to The Silver Guardian newsletter",
+    text: [
+      `Hello ${subscriber.name},`,
+      "",
+      "Thank you for subscribing to The Silver Guardian newsletter.",
+      "We will send future announcements, campaign updates, and community news to this email address.",
+      "",
+      "You are welcome to unsubscribe at any time.",
+      "",
+      "The Silver Guardian",
+    ].join("\n"),
+    html: `
+      <p>Hello ${safeName},</p>
+      <p>Thank you for subscribing to The Silver Guardian newsletter.</p>
+      <p>We will send future announcements, campaign updates, and community news to this email address.</p>
+      <p>You are welcome to unsubscribe at any time.</p>
+      <p>The Silver Guardian</p>
+    `,
+  });
+}
+
+export async function sendPaypalDonationThankYouEmail(
+  donation: PaypalDonationReceiptInput,
+) {
+  const safeName = escapeHtml(donation.name);
+  const amount = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: donation.currency,
+  }).format(donation.amountCents / 100);
+
+  await getEmailTransporter().sendMail({
+    from: getMailFrom(),
+    to: donation.email,
+    subject: "Thank you for donating to The Silver Guardian",
+    text: [
+      `Hello ${donation.name},`,
+      "",
+      `Thank you for your ${amount} donation through PayPal to The Silver Guardian.`,
+      "Your support helps demonstrate community care for families affected by pediatric cancer, heart disease, and related conditions.",
+      "",
+      "The Silver Guardian",
+    ].join("\n"),
+    html: `
+      <p>Hello ${safeName},</p>
+      <p>Thank you for your ${amount} donation through PayPal to The Silver Guardian.</p>
+      <p>Your support helps demonstrate community care for families affected by pediatric cancer, heart disease, and related conditions.</p>
+      <p>The Silver Guardian</p>
     `,
   });
 }

@@ -1,5 +1,14 @@
 import type { ResultSetHeader, RowDataPacket } from "mysql2";
 import { getDatabasePool } from "./database";
+import {
+  sendNewsletterSignupEmail,
+  sendNewsletterWelcomeEmail,
+  sendPaypalDonationThankYouEmail,
+} from "./emailNotifications";
+import {
+  createNewsletterSubscriber,
+  isDuplicateNewsletterEmailError,
+} from "./newsletterSubscribers";
 
 const PAYPAL_SANDBOX_API_BASE_URL = "https://api-m.sandbox.paypal.com";
 const PAYPAL_LIVE_API_BASE_URL = "https://api-m.paypal.com";
@@ -239,6 +248,7 @@ export async function captureAndRecordPaypalDonation(orderId: string) {
   }
 
   const capture = await capturePaypalOrder(orderId);
+  const donorName = getDonorName(capture);
   const capturedPayment = capture.purchase_units?.[0]?.payments?.captures?.[0];
   const amountCents = parseAmountCents(capturedPayment?.amount?.value);
   const currency = capturedPayment?.amount?.currency_code ?? DONATION_CURRENCY;
@@ -267,7 +277,7 @@ export async function captureAndRecordPaypalDonation(orderId: string) {
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `,
     [
-      getDonorName(capture),
+      donorName,
       email,
       amountCents,
       currency,
@@ -278,6 +288,48 @@ export async function captureAndRecordPaypalDonation(orderId: string) {
       JSON.stringify(capture),
     ],
   );
+
+  try {
+    await sendPaypalDonationThankYouEmail({
+      name: donorName,
+      email,
+      amountCents,
+      currency,
+    });
+  } catch (error) {
+    console.error("PayPal donor thank-you email failed", error);
+  }
+
+  const subscriber = {
+    name: donorName,
+    email,
+  };
+  let shouldNotifyTeamOfNewsletterSignup = true;
+  let shouldSendNewsletterWelcome = true;
+
+  try {
+    await createNewsletterSubscriber(subscriber);
+  } catch (error) {
+    if (isDuplicateNewsletterEmailError(error)) {
+      shouldNotifyTeamOfNewsletterSignup = false;
+    } else {
+      shouldNotifyTeamOfNewsletterSignup = false;
+      shouldSendNewsletterWelcome = false;
+      console.error("PayPal donor newsletter signup failed", error);
+    }
+  }
+
+  try {
+    if (shouldNotifyTeamOfNewsletterSignup) {
+      await sendNewsletterSignupEmail(subscriber);
+    }
+
+    if (shouldSendNewsletterWelcome) {
+      await sendNewsletterWelcomeEmail(subscriber);
+    }
+  } catch (error) {
+    console.error("PayPal donor newsletter email failed", error);
+  }
 
   return {
     ok: true as const,
