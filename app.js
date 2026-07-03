@@ -25,3 +25,5 @@ if (require.main === module) {
 }
 
 module.exports = app;
+
+require("./server/index.js");
