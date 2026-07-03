@@ -37,7 +37,7 @@ export function NewsletterSignupForm() {
     });
 
     try {
-      const response = await fetch(`${apiBaseUrl}/api/newsletter`, {
+      const response = await fetch(`${apiBaseUrl}/newsletter`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

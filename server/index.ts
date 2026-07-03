@@ -40,7 +40,7 @@ app.get("/api/health", (_req, res) => {
   });
 });
 
-app.get("/api/health/database", async (_req, res) => {
+app.get("/health/database", async (_req, res) => {
   try {
     await pingDatabase();
 
@@ -60,7 +60,7 @@ app.get("/api/health/database", async (_req, res) => {
   }
 });
 
-app.get("/api/health/email", async (_req, res) => {
+app.get("/health/email", async (_req, res) => {
   try {
     await verifyEmailTransport();
 
@@ -80,7 +80,7 @@ app.get("/api/health/email", async (_req, res) => {
   }
 });
 
-app.post("/api/contact", async (req, res) => {
+app.post("/contact", async (req, res) => {
   const validation = validateContactSubmission(req.body);
 
   if (!validation.ok) {
@@ -118,7 +118,7 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-app.post("/api/newsletter", async (req, res) => {
+app.post("/newsletter", async (req, res) => {
   const validation = validateNewsletterSubscriber(req.body);
 
   if (!validation.ok) {
@@ -157,7 +157,7 @@ app.post("/api/newsletter", async (req, res) => {
   }
 });
 
-app.post("/api/paypal/orders", async (_req, res) => {
+app.post("/paypal/orders", async (_req, res) => {
   try {
     const order = await createPaypalDonationOrder();
 
@@ -175,7 +175,7 @@ app.post("/api/paypal/orders", async (_req, res) => {
   }
 });
 
-app.post("/api/paypal/orders/:orderId/capture", async (req, res) => {
+app.post("/paypal/orders/:orderId/capture", async (req, res) => {
   const orderId =
     typeof req.params.orderId === "string" ? req.params.orderId.trim() : "";
 

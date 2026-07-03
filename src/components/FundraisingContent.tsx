@@ -71,7 +71,7 @@ export function FundraisingContent() {
 
       try {
         const response = await fetch(
-          `${apiBaseUrl}/api/paypal/orders/${encodeURIComponent(
+          `${apiBaseUrl}/paypal/orders/${encodeURIComponent(
             paypalOrderId,
           )}/capture`,
           {
@@ -133,7 +133,7 @@ export function FundraisingContent() {
     });
 
     try {
-      const response = await fetch(`${apiBaseUrl}/api/paypal/orders`, {
+      const response = await fetch(`${apiBaseUrl}/paypal/orders`, {
         method: "POST",
       });
       const data = (await response.json().catch(() => null)) as

@@ -37,7 +37,7 @@ export function ContactForm() {
     });
 
     try {
-      const response = await fetch(`${apiBaseUrl}/api/contact`, {
+      const response = await fetch(`${apiBaseUrl}/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
