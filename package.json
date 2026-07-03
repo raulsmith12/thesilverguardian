@@ -10,7 +10,7 @@
     "export:frontend": "next build --webpack",
     "start": "NODE_ENV=production node server.js",
     "build:backend": "npx tsc",
-    "start:backend": "node dist/server/index.js",
+    "start:backend": "node server/index.js",
     "lint": "eslint"
   },
   "dependencies": {
