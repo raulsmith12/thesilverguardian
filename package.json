@@ -5,12 +5,12 @@
   "scripts": {
     "dev": "next dev --webpack",
     "dev:turbo": "next dev",
-    "dev:backend": "tsx watch server/index.ts",
+    "dev:backend": "node --watch app.js",
     "build": "next build --webpack",
     "export:frontend": "next build --webpack",
     "start": "NODE_ENV=production node server.js",
     "build:backend": "npx tsc",
-    "start:backend": "node server/index.js",
+    "start:backend": "node app.js",
     "lint": "eslint"
   },
   "dependencies": {
