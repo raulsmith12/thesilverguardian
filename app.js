@@ -32,10 +32,14 @@ const port = Number(process.env.PORT) || 4000;
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (_req, res) => {
+  res.send("New Node app is live");
+});
+
 app.get("/health", (_req, res) => {
   res.json({
     ok: true,
-    service: "the-silver-guardian-api",
+    version: "fresh-node-app-001",
     timestamp: new Date().toISOString(),
   });
 });
