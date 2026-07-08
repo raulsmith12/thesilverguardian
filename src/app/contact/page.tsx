@@ -44,6 +44,18 @@ export default function ContactPage() {
                 <NewsletterSignupForm />
               </section>
 
+              <section className="business-owner-callout">
+                <h3>Business Owners:</h3>
+                <p>
+                  If you are a business owner and wish to help support The
+                  Silver Guardian,{" "}
+                  <a href="mailto:team@thesilverguardian.com?subject=QR%20Code%20Request">
+                    click here
+                  </a>{" "}
+                  to request a QR code
+                </p>
+              </section>
+
               <ContactForm />
             </div>
           </div>

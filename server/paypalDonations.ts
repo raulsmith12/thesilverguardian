@@ -53,6 +53,14 @@ type ExistingDonationRow = RowDataPacket & {
   id: number;
 };
 
+type CapturePaypalDonationOptions = {
+  skipNewsletterSignup?: boolean;
+};
+
+type CreatePaypalDonationOrderOptions = {
+  skipNewsletterSignup?: boolean;
+};
+
 export class PaypalApiError extends Error {
   status: number;
   details: unknown;
@@ -89,9 +97,16 @@ function getFrontendBaseUrl() {
   ).replace(/\/$/, "");
 }
 
-function getDonationReturnUrl(status: "return" | "cancel") {
+function getDonationReturnUrl(
+  status: "return" | "cancel",
+  options: CreatePaypalDonationOrderOptions = {},
+) {
   const url = new URL("/fundraising", getFrontendBaseUrl());
   url.searchParams.set("paypal", status);
+
+  if (options.skipNewsletterSignup) {
+    url.searchParams.set("newsletterOptOut", "true");
+  }
 
   return url.toString();
 }
@@ -162,7 +177,9 @@ async function paypalRequest<T>(path: string, init: RequestInit = {}) {
   return data as T;
 }
 
-export async function createPaypalDonationOrder() {
+export async function createPaypalDonationOrder(
+  options: CreatePaypalDonationOrderOptions = {},
+) {
   const order = await paypalRequest<PaypalOrder>("/v2/checkout/orders", {
     method: "POST",
     headers: {
@@ -184,8 +201,8 @@ export async function createPaypalDonationOrder() {
         landing_page: "NO_PREFERENCE",
         shipping_preference: "NO_SHIPPING",
         user_action: "PAY_NOW",
-        return_url: getDonationReturnUrl("return"),
-        cancel_url: getDonationReturnUrl("cancel"),
+        return_url: getDonationReturnUrl("return", options),
+        cancel_url: getDonationReturnUrl("cancel", options),
       },
     }),
   });
@@ -232,7 +249,10 @@ export async function paypalDonationEmailExists(email: string) {
   return rows.length > 0;
 }
 
-export async function captureAndRecordPaypalDonation(orderId: string) {
+export async function captureAndRecordPaypalDonation(
+  orderId: string,
+  options: CapturePaypalDonationOptions = {},
+) {
   const approvedOrder = await getPaypalOrder(orderId);
   const email = approvedOrder.payer?.email_address?.trim().toLowerCase();
 
@@ -300,35 +320,37 @@ export async function captureAndRecordPaypalDonation(orderId: string) {
     console.error("PayPal donor thank-you email failed", error);
   }
 
-  const subscriber = {
-    name: donorName,
-    email,
-  };
-  let shouldNotifyTeamOfNewsletterSignup = true;
-  let shouldSendNewsletterWelcome = true;
+  if (!options.skipNewsletterSignup) {
+    const subscriber = {
+      name: donorName,
+      email,
+    };
+    let shouldNotifyTeamOfNewsletterSignup = true;
+    let shouldSendNewsletterWelcome = true;
 
-  try {
-    await createNewsletterSubscriber(subscriber);
-  } catch (error) {
-    if (isDuplicateNewsletterEmailError(error)) {
-      shouldNotifyTeamOfNewsletterSignup = false;
-    } else {
-      shouldNotifyTeamOfNewsletterSignup = false;
-      shouldSendNewsletterWelcome = false;
-      console.error("PayPal donor newsletter signup failed", error);
-    }
-  }
-
-  try {
-    if (shouldNotifyTeamOfNewsletterSignup) {
-      await sendNewsletterSignupEmail(subscriber);
+    try {
+      await createNewsletterSubscriber(subscriber);
+    } catch (error) {
+      if (isDuplicateNewsletterEmailError(error)) {
+        shouldNotifyTeamOfNewsletterSignup = false;
+      } else {
+        shouldNotifyTeamOfNewsletterSignup = false;
+        shouldSendNewsletterWelcome = false;
+        console.error("PayPal donor newsletter signup failed", error);
+      }
     }
 
-    if (shouldSendNewsletterWelcome) {
-      await sendNewsletterWelcomeEmail(subscriber);
+    try {
+      if (shouldNotifyTeamOfNewsletterSignup) {
+        await sendNewsletterSignupEmail(subscriber);
+      }
+
+      if (shouldSendNewsletterWelcome) {
+        await sendNewsletterWelcomeEmail(subscriber);
+      }
+    } catch (error) {
+      console.error("PayPal donor newsletter email failed", error);
     }
-  } catch (error) {
-    console.error("PayPal donor newsletter email failed", error);
   }
 
   return {

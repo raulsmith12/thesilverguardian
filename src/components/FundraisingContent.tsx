@@ -13,6 +13,7 @@ import { apiBaseUrl } from "@/lib/api";
 const currentAmount = 0;
 const goalAmount = 5000000;
 const progressPercent = Math.round((currentAmount / goalAmount) * 100);
+const paypalNewsletterOptOutKey = "paypalNewsletterOptOut";
 
 type DonationStatus =
   | {
@@ -24,6 +25,36 @@ type DonationStatus =
       message: string;
     };
 
+function getStoredPaypalNewsletterOptOut() {
+  try {
+    return window.sessionStorage.getItem(paypalNewsletterOptOutKey) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function setStoredPaypalNewsletterOptOut(
+  value: boolean,
+  targetWindow: Pick<Window, "sessionStorage"> = window,
+) {
+  try {
+    targetWindow.sessionStorage.setItem(
+      paypalNewsletterOptOutKey,
+      String(value),
+    );
+  } catch {
+    // The PayPal flow can continue if browser storage is unavailable.
+  }
+}
+
+function clearStoredPaypalNewsletterOptOut() {
+  try {
+    window.sessionStorage.removeItem(paypalNewsletterOptOutKey);
+  } catch {
+    // Nothing to clear when browser storage is unavailable.
+  }
+}
+
 export function FundraisingContent() {
   const [donationStatus, setDonationStatus] = useState<DonationStatus>({
     type: "idle",
@@ -32,6 +63,8 @@ export function FundraisingContent() {
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
   const [isStartingDonation, setIsStartingDonation] = useState(false);
   const [isConfirmingDonation, setIsConfirmingDonation] = useState(false);
+  const [isNewsletterSignupChecked, setIsNewsletterSignupChecked] =
+    useState(false);
   const hasHandledPaypalReturn = useRef(false);
 
   useEffect(() => {
@@ -42,9 +75,13 @@ export function FundraisingContent() {
     const params = new URLSearchParams(window.location.search);
     const paypalStatus = params.get("paypal");
     const orderId = params.get("token");
+    const skipNewsletterSignup =
+      params.get("newsletterOptOut") === "true" ||
+      getStoredPaypalNewsletterOptOut();
 
     if (paypalStatus === "cancel") {
       hasHandledPaypalReturn.current = true;
+      clearStoredPaypalNewsletterOptOut();
       window.history.replaceState({}, "", window.location.pathname);
       window.setTimeout(() => {
         setDonationStatus({
@@ -76,6 +113,12 @@ export function FundraisingContent() {
           )}/capture`,
           {
             method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              skipNewsletterSignup,
+            }),
           },
         );
 
@@ -103,6 +146,7 @@ export function FundraisingContent() {
         });
       } finally {
         setIsConfirmingDonation(false);
+        clearStoredPaypalNewsletterOptOut();
         window.history.replaceState({}, "", window.location.pathname);
       }
     }
@@ -111,10 +155,12 @@ export function FundraisingContent() {
   }, []);
 
   function handleSupportClick() {
+    setIsNewsletterSignupChecked(false);
     setIsDonationModalOpen(true);
   }
 
   async function handleConfirmDonation() {
+    const skipNewsletterSignup = !isNewsletterSignupChecked;
     const paypalWindow = window.open("", "_blank");
 
     if (!paypalWindow) {
@@ -125,6 +171,8 @@ export function FundraisingContent() {
       return;
     }
 
+    setStoredPaypalNewsletterOptOut(skipNewsletterSignup);
+    setStoredPaypalNewsletterOptOut(skipNewsletterSignup, paypalWindow);
     setIsDonationModalOpen(false);
     setIsStartingDonation(true);
     setDonationStatus({
@@ -135,6 +183,12 @@ export function FundraisingContent() {
     try {
       const response = await fetch(`${apiBaseUrl}/paypal/orders`, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          skipNewsletterSignup,
+        }),
       });
       const data = (await response.json().catch(() => null)) as
         | {
@@ -287,18 +341,31 @@ export function FundraisingContent() {
       >
         <Modal.Header closeButton>
           <Modal.Title id="donation-newsletter-modal-title">
-            Newsletter Signup
+            Score a Goal
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p className="donation-modal__intro">
-            By donating to The Silver Guardian, you agree to sign up for our
-            newsletter so we can share campaign updates and future
-            announcements.
+            By demonstrating your support for The Silver Guardian, you are
+            helping to make sure that the concept of a state of the art, kid
+            friendly, ice hockey themed hospital facility becomes a reality to
+            provide hope and healing, especially to brave children battling
+            cancer and heart disease. Thank you for supporting the cause!
           </p>
-          <p className="donation-modal__note">
-            You are welcome to unsubscribe at any time.
-          </p>
+          <label className="donation-modal__newsletter-opt-in">
+            <input
+              type="checkbox"
+              checked={isNewsletterSignupChecked}
+              onChange={(event) =>
+                setIsNewsletterSignupChecked(event.target.checked)
+              }
+            />
+            <span>
+              Please check this box if you would like to subscribe to our
+              monthly newsletter for updates on The Silver Guardian&apos;s
+              progress:
+            </span>
+          </label>
         </Modal.Body>
         <Modal.Footer>
           <Button

@@ -41,7 +41,7 @@ export default function Home() {
         <section className="mission-note-section">
           <div className="mx-auto w-full max-w-6xl px-6 py-12">
             <p>
-              The Silver Guardian is a group of anonymous business owners and community advocates who have joined together to gather community support for an innovative pediatric care facility with a kid friendly ice hockey theme designed to inspire hope and healing in the face of life threatening conditions, primarily cancer and heart disease.
+              The Silver Guardian is a group of business owners and community advocates who have joined together to gather community support for an innovative pediatric care facility with a kid friendly ice hockey theme designed to inspire hope and healing in the face of life threatening conditions, primarily cancer and heart disease.
             </p>
             <p>Thank you,</p>
             <p>The Silver Guardian Team</p>

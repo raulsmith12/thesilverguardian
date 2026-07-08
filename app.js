@@ -161,9 +161,11 @@ app.post("/newsletter", async (req, res) => {
   }
 });
 
-app.post("/paypal/orders", async (_req, res) => {
+app.post("/paypal/orders", async (req, res) => {
   try {
-    const order = await createPaypalDonationOrder();
+    const order = await createPaypalDonationOrder({
+      skipNewsletterSignup: req.body?.skipNewsletterSignup === true,
+    });
 
     res.status(201).json({
       ok: true,
@@ -192,7 +194,9 @@ app.post("/paypal/orders/:orderId/capture", async (req, res) => {
   }
 
   try {
-    const result = await captureAndRecordPaypalDonation(orderId);
+    const result = await captureAndRecordPaypalDonation(orderId, {
+      skipNewsletterSignup: req.body?.skipNewsletterSignup === true,
+    });
 
     if (!result.ok) {
       res.status(409).json({

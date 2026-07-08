@@ -457,8 +457,22 @@ export default function WishesPage() {
           </div>
         </section>
 
-        <section className="page-content page-content--green">
+        <section className="page-content">
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
+            <div className="wishes-intro">
+              <p>
+                One of our goals is to annually grant 32 ice hockey related
+                wishes to 32 brave children in 32 cities at a single event
+                designed to spread hope and joy within the pediatric
+                cancer/heart disease community.
+              </p>
+              <p>
+                Please check back regularly to see which members of the North
+                American professional ice hockey community have agreed to
+                partner with us in this endeavor, as well as hospital concept.
+              </p>
+            </div>
+
             <div className="wishes-grid">
               <section className="wishes-region" aria-labelledby="west-title">
                 <h2 id="west-title">West</h2>
