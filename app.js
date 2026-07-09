@@ -162,8 +162,14 @@ app.post("/newsletter", async (req, res) => {
 });
 
 app.post("/paypal/orders", async (req, res) => {
+  const subscribeToNewsletter =
+    typeof req.body?.subscribeToNewsletter === "boolean"
+      ? req.body.subscribeToNewsletter
+      : undefined;
+
   try {
     const order = await createPaypalDonationOrder({
+      subscribeToNewsletter,
       skipNewsletterSignup: req.body?.skipNewsletterSignup === true,
     });
 
@@ -188,6 +194,10 @@ app.post("/paypal/orders/:orderId/capture", async (req, res) => {
     typeof req.body?.skipNewsletterSignup === "boolean"
       ? req.body.skipNewsletterSignup
       : undefined;
+  const subscribeToNewsletter =
+    typeof req.body?.subscribeToNewsletter === "boolean"
+      ? req.body.subscribeToNewsletter
+      : undefined;
 
   if (!orderId) {
     res.status(400).json({
@@ -199,6 +209,7 @@ app.post("/paypal/orders/:orderId/capture", async (req, res) => {
 
   try {
     const result = await captureAndRecordPaypalDonation(orderId, {
+      subscribeToNewsletter,
       skipNewsletterSignup,
     });
 

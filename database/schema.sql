@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS paypal_donations (
   donated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
-  UNIQUE KEY paypal_donations_email_unique (email_normalized),
+  KEY paypal_donations_email_index (email_normalized),
   UNIQUE KEY paypal_donations_order_id_unique (paypal_order_id),
   UNIQUE KEY paypal_donations_capture_id_unique (paypal_capture_id),
   CONSTRAINT paypal_donations_amount_positive CHECK (amount_cents > 0)

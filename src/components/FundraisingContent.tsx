@@ -13,7 +13,7 @@ import { apiBaseUrl } from "@/lib/api";
 const currentAmount = 0;
 const goalAmount = 5000000;
 const progressPercent = Math.round((currentAmount / goalAmount) * 100);
-const paypalNewsletterOptOutKey = "paypalNewsletterOptOut";
+const paypalNewsletterSignupKey = "paypalNewsletterSignup";
 
 type DonationStatus =
   | {
@@ -25,21 +25,21 @@ type DonationStatus =
       message: string;
     };
 
-function getStoredPaypalNewsletterOptOut() {
+function getStoredPaypalNewsletterSignup() {
   try {
-    return window.sessionStorage.getItem(paypalNewsletterOptOutKey) === "true";
+    return window.sessionStorage.getItem(paypalNewsletterSignupKey) === "true";
   } catch {
     return false;
   }
 }
 
-function setStoredPaypalNewsletterOptOut(
+function setStoredPaypalNewsletterSignup(
   value: boolean,
   targetWindow: Pick<Window, "sessionStorage"> = window,
 ) {
   try {
     targetWindow.sessionStorage.setItem(
-      paypalNewsletterOptOutKey,
+      paypalNewsletterSignupKey,
       String(value),
     );
   } catch {
@@ -47,9 +47,9 @@ function setStoredPaypalNewsletterOptOut(
   }
 }
 
-function clearStoredPaypalNewsletterOptOut() {
+function clearStoredPaypalNewsletterSignup() {
   try {
-    window.sessionStorage.removeItem(paypalNewsletterOptOutKey);
+    window.sessionStorage.removeItem(paypalNewsletterSignupKey);
   } catch {
     // Nothing to clear when browser storage is unavailable.
   }
@@ -75,13 +75,13 @@ export function FundraisingContent() {
     const params = new URLSearchParams(window.location.search);
     const paypalStatus = params.get("paypal");
     const orderId = params.get("token");
-    const skipNewsletterSignup =
-      params.get("newsletterOptOut") === "true" ||
-      getStoredPaypalNewsletterOptOut();
+    const subscribeToNewsletter =
+      params.get("newsletterSignup") === "true" ||
+      getStoredPaypalNewsletterSignup();
 
     if (paypalStatus === "cancel") {
       hasHandledPaypalReturn.current = true;
-      clearStoredPaypalNewsletterOptOut();
+      clearStoredPaypalNewsletterSignup();
       window.history.replaceState({}, "", window.location.pathname);
       window.setTimeout(() => {
         setDonationStatus({
@@ -117,7 +117,7 @@ export function FundraisingContent() {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              skipNewsletterSignup,
+              subscribeToNewsletter,
             }),
           },
         );
@@ -146,7 +146,7 @@ export function FundraisingContent() {
         });
       } finally {
         setIsConfirmingDonation(false);
-        clearStoredPaypalNewsletterOptOut();
+        clearStoredPaypalNewsletterSignup();
         window.history.replaceState({}, "", window.location.pathname);
       }
     }
@@ -160,7 +160,7 @@ export function FundraisingContent() {
   }
 
   async function handleConfirmDonation() {
-    const skipNewsletterSignup = !isNewsletterSignupChecked;
+    const subscribeToNewsletter = isNewsletterSignupChecked;
     const paypalWindow = window.open("", "_blank");
 
     if (!paypalWindow) {
@@ -171,8 +171,8 @@ export function FundraisingContent() {
       return;
     }
 
-    setStoredPaypalNewsletterOptOut(skipNewsletterSignup);
-    setStoredPaypalNewsletterOptOut(skipNewsletterSignup, paypalWindow);
+    setStoredPaypalNewsletterSignup(subscribeToNewsletter);
+    setStoredPaypalNewsletterSignup(subscribeToNewsletter, paypalWindow);
     setIsDonationModalOpen(false);
     setIsStartingDonation(true);
     setDonationStatus({
@@ -187,7 +187,7 @@ export function FundraisingContent() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          skipNewsletterSignup,
+          subscribeToNewsletter,
         }),
       });
       const data = (await response.json().catch(() => null)) as

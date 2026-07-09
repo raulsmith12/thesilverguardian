@@ -35,9 +35,17 @@ function getRequiredEnv(name) {
 }
 
 function getPaypalApiBaseUrl() {
-  return process.env.PAYPAL_MODE === "live"
-    ? PAYPAL_LIVE_API_BASE_URL
-    : PAYPAL_SANDBOX_API_BASE_URL;
+  const mode = getRequiredEnv("PAYPAL_MODE").trim().toLowerCase();
+
+  if (mode === "live") {
+    return PAYPAL_LIVE_API_BASE_URL;
+  }
+
+  if (mode === "sandbox") {
+    return PAYPAL_SANDBOX_API_BASE_URL;
+  }
+
+  throw new Error("PAYPAL_MODE must be either 'sandbox' or 'live'");
 }
 
 function getFrontendBaseUrl() {
@@ -51,17 +59,18 @@ function getFrontendBaseUrl() {
 function getDonationReturnUrl(status, options = {}) {
   const url = new URL("/fundraising/", getFrontendBaseUrl());
   url.searchParams.set("paypal", status);
-
-  if (options.skipNewsletterSignup) {
-    url.searchParams.set("newsletterOptOut", "true");
-  }
+  url.searchParams.set("newsletterSignup", String(getSubscribeToNewsletter(options)));
 
   return url.toString();
 }
 
+function getSubscribeToNewsletter(options) {
+  return options.subscribeToNewsletter ?? !options.skipNewsletterSignup;
+}
+
 function getNewsletterSignupCustomId(options) {
   return `${NEWSLETTER_SIGNUP_CUSTOM_ID_PREFIX}${String(
-    !options.skipNewsletterSignup,
+    getSubscribeToNewsletter(options),
   )}`;
 }
 
@@ -211,19 +220,20 @@ async function paypalDonationEmailExists(email) {
 
 async function captureAndRecordPaypalDonation(orderId, options = {}) {
   const approvedOrder = await getPaypalOrder(orderId);
-  const skipNewsletterSignup =
-    options.skipNewsletterSignup ?? getSkipNewsletterSignupFromOrder(approvedOrder);
+  const skipNewsletterSignupFromOrder = getSkipNewsletterSignupFromOrder(approvedOrder);
+  const subscribeToNewsletter =
+    options.subscribeToNewsletter ??
+    (options.skipNewsletterSignup === undefined
+      ? undefined
+      : !options.skipNewsletterSignup) ??
+    (skipNewsletterSignupFromOrder === undefined
+      ? undefined
+      : !skipNewsletterSignupFromOrder) ??
+    false;
   const email = approvedOrder.payer?.email_address?.trim().toLowerCase();
 
   if (!email) {
     throw new Error("PayPal order did not include a payer email address");
-  }
-
-  if (await paypalDonationEmailExists(email)) {
-    return {
-      ok: false,
-      reason: "duplicate_email",
-    };
   }
 
   const capture = await capturePaypalOrder(orderId);
@@ -279,7 +289,7 @@ async function captureAndRecordPaypalDonation(orderId, options = {}) {
     console.error("PayPal donor thank-you email failed", error);
   }
 
-  if (!skipNewsletterSignup) {
+  if (subscribeToNewsletter) {
     const subscriber = {
       name: donorName,
       email,

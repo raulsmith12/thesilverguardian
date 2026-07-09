@@ -6,9 +6,9 @@ This directory contains the first MySQL schema for the site backend.
 
 - `newsletter_subscribers`: registered newsletter subscribers with `name`, unique `email`, and `date_joined`.
 - `contact_form_submissions`: contact form records with `name`, unique `email`, `subject`, `message`, and `submitted_at`.
-- `paypal_donations`: PayPal donation records with donor identity, unique `email`, amount, currency, PayPal identifiers, status, and raw webhook/order payload storage.
+- `paypal_donations`: PayPal donation records with donor identity, indexed `email`, amount, currency, PayPal identifiers, status, and raw webhook/order payload storage.
 
-The tables are intentionally independent. Email uniqueness is enforced with generated lowercase email columns and unique keys.
+The tables are intentionally independent. Email uniqueness is enforced for newsletter subscribers and contact form submissions with generated lowercase email columns and unique keys. PayPal donations can include repeated donor emails, while PayPal order and capture IDs remain unique.
 
 Apply the schema with a MySQL client:
 
