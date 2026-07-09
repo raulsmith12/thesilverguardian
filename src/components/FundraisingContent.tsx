@@ -264,6 +264,9 @@ export function FundraisingContent() {
             />
           </div>
           <p>
+            Please check back soon for details on how to support this initiative.
+          </p>
+          {/* <p>
             Has someone in your family been affected by cancer, Parkinson&rsquo;s, or heart disease?
           </p>
           <p>
@@ -294,7 +297,7 @@ export function FundraisingContent() {
             >
               {donationStatus.message}
             </p>
-          ) : null}
+          ) : null} */}
         </article>
 
         <section
@@ -320,7 +323,7 @@ export function FundraisingContent() {
         </section>
 
         <article className="fundraising-card">
-          <p className="fundraising-card__season">Nov / Dec / Jan</p>
+          <p className="fundraising-card__season">Winter</p>
           <h3>Annual Ballroom Dance Tournament</h3>
           <div className="fundraising-card__image">
             <Image

@@ -14,7 +14,7 @@ export default function MovementTherapyCenterPage() {
       summary:
         "According to Oxford Academic in the United Kingdom, just 45 minutes of community dancing per week can improve the health of a cancer patient.",
       details:
-        "To learn more or for more details, please visit the website listed below containing a formal research study on the effects of community dancing and how it helps cancer patients in their fight to survive:",
+        "To learn more, please visit the website listed below containing a formal research study on the effects of community dancing and how it helps cancer patients in their fight to survive:",
       url: "https://academic.oup.com/heapro/article/38/4/daad077/7236781?login=false",
     },
     {
@@ -24,7 +24,7 @@ export default function MovementTherapyCenterPage() {
       summary:
         "According to the National Library of Medicine in Bethesda, MD, Non-contact boxing, particularly in a community setting, can increase the quality of life for patients with Parkinson's Disease, a mobility impairing condition.",
       details:
-        "To learn more or for more details, please visit the website listed below containing a formal research study on the effects of Non-contact, community boxing and how it helps Parkinson's patients in their fight to maintain their mobility:",
+        "To learn more, please visit the website listed below containing a formal research study on the effects of Non-contact, community boxing and how it helps Parkinson's patients in their fight to maintain their mobility:",
       url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8758155/",
     },
     {
@@ -34,7 +34,7 @@ export default function MovementTherapyCenterPage() {
       summary:
         "According to the National Library of Medicine in Bethesda, MD, exercise in general, when adapted to a patient's specific needs, can positively impact the quality of life for patients on their cancer journey.",
       details:
-        "To learn more or for more details, please visit the website listed below containing a formal research study on the effects of general exercise and the cancer journey:",
+        "To learn more, please visit the website listed below containing a formal research study on the effects of general exercise and the cancer journey:",
       url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11264125/",
     },
   ];

@@ -13,7 +13,7 @@ export default function Home() {
       <Navigation />
       <main className="flex-1">
         <section id="home" className="hero-section">
-          <div className="mx-auto flex min-h-[620px] w-full max-w-6xl items-center px-6 py-20">
+          <div className="mx-auto flex min-h-[620px] w-full max-w-6xl items-center px-6 py-20 lg:max-w-[84rem]">
             <div>
               <h1 className="hero-title font-semibold leading-tight tracking-normal">
                 <Image
