@@ -19,17 +19,19 @@ const {
   validateNewsletterSubscriber,
 } = require("./server/newsletterSubscribers");
 const {
-  captureAndRecordPaypalDonation,
-  createPaypalDonationOrder,
-  isDuplicatePaypalDonationError,
-} = require("./server/paypalDonations");
+  createSupportPayment,
+  getSupportPaymentStatus,
+  isPaymentProcessorConfigured,
+  recordSupportPaymentProcessorResult,
+  validateSupportPayment,
+} = require("./server/supportPayments");
 
 dotenv.config();
 
 const app = express();
 const port = Number(process.env.PORT) || 4000;
 const apiBuild = {
-  sourceVersion: "paypal-live-newsletter-fix-20260709",
+  sourceVersion: "support-payment-processor-20260709",
   gitSha:
     process.env.GIT_SHA ??
     process.env.COMMIT_SHA ??
@@ -60,7 +62,7 @@ app.get("/health/version", (_req, res) => {
     ok: true,
     ...apiBuild,
     nodeEnv: process.env.NODE_ENV ?? null,
-    paypalMode: process.env.PAYPAL_MODE ?? null,
+    paymentProcessorConfigured: isPaymentProcessorConfigured(),
     frontendBaseUrl:
       process.env.FRONTEND_BASE_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? null,
     timestamp: new Date().toISOString(),
@@ -184,45 +186,41 @@ app.post("/newsletter", async (req, res) => {
   }
 });
 
-app.post("/paypal/orders", async (req, res) => {
-  const subscribeToNewsletter =
-    typeof req.body?.subscribeToNewsletter === "boolean"
-      ? req.body.subscribeToNewsletter
-      : undefined;
+app.post("/support-payments", async (req, res) => {
+  const validation = validateSupportPayment(req.body);
+
+  if (!validation.ok) {
+    res.status(400).json({
+      ok: false,
+      error: "validation_error",
+      fields: validation.errors,
+    });
+    return;
+  }
 
   try {
-    const order = await createPaypalDonationOrder({
-      subscribeToNewsletter,
-      skipNewsletterSignup: req.body?.skipNewsletterSignup === true,
-    });
+    const payment = await createSupportPayment(validation.data);
+    const statusCode = payment.status === "declined" ? 402 : 201;
 
-    res.status(201).json({
+    res.status(statusCode).json({
       ok: true,
-      ...order,
+      ...payment,
     });
   } catch (error) {
-    console.error("PayPal order creation failed", error);
+    console.error("Support payment creation failed", error);
 
     res.status(500).json({
       ok: false,
-      error: "paypal_order_error",
+      error: "support_payment_error",
     });
   }
 });
 
-app.post("/paypal/orders/:orderId/capture", async (req, res) => {
-  const orderId =
-    typeof req.params.orderId === "string" ? req.params.orderId.trim() : "";
-  const skipNewsletterSignup =
-    typeof req.body?.skipNewsletterSignup === "boolean"
-      ? req.body.skipNewsletterSignup
-      : undefined;
-  const subscribeToNewsletter =
-    typeof req.body?.subscribeToNewsletter === "boolean"
-      ? req.body.subscribeToNewsletter
-      : undefined;
+app.get("/support-payments/:paymentId", async (req, res) => {
+  const paymentId =
+    typeof req.params.paymentId === "string" ? req.params.paymentId.trim() : "";
 
-  if (!orderId) {
+  if (!paymentId) {
     res.status(400).json({
       ok: false,
       error: "validation_error",
@@ -231,37 +229,55 @@ app.post("/paypal/orders/:orderId/capture", async (req, res) => {
   }
 
   try {
-    const result = await captureAndRecordPaypalDonation(orderId, {
-      subscribeToNewsletter,
-      skipNewsletterSignup,
-    });
+    const payment = await getSupportPaymentStatus(paymentId);
 
-    if (!result.ok) {
-      res.status(409).json({
+    if (!payment) {
+      res.status(404).json({
         ok: false,
-        error: result.reason,
+        error: "not_found",
       });
       return;
     }
 
-    res.status(201).json({
+    res.json({
       ok: true,
-      id: result.id,
+      ...payment,
     });
   } catch (error) {
-    if (isDuplicatePaypalDonationError(error)) {
-      res.status(409).json({
-        ok: false,
-        error: "duplicate_email",
-      });
-      return;
-    }
-
-    console.error("PayPal capture workflow failed", error);
+    console.error("Support payment status lookup failed", error);
 
     res.status(500).json({
       ok: false,
-      error: "paypal_capture_error",
+      error: "support_payment_status_error",
+    });
+  }
+});
+
+app.post("/support-payments/webhook", async (req, res) => {
+  try {
+    const result = await recordSupportPaymentProcessorResult(
+      req.body,
+      req.get("x-payment-processor-secret"),
+    );
+
+    if (!result.ok) {
+      res.status(result.status).json({
+        ok: false,
+        error: result.error,
+      });
+      return;
+    }
+
+    res.status(result.status).json({
+      ok: true,
+      ...result.payment,
+    });
+  } catch (error) {
+    console.error("Support payment webhook failed", error);
+
+    res.status(500).json({
+      ok: false,
+      error: "support_payment_webhook_error",
     });
   }
 });

@@ -179,10 +179,40 @@ async function sendPaypalDonationThankYouEmail(donation) {
   });
 }
 
+async function sendSupportPaymentReceiptEmail(payment) {
+  const fullName = `${payment.firstName} ${payment.lastName}`.trim();
+  const safeName = escapeHtml(fullName);
+  const amount = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: payment.currency,
+  }).format(payment.amountCents / 100);
+
+  await getEmailTransporter().sendMail({
+    from: getMailFrom(),
+    to: payment.email,
+    subject: "Thank you for supporting The Silver Guardian",
+    text: [
+      `Hello ${fullName},`,
+      "",
+      `Thank you for your ${amount} support payment to The Silver Guardian.`,
+      "Your support helps demonstrate community care for families affected by pediatric cancer, heart disease, and related conditions.",
+      "",
+      "The Silver Guardian",
+    ].join("\n"),
+    html: `
+      <p>Hello ${safeName},</p>
+      <p>Thank you for your ${amount} support payment to The Silver Guardian.</p>
+      <p>Your support helps demonstrate community care for families affected by pediatric cancer, heart disease, and related conditions.</p>
+      <p>The Silver Guardian</p>
+    `,
+  });
+}
+
 module.exports = {
   sendContactSubmissionEmail,
   sendNewsletterSignupEmail,
   sendNewsletterWelcomeEmail,
   sendPaypalDonationThankYouEmail,
+  sendSupportPaymentReceiptEmail,
   verifyEmailTransport,
 };

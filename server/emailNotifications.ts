@@ -12,6 +12,14 @@ export type PaypalDonationReceiptInput = {
   currency: string;
 };
 
+export type SupportPaymentReceiptInput = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  amountCents: number;
+  currency: string;
+};
+
 function getRequiredEnv(name: string) {
   const value = process.env[name];
 
@@ -190,6 +198,37 @@ export async function sendPaypalDonationThankYouEmail(
     html: `
       <p>Hello ${safeName},</p>
       <p>Thank you for your ${amount} donation through PayPal to The Silver Guardian.</p>
+      <p>Your support helps demonstrate community care for families affected by pediatric cancer, heart disease, and related conditions.</p>
+      <p>The Silver Guardian</p>
+    `,
+  });
+}
+
+export async function sendSupportPaymentReceiptEmail(
+  payment: SupportPaymentReceiptInput,
+) {
+  const fullName = `${payment.firstName} ${payment.lastName}`.trim();
+  const safeName = escapeHtml(fullName);
+  const amount = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: payment.currency,
+  }).format(payment.amountCents / 100);
+
+  await getEmailTransporter().sendMail({
+    from: getMailFrom(),
+    to: payment.email,
+    subject: "Thank you for supporting The Silver Guardian",
+    text: [
+      `Hello ${fullName},`,
+      "",
+      `Thank you for your ${amount} support payment to The Silver Guardian.`,
+      "Your support helps demonstrate community care for families affected by pediatric cancer, heart disease, and related conditions.",
+      "",
+      "The Silver Guardian",
+    ].join("\n"),
+    html: `
+      <p>Hello ${safeName},</p>
+      <p>Thank you for your ${amount} support payment to The Silver Guardian.</p>
       <p>Your support helps demonstrate community care for families affected by pediatric cancer, heart disease, and related conditions.</p>
       <p>The Silver Guardian</p>
     `,

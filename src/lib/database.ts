@@ -2,6 +2,7 @@ export const databaseTables = {
   newsletterSubscribers: "newsletter_subscribers",
   contactFormSubmissions: "contact_form_submissions",
   paypalDonations: "paypal_donations",
+  supportPayments: "support_payments",
 } as const;
 
 export type NewsletterSubscriber = {
@@ -65,4 +66,34 @@ export type NewPaypalDonation = {
   paypalCaptureId?: string | null;
   paypalPayerId?: string | null;
   rawPayload?: unknown | null;
+};
+
+export type SupportPaymentStatus =
+  | "pending"
+  | "processing"
+  | "completed"
+  | "declined";
+
+export type SupportPaymentMethod = "card" | "apple_pay" | "google_pay";
+
+export type SupportPayment = {
+  id: number;
+  publicId: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  amountCents: 100;
+  currency: "USD";
+  status: SupportPaymentStatus;
+  paymentMethod: SupportPaymentMethod;
+  processorName: string;
+  processorPaymentId: string | null;
+  processorStatus: string | null;
+  processorPayloadSha256: string | null;
+  subscribeToNewsletter: boolean;
+  receiptEmailSentAt: string | null;
+  newsletterProcessedAt: string | null;
+  processedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
 };

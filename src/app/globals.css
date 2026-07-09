@@ -967,6 +967,84 @@ a {
   flex: 0 0 auto;
 }
 
+.donation-modal__fields {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 1.25rem;
+}
+
+.donation-modal__fields label {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--color-charcoal);
+  font-weight: 800;
+}
+
+.donation-modal__email {
+  grid-column: 1 / -1;
+}
+
+.donation-modal__fields input {
+  width: 100%;
+  border: 1px solid rgba(0, 28, 87, 0.2);
+  border-radius: 6px;
+  background: var(--color-white);
+  color: var(--color-charcoal);
+  font: inherit;
+  font-weight: 500;
+  padding: 0.8rem 0.9rem;
+}
+
+.donation-modal__fields input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(0, 28, 87, 0.12);
+  outline: none;
+}
+
+.donation-modal__payment-methods {
+  display: grid;
+  gap: 0.75rem;
+  margin: 1.25rem 0 0;
+  border: 0;
+  padding: 0;
+}
+
+.donation-modal__payment-methods legend {
+  margin: 0;
+  color: var(--color-charcoal);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.donation-modal__payment-methods label {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  min-height: 46px;
+  border: 1px solid rgba(0, 28, 87, 0.16);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--color-secondary) 12%, white);
+  color: var(--color-charcoal);
+  font-weight: 800;
+  padding: 0.7rem 0.85rem;
+}
+
+.donation-modal__payment-methods input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--color-primary);
+}
+
+.donation-modal__payment-methods label:has(input:checked) {
+  border-color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 8%, white);
+}
+
+.donation-modal__newsletter-opt-in + .form-status {
+  margin-top: 1rem;
+}
+
 .mission-note-section {
   background: color-mix(in srgb, var(--color-secondary) 20%, white);
   color: var(--color-charcoal);
@@ -1129,6 +1207,10 @@ a {
 
   .fundraising-tracker__numbers {
     flex-direction: column;
+  }
+
+  .donation-modal__fields {
+    grid-template-columns: 1fr;
   }
 }
 
