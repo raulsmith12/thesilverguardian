@@ -28,6 +28,16 @@ dotenv.config();
 
 const app = express();
 const port = Number(process.env.PORT) || 4000;
+const apiBuild = {
+  sourceVersion: "paypal-live-newsletter-fix-20260709",
+  gitSha:
+    process.env.GIT_SHA ??
+    process.env.COMMIT_SHA ??
+    process.env.VERCEL_GIT_COMMIT_SHA ??
+    process.env.RENDER_GIT_COMMIT ??
+    process.env.RAILWAY_GIT_COMMIT_SHA ??
+    null,
+};
 
 app.use(cors());
 app.use(express.json());
@@ -40,6 +50,19 @@ app.get("/health", (_req, res) => {
   res.json({
     ok: true,
     version: "fresh-node-app-001",
+    sourceVersion: apiBuild.sourceVersion,
+    timestamp: new Date().toISOString(),
+  });
+});
+
+app.get("/health/version", (_req, res) => {
+  res.json({
+    ok: true,
+    ...apiBuild,
+    nodeEnv: process.env.NODE_ENV ?? null,
+    paypalMode: process.env.PAYPAL_MODE ?? null,
+    frontendBaseUrl:
+      process.env.FRONTEND_BASE_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? null,
     timestamp: new Date().toISOString(),
   });
 });
