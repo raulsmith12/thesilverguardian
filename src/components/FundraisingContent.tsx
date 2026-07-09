@@ -1,173 +1,173 @@
 "use client";
 
 import Image from "next/image";
-import { type FormEvent, useState } from "react";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import ballroomDanceImage from "@/img/c3a93a8777a0af0f74eb8ff120553e56fb08dd2d-1.jpeg";
 import golfTournamentImage from "@/img/e4f884df0b93d4eb7d893f327084b05c3ccbf956-1.jpg";
 import scoreAGoalImage from "@/img/samantha-gades-iks9hBNKa6E-unsplash.jpg";
-import { apiBaseUrl } from "@/lib/api";
-import {
-  emailValidationPattern,
-  emailValidationTitle,
-} from "@/lib/formValidation";
+// import { apiBaseUrl } from "@/lib/api";
+// import {
+//   emailValidationPattern,
+//   emailValidationTitle,
+// } from "@/lib/formValidation";
 
 const currentAmount = 0;
 const goalAmount = 5000000;
 const progressPercent = Math.round((currentAmount / goalAmount) * 100);
-const paymentStatusPollDelayMs = 2000;
-const paymentStatusMaxPolls = 90;
-
-type PaymentMethod = "card" | "apple_pay" | "google_pay";
-
-type DonationStatus =
-  | {
-      type: "idle";
-      message: "";
-    }
-  | {
-      type: "success" | "error";
-      message: string;
-    };
-
-type SupportPaymentResponse = {
-  paymentId?: string;
-  status?: "pending" | "processing" | "completed" | "declined";
-  reason?: string;
-};
-
-const initialPaymentForm = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  paymentMethod: "card" as PaymentMethod,
-  subscribeToNewsletter: false,
-};
-
-function getDeclinedMessage(reason?: string) {
-  if (reason === "processor_not_configured") {
-    return "The payment processor is not configured yet. Please try again after the banking details are connected.";
-  }
-
-  return "The support payment was declined. Please review your information or choose another payment method.";
-}
-
-function wait(milliseconds: number) {
-  return new Promise((resolve) => window.setTimeout(resolve, milliseconds));
-}
+// const paymentStatusPollDelayMs = 2000;
+// const paymentStatusMaxPolls = 90;
+//
+// type PaymentMethod = "card" | "apple_pay" | "google_pay";
+//
+// type DonationStatus =
+//   | {
+//       type: "idle";
+//       message: "";
+//     }
+//   | {
+//       type: "success" | "error";
+//       message: string;
+//     };
+//
+// type SupportPaymentResponse = {
+//   paymentId?: string;
+//   status?: "pending" | "processing" | "completed" | "declined";
+//   reason?: string;
+// };
+//
+// const initialPaymentForm = {
+//   firstName: "",
+//   lastName: "",
+//   email: "",
+//   paymentMethod: "card" as PaymentMethod,
+//   subscribeToNewsletter: false,
+// };
+//
+// function getDeclinedMessage(reason?: string) {
+//   if (reason === "processor_not_configured") {
+//     return "The payment processor is not configured yet. Please try again after the banking details are connected.";
+//   }
+//
+//   return "The support payment was declined. Please review your information or choose another payment method.";
+// }
+//
+// function wait(milliseconds: number) {
+//   return new Promise((resolve) => window.setTimeout(resolve, milliseconds));
+// }
 
 export function FundraisingContent() {
-  const [donationStatus, setDonationStatus] = useState<DonationStatus>({
-    type: "idle",
-    message: "",
-  });
+  // const [donationStatus, setDonationStatus] = useState<DonationStatus>({
+  //   type: "idle",
+  //   message: "",
+  // });
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
-  const [isProcessingPayment, setIsProcessingPayment] = useState(false);
-  const [paymentForm, setPaymentForm] = useState(initialPaymentForm);
+  // const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  // const [paymentForm, setPaymentForm] = useState(initialPaymentForm);
 
   function handleSupportClick() {
-    setPaymentForm(initialPaymentForm);
-    setDonationStatus({
-      type: "idle",
-      message: "",
-    });
+    // setPaymentForm(initialPaymentForm);
+    // setDonationStatus({
+    //   type: "idle",
+    //   message: "",
+    // });
     setIsDonationModalOpen(true);
   }
 
   function handleModalHide() {
-    if (!isProcessingPayment) {
-      setIsDonationModalOpen(false);
-    }
+    // if (!isProcessingPayment) {
+    setIsDonationModalOpen(false);
+    // }
   }
 
-  async function pollPaymentStatus(paymentId: string) {
-    for (let attempt = 0; attempt < paymentStatusMaxPolls; attempt += 1) {
-      await wait(paymentStatusPollDelayMs);
-
-      const response = await fetch(
-        `${apiBaseUrl}/support-payments/${encodeURIComponent(paymentId)}`,
-      );
-      const data = (await response.json().catch(() => null)) as
-        | SupportPaymentResponse
-        | null;
-
-      if (!response.ok || !data?.status) {
-        throw new Error("Payment status could not be checked");
-      }
-
-      if (data.status === "completed" || data.status === "declined") {
-        return data;
-      }
-    }
-
-    throw new Error("Payment processing timed out");
-  }
-
-  async function handleConfirmDonation(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setIsProcessingPayment(true);
-    setDonationStatus({
-      type: "idle",
-      message: "",
-    });
-
-    try {
-      const response = await fetch(`${apiBaseUrl}/support-payments`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(paymentForm),
-      });
-      const data = (await response.json().catch(() => null)) as
-        | SupportPaymentResponse
-        | null;
-      const paymentResult =
-        data?.status === "processing" && data.paymentId
-          ? await pollPaymentStatus(data.paymentId)
-          : data;
-
-      if (paymentResult?.status === "completed") {
-        setDonationStatus({
-          type: "success",
-          message: "Thank you. Your $1 support payment was processed.",
-        });
-        setIsDonationModalOpen(false);
-        setPaymentForm(initialPaymentForm);
-        return;
-      }
-
-      if (paymentResult?.status === "declined") {
-        setDonationStatus({
-          type: "error",
-          message: getDeclinedMessage(paymentResult.reason),
-        });
-        return;
-      }
-
-      if (!response.ok) {
-        setDonationStatus({
-          type: "error",
-          message: "The support payment could not be started. Please try again.",
-        });
-        return;
-      }
-
-      setDonationStatus({
-        type: "error",
-        message: "The payment is still processing. Please try again shortly.",
-      });
-    } catch {
-      setDonationStatus({
-        type: "error",
-        message: "The support payment could not be processed. Please try again.",
-      });
-    } finally {
-      setIsProcessingPayment(false);
-    }
-  }
+  // async function pollPaymentStatus(paymentId: string) {
+  //   for (let attempt = 0; attempt < paymentStatusMaxPolls; attempt += 1) {
+  //     await wait(paymentStatusPollDelayMs);
+  //
+  //     const response = await fetch(
+  //       `${apiBaseUrl}/support-payments/${encodeURIComponent(paymentId)}`,
+  //     );
+  //     const data = (await response.json().catch(() => null)) as
+  //       | SupportPaymentResponse
+  //       | null;
+  //
+  //     if (!response.ok || !data?.status) {
+  //       throw new Error("Payment status could not be checked");
+  //     }
+  //
+  //     if (data.status === "completed" || data.status === "declined") {
+  //       return data;
+  //     }
+  //   }
+  //
+  //   throw new Error("Payment processing timed out");
+  // }
+  //
+  // async function handleConfirmDonation(event: FormEvent<HTMLFormElement>) {
+  //   event.preventDefault();
+  //   setIsProcessingPayment(true);
+  //   setDonationStatus({
+  //     type: "idle",
+  //     message: "",
+  //   });
+  //
+  //   try {
+  //     const response = await fetch(`${apiBaseUrl}/support-payments`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(paymentForm),
+  //     });
+  //     const data = (await response.json().catch(() => null)) as
+  //       | SupportPaymentResponse
+  //       | null;
+  //     const paymentResult =
+  //       data?.status === "processing" && data.paymentId
+  //         ? await pollPaymentStatus(data.paymentId)
+  //         : data;
+  //
+  //     if (paymentResult?.status === "completed") {
+  //       setDonationStatus({
+  //         type: "success",
+  //         message: "Thank you. Your $1 support payment was processed.",
+  //       });
+  //       setIsDonationModalOpen(false);
+  //       setPaymentForm(initialPaymentForm);
+  //       return;
+  //     }
+  //
+  //     if (paymentResult?.status === "declined") {
+  //       setDonationStatus({
+  //         type: "error",
+  //         message: getDeclinedMessage(paymentResult.reason),
+  //       });
+  //       return;
+  //     }
+  //
+  //     if (!response.ok) {
+  //       setDonationStatus({
+  //         type: "error",
+  //         message: "The support payment could not be started. Please try again.",
+  //       });
+  //       return;
+  //     }
+  //
+  //     setDonationStatus({
+  //       type: "error",
+  //       message: "The payment is still processing. Please try again shortly.",
+  //     });
+  //   } catch {
+  //     setDonationStatus({
+  //       type: "error",
+  //       message: "The support payment could not be processed. Please try again.",
+  //     });
+  //   } finally {
+  //     setIsProcessingPayment(false);
+  //   }
+  // }
 
   return (
     <div className="fundraising-layout">
@@ -230,18 +230,17 @@ export function FundraisingContent() {
           <Button
             className="site-button site-button--primary"
             onClick={handleSupportClick}
-            disabled={isProcessingPayment}
           >
-            {isProcessingPayment ? "Processing..." : "Support Here"}
+            Support Here
           </Button>
-          {donationStatus.type === "success" ? (
+          {/* {donationStatus.type === "success" ? (
             <p
               className={`form-status form-status--${donationStatus.type}`}
               role="status"
             >
               {donationStatus.message}
             </p>
-          ) : null}
+          ) : null} */}
         </article>
 
         <section
@@ -289,17 +288,31 @@ export function FundraisingContent() {
       <Modal
         show={isDonationModalOpen}
         onHide={handleModalHide}
-        backdrop={isProcessingPayment ? "static" : true}
-        keyboard={!isProcessingPayment}
         centered
-        aria-labelledby="support-payment-modal-title"
+        aria-labelledby="support-info-modal-title"
       >
-        <Modal.Header closeButton={!isProcessingPayment}>
-          <Modal.Title id="support-payment-modal-title">
-            $1 Support Fee
+        <Modal.Header closeButton>
+          <Modal.Title id="support-info-modal-title">
+            Support The Silver Guardian
           </Modal.Title>
         </Modal.Header>
-        <form onSubmit={handleConfirmDonation}>
+        <Modal.Body>
+          <p className="donation-modal__intro">
+            Interested in supporting The Silver Guardian? Our payment processor
+            is still under construction. Please check back on Monday, July 13,
+            2026, as we build the fastest and most secure way for you to support
+            our cause. Thank you for your patience.
+          </p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            className="site-button site-button--primary"
+            onClick={handleModalHide}
+          >
+            Close
+          </Button>
+        </Modal.Footer>
+        {/* <form onSubmit={handleConfirmDonation}>
           <Modal.Body>
             <p className="donation-modal__intro">
               By demonstrating your support for The Silver Guardian, you are
@@ -434,7 +447,7 @@ export function FundraisingContent() {
               {isProcessingPayment ? "Processing..." : "Pay $1"}
             </Button>
           </Modal.Footer>
-        </form>
+        </form> */}
       </Modal>
     </div>
   );

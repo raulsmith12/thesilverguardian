@@ -172,7 +172,7 @@ a {
 }
 
 .hero-title__logo {
-  height: 2.08em;
+  height: 5em;
   filter:
     drop-shadow(0 0 8px rgba(255, 255, 255, 0.55))
     drop-shadow(0 2px 5px rgba(0, 28, 87, 0.7));
@@ -192,7 +192,7 @@ a {
 }
 
 .hero-section > div {
-  padding-top: 5rem;
+  padding-top: 1rem;
 }
 
 .site-button {
@@ -1183,7 +1183,7 @@ a {
   }
 
   .hero-title__logo {
-    height: 7rem;
+    height: 5em;
   }
 
   .hero-message {
