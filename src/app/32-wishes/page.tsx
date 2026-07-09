@@ -462,14 +462,14 @@ export default function WishesPage() {
             <div className="wishes-intro">
               <p>
                 One of our goals is to annually grant 32 ice hockey related
-                wishes to 32 brave children in 32 cities at a single event
+                wishes to brave children in 32 cities at a single event
                 designed to spread hope and joy within the pediatric
                 cancer/heart disease community.
               </p>
               <p>
                 Please check back regularly to see which members of the North
                 American professional ice hockey community have agreed to
-                partner with us in this endeavor, as well as hospital concept.
+                partner with us in this endeavor.
               </p>
             </div>
 

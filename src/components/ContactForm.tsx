@@ -124,6 +124,11 @@ export function ContactForm() {
       >
         {isSubmitting ? "Sending..." : "Send Message"}
       </button>
+
+      <p className="contact-form__disclaimer">
+        The SIlver Guardian and its subsidiaries reserve the right to refuse
+        service to anyone for any reason.
+      </p>
     </form>
   );
 }

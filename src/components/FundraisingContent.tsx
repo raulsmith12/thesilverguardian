@@ -232,7 +232,7 @@ export function FundraisingContent() {
 
       <section className="fundraising-grid" aria-label="Fundraising options">
         <article className="fundraising-card">
-          <p className="fundraising-card__season">Spring / Summer</p>
+          <p className="fundraising-card__season">Spring / Summer / Fall</p>
           <h3>Annual Golf Tournaments</h3>
           <div className="fundraising-card__image">
             <Image
@@ -297,8 +297,30 @@ export function FundraisingContent() {
           ) : null}
         </article>
 
+        <section
+          className="fundraising-tracker"
+          aria-label="Fundraising tracker"
+        >
+          <div>
+            <h2 className="section-kicker">Goal Tracker</h2>
+          </div>
+          <div className="fundraising-tracker__meter">
+            <div className="fundraising-tracker__numbers">
+              <span>${currentAmount.toLocaleString()} raised</span>
+              <span>Goal: {goalAmount.toLocaleString()} people</span>
+            </div>
+            <ProgressBar
+              now={progressPercent}
+              aria-label="Fundraising progress"
+            />
+            <div className="fundraising-tracker__numbers">
+              <span>Support Percentage: {progressPercent}%</span>
+            </div>
+          </div>
+        </section>
+
         <article className="fundraising-card">
-          <p className="fundraising-card__season">Fall</p>
+          <p className="fundraising-card__season">Nov / Dec / Jan</p>
           <h3>Annual Ballroom Dance Tournament</h3>
           <div className="fundraising-card__image">
             <Image
@@ -315,22 +337,6 @@ export function FundraisingContent() {
           </p>
           <span>Coming soon</span>
         </article>
-      </section>
-
-      <section className="fundraising-tracker" aria-label="Fundraising tracker">
-        <div>
-          <h2 className="section-kicker">Goal Tracker</h2>
-        </div>
-        <div className="fundraising-tracker__meter">
-          <div className="fundraising-tracker__numbers">
-            <span>${currentAmount.toLocaleString()} raised</span>
-            <span>Goal: {goalAmount.toLocaleString()} people</span>
-          </div>
-          <ProgressBar now={progressPercent} aria-label="Fundraising progress" />
-          <div className="fundraising-tracker__numbers">
-            <span>Support Percentage: {progressPercent}%</span>
-          </div>
-        </div>
       </section>
 
       <Modal

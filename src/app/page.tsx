@@ -4,6 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import newsletterImage from "@/img/charlesdeluvio-FdDkfYFHqe4-unsplash.jpg";
 import movementTherapyImage from "@/img/lorenzo-fatto-offidani-de5OZMjb5ww-unsplash.jpg";
 import scoreGoalImage from "@/img/samantha-gades-iks9hBNKa6E-unsplash.jpg";
+import silverGuardianLogo from "@/img/silver-guardian-logo.png";
 import wishesImage from "@/img/vitolda-klein-OD1_HupXwxI-unsplash.jpg";
 
 export default function Home() {
@@ -15,7 +16,14 @@ export default function Home() {
           <div className="mx-auto flex min-h-[620px] w-full max-w-6xl items-center px-6 py-20">
             <div>
               <h1 className="hero-title font-semibold leading-tight tracking-normal">
-                The Silver Guardian
+                <Image
+                  src={silverGuardianLogo}
+                  alt=""
+                  className="brand-logo hero-title__logo"
+                  priority
+                  unoptimized
+                />
+                <span>The Silver Guardian</span>
               </h1>
               <p className="hero-message mt-5 max-w-3xl">
                 An Innovative Pediatric Care Experience

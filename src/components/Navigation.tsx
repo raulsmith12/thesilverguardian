@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import silverGuardianLogo from "@/img/silver-guardian-logo.png";
 
 const links = [
   { label: "Home", href: "/" },
@@ -18,7 +20,13 @@ export function Navigation() {
     <Navbar expand="md" className="site-navbar" fixed="top">
       <Container className="site-navbar__inner">
         <Navbar.Brand className="site-navbar__brand h3 mb-0" href="/">
-          The Silver Guardian
+          <Image
+            src={silverGuardianLogo}
+            alt=""
+            className="brand-logo site-navbar__logo"
+            unoptimized
+          />
+          <span>The Silver Guardian</span>
         </Navbar.Brand>
         <Navbar.Toggle
           aria-controls="site-navigation"
@@ -31,8 +39,17 @@ export function Navigation() {
           className="site-offcanvas"
         >
           <Offcanvas.Header closeButton>
-            <Offcanvas.Title id="site-navigation-label">
-              The Silver Guardian
+            <Offcanvas.Title
+              id="site-navigation-label"
+              className="brand-lockup"
+            >
+              <Image
+                src={silverGuardianLogo}
+                alt=""
+                className="brand-logo site-offcanvas__logo"
+                unoptimized
+              />
+              <span>The Silver Guardian</span>
             </Offcanvas.Title>
           </Offcanvas.Header>
           <Offcanvas.Body>

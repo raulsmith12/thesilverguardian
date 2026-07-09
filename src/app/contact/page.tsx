@@ -56,7 +56,19 @@ export default function ContactPage() {
                 </p>
               </section>
 
-              <ContactForm />
+              <section
+                className="general-contact"
+                aria-labelledby="general-contact-title"
+              >
+                <div>
+                  <p className="section-kicker">General Contact</p>
+                  <h2 className="section-title" id="general-contact-title">
+                    Send Us a Message
+                  </h2>
+                </div>
+
+                <ContactForm />
+              </section>
             </div>
           </div>
         </section>

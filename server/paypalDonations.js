@@ -13,6 +13,7 @@ const PAYPAL_SANDBOX_API_BASE_URL = "https://api-m.sandbox.paypal.com";
 const PAYPAL_LIVE_API_BASE_URL = "https://api-m.paypal.com";
 const DONATION_AMOUNT_CENTS = 100;
 const DONATION_CURRENCY = "USD";
+const NEWSLETTER_SIGNUP_CUSTOM_ID_PREFIX = "newsletter_signup:";
 
 class PaypalApiError extends Error {
   constructor(message, status, details) {
@@ -48,7 +49,7 @@ function getFrontendBaseUrl() {
 }
 
 function getDonationReturnUrl(status, options = {}) {
-  const url = new URL("/fundraising", getFrontendBaseUrl());
+  const url = new URL("/fundraising/", getFrontendBaseUrl());
   url.searchParams.set("paypal", status);
 
   if (options.skipNewsletterSignup) {
@@ -56,6 +57,22 @@ function getDonationReturnUrl(status, options = {}) {
   }
 
   return url.toString();
+}
+
+function getNewsletterSignupCustomId(options) {
+  return `${NEWSLETTER_SIGNUP_CUSTOM_ID_PREFIX}${String(
+    !options.skipNewsletterSignup,
+  )}`;
+}
+
+function getSkipNewsletterSignupFromOrder(order) {
+  const customId = order.purchase_units?.[0]?.custom_id;
+
+  if (!customId?.startsWith(NEWSLETTER_SIGNUP_CUSTOM_ID_PREFIX)) {
+    return undefined;
+  }
+
+  return customId.slice(NEWSLETTER_SIGNUP_CUSTOM_ID_PREFIX.length) !== "true";
 }
 
 function parseAmountCents(value) {
@@ -138,6 +155,7 @@ async function createPaypalDonationOrder(options = {}) {
             currency_code: DONATION_CURRENCY,
             value: "1.00",
           },
+          custom_id: getNewsletterSignupCustomId(options),
           description: "Score a Goal Campaign donation",
         },
       ],
@@ -193,6 +211,8 @@ async function paypalDonationEmailExists(email) {
 
 async function captureAndRecordPaypalDonation(orderId, options = {}) {
   const approvedOrder = await getPaypalOrder(orderId);
+  const skipNewsletterSignup =
+    options.skipNewsletterSignup ?? getSkipNewsletterSignupFromOrder(approvedOrder);
   const email = approvedOrder.payer?.email_address?.trim().toLowerCase();
 
   if (!email) {
@@ -259,7 +279,7 @@ async function captureAndRecordPaypalDonation(orderId, options = {}) {
     console.error("PayPal donor thank-you email failed", error);
   }
 
-  if (!options.skipNewsletterSignup) {
+  if (!skipNewsletterSignup) {
     const subscriber = {
       name: donorName,
       email,

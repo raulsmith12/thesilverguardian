@@ -184,6 +184,10 @@ app.post("/paypal/orders", async (req, res) => {
 app.post("/paypal/orders/:orderId/capture", async (req, res) => {
   const orderId =
     typeof req.params.orderId === "string" ? req.params.orderId.trim() : "";
+  const skipNewsletterSignup =
+    typeof req.body?.skipNewsletterSignup === "boolean"
+      ? req.body.skipNewsletterSignup
+      : undefined;
 
   if (!orderId) {
     res.status(400).json({
@@ -195,7 +199,7 @@ app.post("/paypal/orders/:orderId/capture", async (req, res) => {
 
   try {
     const result = await captureAndRecordPaypalDonation(orderId, {
-      skipNewsletterSignup: req.body?.skipNewsletterSignup === true,
+      skipNewsletterSignup,
     });
 
     if (!result.ok) {
