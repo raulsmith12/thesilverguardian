@@ -25,7 +25,7 @@ export default function Home() {
                 />
                 <span>The Silver Guardian</span>
               </h1>
-              <p className="hero-message mt-5 max-w-3xl">
+              <p className="hero-message mt-13 max-w-3xl">
                 An Innovative Pediatric Care Experience
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
