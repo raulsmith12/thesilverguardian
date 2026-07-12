@@ -132,7 +132,6 @@ a {
   pointer-events: none;
 }
 
-.hero-section::before,
 .page-hero::before {
   z-index: -2;
   background: #f1f2f2
@@ -1186,10 +1185,6 @@ a {
     height: 5em;
   }
 
-  .hero-message {
-    margin-top: 4rem;
-  }
-
   .fundraising-grid,
   .fundraising-tracker,
   .contact-form__row,
@@ -1250,4 +1245,29 @@ a {
 .feature-callout__content {
   float: right;
   width: 100%;
+}
+
+@media (min-width: 750px) and (max-width: 865px) {
+  .hero-section > div {
+    max-height: 95vh;
+    height: auto;
+    min-height: 2px;
+  }
+
+  .hero-title {
+    font-size: 3vw;
+  }
+
+  .hero-section p {
+    font-size: 2vw;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero-section::before {
+    z-index: -2;
+    background: #f1f2f2
+      url("../img/gerhard-crous-doivHPaG-Vw-unsplash.jpg") right center / contain
+      no-repeat;
+  }
 }

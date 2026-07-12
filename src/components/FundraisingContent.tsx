@@ -1,173 +1,221 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import ballroomDanceImage from "@/img/c3a93a8777a0af0f74eb8ff120553e56fb08dd2d-1.jpeg";
 import golfTournamentImage from "@/img/e4f884df0b93d4eb7d893f327084b05c3ccbf956-1.jpg";
 import scoreAGoalImage from "@/img/samantha-gades-iks9hBNKa6E-unsplash.jpg";
-// import { apiBaseUrl } from "@/lib/api";
-// import {
-//   emailValidationPattern,
-//   emailValidationTitle,
-// } from "@/lib/formValidation";
+import { apiBaseUrl } from "@/lib/api";
 
 const currentAmount = 0;
 const goalAmount = 5000000;
 const progressPercent = Math.round((currentAmount / goalAmount) * 100);
-// const paymentStatusPollDelayMs = 2000;
-// const paymentStatusMaxPolls = 90;
-//
-// type PaymentMethod = "card" | "apple_pay" | "google_pay";
-//
-// type DonationStatus =
-//   | {
-//       type: "idle";
-//       message: "";
-//     }
-//   | {
-//       type: "success" | "error";
-//       message: string;
-//     };
-//
-// type SupportPaymentResponse = {
-//   paymentId?: string;
-//   status?: "pending" | "processing" | "completed" | "declined";
-//   reason?: string;
-// };
-//
-// const initialPaymentForm = {
-//   firstName: "",
-//   lastName: "",
-//   email: "",
-//   paymentMethod: "card" as PaymentMethod,
-//   subscribeToNewsletter: false,
-// };
-//
-// function getDeclinedMessage(reason?: string) {
-//   if (reason === "processor_not_configured") {
-//     return "The payment processor is not configured yet. Please try again after the banking details are connected.";
-//   }
-//
-//   return "The support payment was declined. Please review your information or choose another payment method.";
-// }
-//
-// function wait(milliseconds: number) {
-//   return new Promise((resolve) => window.setTimeout(resolve, milliseconds));
-// }
+const paypalNewsletterSignupKey = "paypalNewsletterSignup";
+
+type DonationStatus =
+  | {
+      type: "idle";
+      message: "";
+    }
+  | {
+      type: "success" | "error";
+      message: string;
+    };
+
+function getStoredPaypalNewsletterSignup() {
+  try {
+    return window.sessionStorage.getItem(paypalNewsletterSignupKey) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function setStoredPaypalNewsletterSignup(
+  value: boolean,
+  targetWindow: Pick<Window, "sessionStorage"> = window,
+) {
+  try {
+    targetWindow.sessionStorage.setItem(
+      paypalNewsletterSignupKey,
+      String(value),
+    );
+  } catch {
+    // The PayPal flow can continue if browser storage is unavailable.
+  }
+}
+
+function clearStoredPaypalNewsletterSignup() {
+  try {
+    window.sessionStorage.removeItem(paypalNewsletterSignupKey);
+  } catch {
+    // Nothing to clear when browser storage is unavailable.
+  }
+}
 
 export function FundraisingContent() {
-  // const [donationStatus, setDonationStatus] = useState<DonationStatus>({
-  //   type: "idle",
-  //   message: "",
-  // });
+  const [donationStatus, setDonationStatus] = useState<DonationStatus>({
+    type: "idle",
+    message: "",
+  });
   const [isDonationModalOpen, setIsDonationModalOpen] = useState(false);
-  // const [isProcessingPayment, setIsProcessingPayment] = useState(false);
-  // const [paymentForm, setPaymentForm] = useState(initialPaymentForm);
+  const [isStartingDonation, setIsStartingDonation] = useState(false);
+  const [isConfirmingDonation, setIsConfirmingDonation] = useState(false);
+  const [isNewsletterSignupChecked, setIsNewsletterSignupChecked] =
+    useState(false);
+  const hasHandledPaypalReturn = useRef(false);
+
+  useEffect(() => {
+    if (hasHandledPaypalReturn.current) {
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    const paypalStatus = params.get("paypal");
+    const orderId = params.get("token");
+    const subscribeToNewsletter =
+      params.get("newsletterSignup") === "true" ||
+      getStoredPaypalNewsletterSignup();
+
+    if (paypalStatus === "cancel") {
+      hasHandledPaypalReturn.current = true;
+      clearStoredPaypalNewsletterSignup();
+      window.history.replaceState({}, "", window.location.pathname);
+      window.setTimeout(() => {
+        setDonationStatus({
+          type: "error",
+          message: "PayPal checkout was canceled.",
+        });
+      }, 0);
+      return;
+    }
+
+    if (paypalStatus !== "return" || !orderId) {
+      return;
+    }
+
+    hasHandledPaypalReturn.current = true;
+    const paypalOrderId = orderId;
+
+    async function confirmDonation() {
+      setIsConfirmingDonation(true);
+      setDonationStatus({
+        type: "idle",
+        message: "",
+      });
+
+      try {
+        const response = await fetch(
+          `${apiBaseUrl}/paypal/orders/${encodeURIComponent(
+            paypalOrderId,
+          )}/capture`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              subscribeToNewsletter,
+            }),
+          },
+        );
+
+        if (!response.ok) {
+          const message =
+            response.status === 409
+              ? "That person has already donated, please try again."
+              : "PayPal donation could not be confirmed. Please try again.";
+
+          setDonationStatus({
+            type: "error",
+            message,
+          });
+          return;
+        }
+
+        setDonationStatus({
+          type: "success",
+          message: "Thank you. Your PayPal donation was completed.",
+        });
+      } catch {
+        setDonationStatus({
+          type: "error",
+          message: "PayPal donation could not be confirmed. Please try again.",
+        });
+      } finally {
+        setIsConfirmingDonation(false);
+        clearStoredPaypalNewsletterSignup();
+        window.history.replaceState({}, "", window.location.pathname);
+      }
+    }
+
+    void confirmDonation();
+  }, []);
 
   function handleSupportClick() {
-    // setPaymentForm(initialPaymentForm);
-    // setDonationStatus({
-    //   type: "idle",
-    //   message: "",
-    // });
+    setIsNewsletterSignupChecked(false);
     setIsDonationModalOpen(true);
   }
 
-  function handleModalHide() {
-    // if (!isProcessingPayment) {
-    setIsDonationModalOpen(false);
-    // }
-  }
+  async function handleConfirmDonation() {
+    const subscribeToNewsletter = isNewsletterSignupChecked;
+    const paypalWindow = window.open("", "_blank");
 
-  // async function pollPaymentStatus(paymentId: string) {
-  //   for (let attempt = 0; attempt < paymentStatusMaxPolls; attempt += 1) {
-  //     await wait(paymentStatusPollDelayMs);
-  //
-  //     const response = await fetch(
-  //       `${apiBaseUrl}/support-payments/${encodeURIComponent(paymentId)}`,
-  //     );
-  //     const data = (await response.json().catch(() => null)) as
-  //       | SupportPaymentResponse
-  //       | null;
-  //
-  //     if (!response.ok || !data?.status) {
-  //       throw new Error("Payment status could not be checked");
-  //     }
-  //
-  //     if (data.status === "completed" || data.status === "declined") {
-  //       return data;
-  //     }
-  //   }
-  //
-  //   throw new Error("Payment processing timed out");
-  // }
-  //
-  // async function handleConfirmDonation(event: FormEvent<HTMLFormElement>) {
-  //   event.preventDefault();
-  //   setIsProcessingPayment(true);
-  //   setDonationStatus({
-  //     type: "idle",
-  //     message: "",
-  //   });
-  //
-  //   try {
-  //     const response = await fetch(`${apiBaseUrl}/support-payments`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(paymentForm),
-  //     });
-  //     const data = (await response.json().catch(() => null)) as
-  //       | SupportPaymentResponse
-  //       | null;
-  //     const paymentResult =
-  //       data?.status === "processing" && data.paymentId
-  //         ? await pollPaymentStatus(data.paymentId)
-  //         : data;
-  //
-  //     if (paymentResult?.status === "completed") {
-  //       setDonationStatus({
-  //         type: "success",
-  //         message: "Thank you. Your $1 support payment was processed.",
-  //       });
-  //       setIsDonationModalOpen(false);
-  //       setPaymentForm(initialPaymentForm);
-  //       return;
-  //     }
-  //
-  //     if (paymentResult?.status === "declined") {
-  //       setDonationStatus({
-  //         type: "error",
-  //         message: getDeclinedMessage(paymentResult.reason),
-  //       });
-  //       return;
-  //     }
-  //
-  //     if (!response.ok) {
-  //       setDonationStatus({
-  //         type: "error",
-  //         message: "The support payment could not be started. Please try again.",
-  //       });
-  //       return;
-  //     }
-  //
-  //     setDonationStatus({
-  //       type: "error",
-  //       message: "The payment is still processing. Please try again shortly.",
-  //     });
-  //   } catch {
-  //     setDonationStatus({
-  //       type: "error",
-  //       message: "The support payment could not be processed. Please try again.",
-  //     });
-  //   } finally {
-  //     setIsProcessingPayment(false);
-  //   }
-  // }
+    if (!paypalWindow) {
+      setDonationStatus({
+        type: "error",
+        message: "Please allow pop-ups so PayPal can open in a new tab.",
+      });
+      return;
+    }
+
+    setStoredPaypalNewsletterSignup(subscribeToNewsletter);
+    setStoredPaypalNewsletterSignup(subscribeToNewsletter, paypalWindow);
+    setIsDonationModalOpen(false);
+    setIsStartingDonation(true);
+    setDonationStatus({
+      type: "idle",
+      message: "",
+    });
+
+    try {
+      const response = await fetch(`${apiBaseUrl}/paypal/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          subscribeToNewsletter,
+        }),
+      });
+      const data = (await response.json().catch(() => null)) as
+        | {
+            approvalUrl?: string;
+          }
+        | null;
+
+      if (!response.ok || !data?.approvalUrl) {
+        paypalWindow.close();
+        setDonationStatus({
+          type: "error",
+          message: "PayPal checkout could not be started. Please try again.",
+        });
+        return;
+      }
+
+      paypalWindow.location.href = data.approvalUrl;
+    } catch {
+      paypalWindow.close();
+      setDonationStatus({
+        type: "error",
+        message: "PayPal checkout could not be started. Please try again.",
+      });
+    } finally {
+      setIsStartingDonation(false);
+    }
+  }
 
   return (
     <div className="fundraising-layout">
@@ -216,7 +264,7 @@ export function FundraisingContent() {
             />
           </div>
           <p>
-            Has someone in your family been affected by cancer, Parkinson&apos;s, or heart disease?
+            Has someone in your family been affected by cancer, Parkinson&rsquo;s, or heart disease?
           </p>
           <p>
             Are you an ice hockey fan?
@@ -230,17 +278,23 @@ export function FundraisingContent() {
           <Button
             className="site-button site-button--primary"
             onClick={handleSupportClick}
+            disabled={isStartingDonation || isConfirmingDonation}
           >
-            Support Here
+            {isStartingDonation ? "Opening PayPal..." : "Support Here"}
           </Button>
-          {/* {donationStatus.type === "success" ? (
+          {isConfirmingDonation ? (
+            <p className="form-status" role="status">
+              Confirming your PayPal donation...
+            </p>
+          ) : null}
+          {donationStatus.type !== "idle" ? (
             <p
               className={`form-status form-status--${donationStatus.type}`}
               role="status"
             >
               {donationStatus.message}
             </p>
-          ) : null} */}
+          ) : null}
         </article>
 
         <section
@@ -287,167 +341,54 @@ export function FundraisingContent() {
 
       <Modal
         show={isDonationModalOpen}
-        onHide={handleModalHide}
+        onHide={() => setIsDonationModalOpen(false)}
         centered
-        aria-labelledby="support-info-modal-title"
+        aria-labelledby="donation-newsletter-modal-title"
       >
         <Modal.Header closeButton>
-          <Modal.Title id="support-info-modal-title">
-            Support The Silver Guardian
+          <Modal.Title id="donation-newsletter-modal-title">
+            Score a Goal
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p className="donation-modal__intro">
-            Interested in supporting The Silver Guardian? Our payment processor
-            is still under construction. Please check back on Monday, July 13,
-            2026, as we build the fastest and most secure way for you to support
-            our cause. Thank you for your patience.
+            By demonstrating your support for The Silver Guardian, you are
+            helping to make sure that the concept of a state of the art, kid
+            friendly, ice hockey themed hospital facility becomes a reality to
+            provide hope and healing, especially to brave children battling
+            cancer and heart disease. Thank you for supporting the cause!
           </p>
+          <label className="donation-modal__newsletter-opt-in">
+            <input
+              type="checkbox"
+              checked={isNewsletterSignupChecked}
+              onChange={(event) =>
+                setIsNewsletterSignupChecked(event.target.checked)
+              }
+            />
+            <span>
+              Please check this box if you would like to subscribe to our
+              monthly newsletter for updates on The Silver Guardian&apos;s
+              progress:
+            </span>
+          </label>
         </Modal.Body>
         <Modal.Footer>
           <Button
-            className="site-button site-button--primary"
-            onClick={handleModalHide}
+            className="site-button site-button--secondary"
+            onClick={() => setIsDonationModalOpen(false)}
+            disabled={isStartingDonation}
           >
-            Close
+            Cancel
+          </Button>
+          <Button
+            className="site-button site-button--primary"
+            onClick={handleConfirmDonation}
+            disabled={isStartingDonation}
+          >
+            {isStartingDonation ? "Opening PayPal..." : "Continue to PayPal"}
           </Button>
         </Modal.Footer>
-        {/* <form onSubmit={handleConfirmDonation}>
-          <Modal.Body>
-            <p className="donation-modal__intro">
-              By demonstrating your support for The Silver Guardian, you are
-              helping to make sure that the concept of a state of the art, kid
-              friendly, ice hockey themed hospital facility becomes a reality to
-              provide hope and healing, especially to brave children battling
-              cancer and heart disease. Thank you for supporting the cause!
-            </p>
-            <div className="donation-modal__fields">
-              <label>
-                <span>First name</span>
-                <input
-                  type="text"
-                  name="firstName"
-                  value={paymentForm.firstName}
-                  maxLength={100}
-                  required
-                  autoComplete="given-name"
-                  disabled={isProcessingPayment}
-                  onChange={(event) =>
-                    setPaymentForm((current) => ({
-                      ...current,
-                      firstName: event.target.value,
-                    }))
-                  }
-                />
-              </label>
-              <label>
-                <span>Last name</span>
-                <input
-                  type="text"
-                  name="lastName"
-                  value={paymentForm.lastName}
-                  maxLength={100}
-                  required
-                  autoComplete="family-name"
-                  disabled={isProcessingPayment}
-                  onChange={(event) =>
-                    setPaymentForm((current) => ({
-                      ...current,
-                      lastName: event.target.value,
-                    }))
-                  }
-                />
-              </label>
-              <label className="donation-modal__email">
-                <span>Email address</span>
-                <input
-                  type="email"
-                  name="email"
-                  value={paymentForm.email}
-                  pattern={emailValidationPattern}
-                  title={emailValidationTitle}
-                  maxLength={320}
-                  required
-                  autoComplete="email"
-                  disabled={isProcessingPayment}
-                  onChange={(event) =>
-                    setPaymentForm((current) => ({
-                      ...current,
-                      email: event.target.value,
-                    }))
-                  }
-                />
-              </label>
-            </div>
-            <fieldset className="donation-modal__payment-methods">
-              <legend>Payment method</legend>
-              {[
-                ["card", "Credit card"],
-                ["apple_pay", "Apple Pay"],
-                ["google_pay", "Google Pay"],
-              ].map(([value, label]) => (
-                <label key={value}>
-                  <input
-                    type="radio"
-                    name="paymentMethod"
-                    value={value}
-                    checked={paymentForm.paymentMethod === value}
-                    disabled={isProcessingPayment}
-                    onChange={() =>
-                      setPaymentForm((current) => ({
-                        ...current,
-                        paymentMethod: value as PaymentMethod,
-                      }))
-                    }
-                  />
-                  <span>{label}</span>
-                </label>
-              ))}
-            </fieldset>
-            <label className="donation-modal__newsletter-opt-in">
-              <input
-                type="checkbox"
-                checked={paymentForm.subscribeToNewsletter}
-                disabled={isProcessingPayment}
-                onChange={(event) =>
-                  setPaymentForm((current) => ({
-                    ...current,
-                    subscribeToNewsletter: event.target.checked,
-                  }))
-                }
-              />
-              <span>
-                Please check this box if you would like to subscribe to our
-                monthly newsletter for updates on The Silver Guardian&apos;s
-                progress:
-              </span>
-            </label>
-            {donationStatus.type !== "idle" ? (
-              <p
-                className={`form-status form-status--${donationStatus.type}`}
-                role="status"
-              >
-                {donationStatus.message}
-              </p>
-            ) : null}
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              className="site-button site-button--secondary"
-              onClick={handleModalHide}
-              disabled={isProcessingPayment}
-            >
-              Cancel
-            </Button>
-            <Button
-              className="site-button site-button--primary"
-              type="submit"
-              disabled={isProcessingPayment}
-            >
-              {isProcessingPayment ? "Processing..." : "Pay $1"}
-            </Button>
-          </Modal.Footer>
-        </form> */}
       </Modal>
     </div>
   );
