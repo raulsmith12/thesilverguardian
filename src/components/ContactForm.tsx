@@ -126,8 +126,7 @@ export function ContactForm() {
       </button>
 
       <p className="contact-form__disclaimer">
-        The SIlver Guardian and its subsidiaries reserve the right to refuse
-        service to anyone for any reason.
+        In order to properly protect brand integrity, The Silver Guardian LLC reserves the right to refuse service to any person at any time or for any reason.
       </p>
     </form>
   );
