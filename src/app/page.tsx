@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import newsletterImage from "@/img/charlesdeluvio-FdDkfYFHqe4-unsplash.jpg";
@@ -6,6 +7,22 @@ import movementTherapyImage from "@/img/lorenzo-fatto-offidani-de5OZMjb5ww-unspl
 import scoreGoalImage from "@/img/samantha-gades-iks9hBNKa6E-unsplash.jpg";
 import silverGuardianLogo from "@/img/silver-guardian-logo.png";
 import wishesImage from "@/img/vitolda-klein-OD1_HupXwxI-unsplash.jpg";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Innovative Pediatric Care and Community Support",
+  description:
+    "Discover The Silver Guardian's mission to inspire hope and healing through innovative pediatric care, hockey-related wishes, fundraising, and movement therapy.",
+  path: "/",
+  keywords: [
+    "The Silver Guardian",
+    "pediatric care",
+    "pediatric cancer support",
+    "pediatric heart disease support",
+    "hockey charity",
+    "community support",
+  ],
+});
 
 export default function Home() {
   return (

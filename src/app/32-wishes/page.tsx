@@ -1,5 +1,22 @@
+import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "32 Wishes for 32 Cities",
+  description:
+    "Learn about The Silver Guardian's goal to grant 32 hockey-related wishes to children in 32 North American cities each year.",
+  path: "/32-wishes/",
+  keywords: [
+    "32 Wishes for 32 Cities",
+    "hockey wishes for children",
+    "pediatric cancer wishes",
+    "pediatric heart disease support",
+    "children's hockey charity",
+    "The Silver Guardian wishes",
+  ],
+});
 
 type RoofStyle = "antenna" | "cap" | "dome" | "flat" | "slope" | "step";
 
@@ -446,14 +463,16 @@ function SkylineCard({ skyline }: { skyline: Skyline }) {
   );
 }
 
-export default function WishesPage() {
+function WishesContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
+  const isFrench = locale === "fr-CA";
+
   return (
     <div className="flex min-h-screen flex-col">
-      <Navigation />
+      <Navigation locale={locale} />
       <main className="flex-1">
         <section className="page-hero page-hero--compact">
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
-            <h1>32 Wishes for 32 Cities</h1>
+            <h1>{isFrench ? "32 souhaits dans 32 villes" : "32 Wishes for 32 Cities"}</h1>
           </div>
         </section>
 
@@ -461,22 +480,21 @@ export default function WishesPage() {
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
             <div className="wishes-intro">
               <p>
-                One of our goals is to annually grant 32 ice hockey related
-                wishes to brave children in 32 cities at a single event
-                designed to spread hope and joy within the pediatric
-                cancer/heart disease community.
+                {isFrench
+                  ? "L’un de nos objectifs est de réaliser chaque année 32 souhaits liés au hockey sur glace pour de courageux enfants dans 32 villes, lors d’un seul événement conçu pour répandre l’espoir et la joie au sein de la communauté touchée par le cancer et les maladies cardiaques pédiatriques."
+                  : "One of our goals is to annually grant 32 ice hockey related wishes to brave children in 32 cities at a single event designed to spread hope and joy within the pediatric cancer/heart disease community."}
               </p>
               <p>
-                Please check back regularly to see which members of the North
-                American professional ice hockey community have agreed to
-                partner with us in this endeavor.
+                {isFrench
+                  ? "Revenez régulièrement pour découvrir quels membres de la communauté nord-américaine du hockey professionnel ont accepté de s’associer à nous dans cette initiative."
+                  : "Please check back regularly to see which members of the North American professional ice hockey community have agreed to partner with us in this endeavor."}
               </p>
             </div>
 
             <div className="wishes-grid">
               <section className="wishes-region" aria-labelledby="west-title">
-                <h2 id="west-title">West</h2>
-                <h4 className="text-center">Who Will Be First?</h4>
+                <h2 id="west-title">{isFrench ? "Ouest" : "West"}</h2>
+                <h4 className="text-center">{isFrench ? "Qui sera le premier?" : "Who Will Be First?"}</h4>
                 <div className="wishes-placeholder-grid">
                   {westSkylines.map((skyline) => (
                     <SkylineCard
@@ -488,8 +506,8 @@ export default function WishesPage() {
               </section>
 
               <section className="wishes-region" aria-labelledby="east-title">
-                <h2 id="east-title">East</h2>
-                <h4 className="text-center">Who Will Be First?</h4>
+                <h2 id="east-title">{isFrench ? "Est" : "East"}</h2>
+                <h4 className="text-center">{isFrench ? "Qui sera le premier?" : "Who Will Be First?"}</h4>
                 <div className="wishes-placeholder-grid">
                   {eastSkylines.map((skyline) => (
                     <SkylineCard
@@ -503,7 +521,11 @@ export default function WishesPage() {
           </div>
         </section>
       </main>
-      <Footer />
+      <Footer locale={locale} />
     </div>
   );
+}
+
+export default function WishesPage() {
+  return <WishesContent />;
 }

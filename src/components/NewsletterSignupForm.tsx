@@ -17,7 +17,8 @@ type NewsletterStatus =
       message: string;
     };
 
-export function NewsletterSignupForm() {
+export function NewsletterSignupForm({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
+  const isFrench = locale === "fr-CA";
   const [status, setStatus] = useState<NewsletterStatus>({
     type: "idle",
     message: "",
@@ -51,8 +52,12 @@ export function NewsletterSignupForm() {
       if (!response.ok) {
         const fallbackMessage =
           response.status === 409
-            ? "That email address is already signed up."
-            : "Signup could not be completed. Please try again.";
+            ? isFrench
+              ? "Cette adresse courriel est déjà inscrite."
+              : "That email address is already signed up."
+            : isFrench
+              ? "L’inscription n’a pas pu être effectuée. Veuillez réessayer."
+              : "Signup could not be completed. Please try again.";
 
         setStatus({
           type: "error",
@@ -64,12 +69,16 @@ export function NewsletterSignupForm() {
       form.reset();
       setStatus({
         type: "success",
-        message: "You are signed up for the newsletter.",
+        message: isFrench
+          ? "Votre inscription à l’infolettre est confirmée."
+          : "You are signed up for the newsletter.",
       });
     } catch {
       setStatus({
         type: "error",
-        message: "Signup could not be completed. Please try again.",
+        message: isFrench
+          ? "L’inscription n’a pas pu être effectuée. Veuillez réessayer."
+          : "Signup could not be completed. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
@@ -79,12 +88,12 @@ export function NewsletterSignupForm() {
   return (
     <form className="newsletter-form" onSubmit={handleSubmit}>
       <label>
-        <span>Name</span>
+        <span>{isFrench ? "Nom" : "Name"}</span>
         <input name="name" type="text" autoComplete="name" required />
       </label>
 
       <label>
-        <span>Email</span>
+        <span>{isFrench ? "Courriel" : "Email"}</span>
         <input
           name="email"
           type="email"
@@ -108,7 +117,13 @@ export function NewsletterSignupForm() {
         type="submit"
         disabled={isSubmitting}
       >
-        {isSubmitting ? "Signing Up..." : "Sign Up"}
+        {isSubmitting
+          ? isFrench
+            ? "Inscription en cours…"
+            : "Signing Up..."
+          : isFrench
+            ? "S’inscrire"
+            : "Sign Up"}
       </button>
     </form>
   );

@@ -5,21 +5,26 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { LanguageSelector } from "@/components/LanguageSelector";
 import silverGuardianLogo from "@/img/silver-guardian-logo.png";
+import { localizedPath, type Locale } from "@/lib/i18n";
 
-const links = [
-  { label: "Home", href: "/" },
-  { label: "Score a Goal", href: "/fundraising" },
-  { label: "32 Wishes", href: "/32-wishes" },
-  { label: "Movement", href: "/movement-therapy-center" },
-  { label: "Contact Us", href: "/contact" },
-];
+export function Navigation({ locale = "en" }: { locale?: Locale }) {
+  const isFrench = locale === "fr-CA";
+  const links = [
+    { label: isFrench ? "Accueil" : "Home", href: "/" },
+    { label: isFrench ? "Marquez un but" : "Score a Goal", href: "/fundraising" },
+    { label: isFrench ? "32 souhaits" : "32 Wishes", href: "/32-wishes" },
+    { label: isFrench ? "Mouvement" : "Movement", href: "/movement-therapy-center" },
+    { label: isFrench ? "Nous joindre" : "Contact Us", href: "/contact" },
+  ];
 
-export function Navigation() {
   return (
-    <Navbar expand="md" className="site-navbar" fixed="top">
+    <>
+      <LanguageSelector />
+      <Navbar expand="md" className="site-navbar" fixed="top">
       <Container className="site-navbar__inner">
-        <Navbar.Brand className="site-navbar__brand h3 mb-0" href="/">
+        <Navbar.Brand className="site-navbar__brand h3 mb-0" href={localizedPath("/", locale)}>
           <Image
             src={silverGuardianLogo}
             alt=""
@@ -55,7 +60,7 @@ export function Navigation() {
           <Offcanvas.Body>
             <Nav className="ms-md-auto site-navbar__links">
               {links.map((link) => (
-                <Nav.Link key={link.label} href={link.href}>
+                <Nav.Link key={link.label} href={localizedPath(link.href, locale)}>
                   {link.label}
                 </Nav.Link>
               ))}
@@ -63,6 +68,7 @@ export function Navigation() {
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
-    </Navbar>
+      </Navbar>
+    </>
   );
 }

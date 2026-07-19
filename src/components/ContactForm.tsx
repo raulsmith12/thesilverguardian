@@ -17,7 +17,8 @@ type ContactFormStatus =
       message: string;
     };
 
-export function ContactForm() {
+export function ContactForm({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
+  const isFrench = locale === "fr-CA";
   const [status, setStatus] = useState<ContactFormStatus>({
     type: "idle",
     message: "",
@@ -53,8 +54,12 @@ export function ContactForm() {
       if (!response.ok) {
         const fallbackMessage =
           response.status === 409
-            ? "We already have a contact message for that email address."
-            : "Your message could not be sent. Please try again.";
+            ? isFrench
+              ? "Nous avons déjà reçu un message associé à cette adresse courriel."
+              : "We already have a contact message for that email address."
+            : isFrench
+              ? "Votre message n’a pas pu être envoyé. Veuillez réessayer."
+              : "Your message could not be sent. Please try again.";
 
         setStatus({
           type: "error",
@@ -66,12 +71,14 @@ export function ContactForm() {
       form.reset();
       setStatus({
         type: "success",
-        message: "Your message has been sent.",
+        message: isFrench ? "Votre message a été envoyé." : "Your message has been sent.",
       });
     } catch {
       setStatus({
         type: "error",
-        message: "Your message could not be sent. Please try again.",
+        message: isFrench
+          ? "Votre message n’a pas pu être envoyé. Veuillez réessayer."
+          : "Your message could not be sent. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
@@ -82,12 +89,12 @@ export function ContactForm() {
     <form className="contact-form" onSubmit={handleSubmit}>
       <div className="contact-form__row">
         <label>
-          <span>Name</span>
+          <span>{isFrench ? "Nom" : "Name"}</span>
           <input name="name" type="text" autoComplete="name" required />
         </label>
 
         <label>
-          <span>Email</span>
+          <span>{isFrench ? "Courriel" : "Email"}</span>
           <input
             name="email"
             type="email"
@@ -102,7 +109,7 @@ export function ContactForm() {
       </div>
 
       <label>
-        <span>Subject</span>
+        <span>{isFrench ? "Objet" : "Subject"}</span>
         <input name="subject" type="text" maxLength={255} required />
       </label>
 
@@ -122,11 +129,19 @@ export function ContactForm() {
         type="submit"
         disabled={isSubmitting}
       >
-        {isSubmitting ? "Sending..." : "Send Message"}
+        {isSubmitting
+          ? isFrench
+            ? "Envoi en cours…"
+            : "Sending..."
+          : isFrench
+            ? "Envoyer le message"
+            : "Send Message"}
       </button>
 
       <p className="contact-form__disclaimer">
-        In order to properly protect brand integrity, The Silver Guardian LLC reserves the right to refuse service to any person at any time or for any reason.
+        {isFrench
+          ? "Afin de protéger adéquatement l’intégrité de sa marque, The Silver Guardian LLC se réserve le droit de refuser ses services à toute personne, en tout temps et pour quelque raison que ce soit."
+          : "In order to properly protect brand integrity, The Silver Guardian LLC reserves the right to refuse service to any person at any time or for any reason."}
       </p>
     </form>
   );

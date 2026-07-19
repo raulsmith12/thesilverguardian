@@ -1,5 +1,20 @@
+import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Privacy Policy",
+  description:
+    "Read The Silver Guardian's privacy policy, including how information is collected, used, protected, retained, and shared.",
+  path: "/privacy/",
+  keywords: [
+    "The Silver Guardian privacy policy",
+    "website privacy policy",
+    "personal information",
+    "data privacy",
+  ],
+});
 
 export default function PrivacyPage() {
   return (

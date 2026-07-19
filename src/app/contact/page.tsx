@@ -1,7 +1,23 @@
+import type { Metadata } from "next";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import { NewsletterSignupForm } from "@/components/NewsletterSignupForm";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Contact Us",
+  description:
+    "Contact The Silver Guardian, join the newsletter, or learn how your business can support innovative pediatric care and community initiatives.",
+  path: "/contact/",
+  keywords: [
+    "contact The Silver Guardian",
+    "Silver Guardian newsletter",
+    "support pediatric care",
+    "business community support",
+    "pediatric charity contact",
+  ],
+});
 
 export default function ContactPage() {
   return (

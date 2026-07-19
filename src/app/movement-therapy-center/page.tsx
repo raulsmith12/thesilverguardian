@@ -1,9 +1,26 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import danceImage from "@/img/c3a93a8777a0af0f74eb8ff120553e56fb08dd2d-1.jpeg";
 import generalExerciseImage from "@/img/gabin-vallet-J154nEkpzlQ-unsplash.jpg";
 import kickboxingImage from "@/img/lorenzo-fatto-offidani-de5OZMjb5ww-unsplash.jpg";
+import { createPageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Movement Therapy Centers",
+  description:
+    "Explore The Silver Guardian's movement therapy center concept using dance, non-contact boxing, and adapted exercise to support quality of life.",
+  path: "/movement-therapy-center/",
+  keywords: [
+    "movement therapy center",
+    "exercise for cancer patients",
+    "non-contact boxing therapy",
+    "community dance health",
+    "adapted exercise",
+    "The Silver Guardian movement therapy",
+  ],
+});
 
 export default function MovementTherapyCenterPage() {
   const stats = [

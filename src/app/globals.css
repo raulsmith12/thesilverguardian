@@ -21,7 +21,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
-  padding-top: 76px;
+  padding-top: 112px;
 }
 
 a {
@@ -29,11 +29,43 @@ a {
 }
 
 .site-navbar {
+  top: 36px !important;
   min-height: 76px;
   border-bottom: 1px solid color-mix(in srgb, var(--color-secondary) 70%, white);
   background: rgba(255, 255, 255, 0.96);
   box-shadow: 0 10px 30px rgba(0, 28, 87, 0.08);
   backdrop-filter: blur(14px);
+}
+
+.language-tab {
+  position: fixed;
+  z-index: 1100;
+  top: 0;
+  left: 0;
+  display: flex;
+  height: 36px;
+  align-items: center;
+  border-right: 1px solid rgba(188, 198, 204, 0.7);
+  border-bottom: 1px solid rgba(188, 198, 204, 0.7);
+  border-bottom-right-radius: 7px;
+  background: var(--color-primary);
+  padding: 0 0.65rem;
+}
+
+.language-tab select {
+  border: 0;
+  background: var(--color-primary);
+  color: var(--color-white);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+  outline-offset: 3px;
+}
+
+.language-tab option {
+  background: var(--color-white);
+  color: var(--color-charcoal);
 }
 
 .site-navbar__inner {
