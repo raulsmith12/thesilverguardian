@@ -6,8 +6,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { LanguageSelector } from "@/components/LanguageSelector";
-import silverGuardianLogo from "@/img/silver-guardian-logo.png";
 import { localizedPath, type Locale } from "@/lib/i18n";
+import silverGuardianLogo from "@/img/silver-guardian-w-child.png";
 
 export function Navigation({ locale = "en" }: { locale?: Locale }) {
   const isFrench = locale === "fr-CA";

@@ -167,7 +167,7 @@ a {
 .page-hero::before {
   z-index: -2;
   background: #f1f2f2
-    url("../img/gerhard-crous-doivHPaG-Vw-unsplash.jpg") right center / contain
+    url("../img/hockey-goal.jpg") right center / contain
     no-repeat;
 }
 
@@ -1299,7 +1299,7 @@ a {
   .hero-section::before {
     z-index: -2;
     background: #f1f2f2
-      url("../img/gerhard-crous-doivHPaG-Vw-unsplash.jpg") right center / contain
+      url("../img/hockey-goal.jpg") right center / contain
       no-repeat;
   }
 }

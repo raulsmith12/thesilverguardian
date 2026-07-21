@@ -5,7 +5,7 @@ import { Navigation } from "@/components/Navigation";
 import newsletterImage from "@/img/charlesdeluvio-FdDkfYFHqe4-unsplash.jpg";
 import movementTherapyImage from "@/img/lorenzo-fatto-offidani-de5OZMjb5ww-unsplash.jpg";
 import scoreGoalImage from "@/img/samantha-gades-iks9hBNKa6E-unsplash.jpg";
-import silverGuardianLogo from "@/img/silver-guardian-logo.png";
+import silverGuardianLogo from "@/img/silver-guardian-w-child.png";
 import wishesImage from "@/img/vitolda-klein-OD1_HupXwxI-unsplash.jpg";
 import { createPageMetadata } from "@/lib/seo";
 
