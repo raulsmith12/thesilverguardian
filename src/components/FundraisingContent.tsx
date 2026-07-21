@@ -3,7 +3,7 @@
 import Image from "next/image";
 import ballroomDanceImage from "@/img/c3a93a8777a0af0f74eb8ff120553e56fb08dd2d-1.jpeg";
 import golfTournamentImage from "@/img/e4f884df0b93d4eb7d893f327084b05c3ccbf956-1.jpg";
-import scoreAGoalImage from "@/img/hockey-goal.jpg";
+import scoreAGoalImage from "@/img/hockey-goal.png";
 
 export function FundraisingContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
   const isFrench = locale === "fr-CA";

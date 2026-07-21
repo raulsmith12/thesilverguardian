@@ -167,8 +167,15 @@ a {
 .page-hero::before {
   z-index: -2;
   background: #f1f2f2
-    url("../img/hockey-goal.jpg") right center / contain
+    url("../img/hockey-goal.png") right center / contain
     no-repeat;
+}
+
+@media (min-width: 768px) {
+  .page-hero,
+  .page-hero::before {
+    background-color: rgba(1, 16, 56, 1);
+  }
 }
 
 .hero-section::after,
@@ -203,7 +210,7 @@ a {
 }
 
 .hero-title__logo {
-  height: 5em;
+  height: 6em;
   filter:
     drop-shadow(0 0 8px rgba(255, 255, 255, 0.55))
     drop-shadow(0 2px 5px rgba(0, 28, 87, 0.7));
@@ -223,7 +230,7 @@ a {
 }
 
 .hero-section > div {
-  padding-top: 1rem;
+  padding-top: 2.5rem;
 }
 
 .site-button {
@@ -1213,8 +1220,36 @@ a {
     padding: 0.85rem 0;
   }
 
+  .hero-section > div {
+    justify-content: center;
+    padding-right: 1.5rem;
+  }
+
+  .hero-section > div > div {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-title {
+    max-width: 100%;
+  }
+
   .hero-title__logo {
-    height: 5em;
+    width: min(11em, 100%);
+    height: auto;
+  }
+
+  .hero-section .hero-message {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .hero-section .hero-message + div {
+    justify-content: center;
+  }
+
+  .hero-section::after {
+    background: rgba(0, 28, 87, 1);
   }
 
   .fundraising-grid,
@@ -1251,7 +1286,6 @@ a {
 }
 
 @media (max-width: 699.98px) {
-  .hero-section::after,
   .page-hero::after {
     background: #001c5766;
     background: linear-gradient(90deg, rgba(0, 28, 87, 1) 0%, rgba(0, 28, 87, 1) 27%, rgba(209, 209, 209, 0) 100%);
@@ -1298,8 +1332,8 @@ a {
 @media (min-width: 1200px) {
   .hero-section::before {
     z-index: -2;
-    background: #f1f2f2
-      url("../img/hockey-goal.jpg") right center / contain
+    background: #011038
+      url("../img/hockey-goal.png") top right / contain
       no-repeat;
   }
 }
