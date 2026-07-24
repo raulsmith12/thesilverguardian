@@ -28,8 +28,24 @@ a {
   text-decoration: none;
 }
 
+.site-header {
+  position: fixed;
+  z-index: 1100;
+  top: 0;
+  right: 0;
+  left: 0;
+  background: var(--color-white);
+}
+
+.language-bar {
+  position: relative;
+  display: flex;
+  height: 36px;
+  align-items: center;
+  background: var(--color-white);
+}
+
 .site-navbar {
-  top: 36px !important;
   min-height: 76px;
   border-bottom: 1px solid color-mix(in srgb, var(--color-secondary) 70%, white);
   background: rgba(255, 255, 255, 0.96);
@@ -38,24 +54,21 @@ a {
 }
 
 .language-tab {
-  position: fixed;
-  z-index: 1100;
-  top: 0;
-  left: 0;
+  position: relative;
   display: flex;
   height: 36px;
   align-items: center;
   border-right: 1px solid rgba(188, 198, 204, 0.7);
   border-bottom: 1px solid rgba(188, 198, 204, 0.7);
   border-bottom-right-radius: 7px;
-  background: var(--color-primary);
+  background: var(--color-white);
   padding: 0 0.65rem;
 }
 
 .language-tab select {
   border: 0;
-  background: var(--color-primary);
-  color: var(--color-white);
+  background: var(--color-white);
+  color: var(--color-primary);
   cursor: pointer;
   font: inherit;
   font-size: 0.82rem;
@@ -113,6 +126,54 @@ a {
 .site-navbar__links .nav-link:hover,
 .site-navbar__links .nav-link:focus {
   color: var(--color-primary);
+}
+
+.site-nav-dropdown .dropdown-menu {
+  border-color: color-mix(in srgb, var(--color-secondary) 70%, white);
+  border-radius: 6px;
+  box-shadow: 0 12px 28px rgba(0, 28, 87, 0.14);
+}
+
+.site-nav-dropdown .dropdown-item {
+  color: var(--color-charcoal);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.site-nav-dropdown .dropdown-item:hover,
+.site-nav-dropdown .dropdown-item:focus {
+  background: #eef2f4;
+  color: var(--color-primary);
+}
+
+.site-nav-submenu {
+  position: relative;
+}
+
+.site-nav-submenu__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.site-nav-submenu__toggle::after {
+  transform: rotate(-90deg);
+}
+
+.site-nav-submenu__menu {
+  top: -0.5rem;
+  right: 100%;
+  left: auto;
+  margin-right: 0.15rem;
+}
+
+@media (min-width: 768px) and (hover: hover) {
+  .site-nav-dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0;
+  }
 }
 
 .brand-lockup {
@@ -1198,7 +1259,7 @@ a {
 
 @media (max-width: 767.98px) {
   body {
-    padding-top: 68px;
+    padding-top: 104px;
   }
 
   .site-navbar {
@@ -1218,6 +1279,18 @@ a {
   .site-navbar__links .nav-link {
     border-bottom: 1px solid rgba(188, 198, 204, 0.45);
     padding: 0.85rem 0;
+  }
+
+  .site-nav-submenu__toggle::after {
+    transform: none;
+  }
+
+  .site-nav-submenu__menu {
+    position: static;
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+    padding-left: 1rem;
   }
 
   .hero-section > div {
@@ -1335,5 +1408,183 @@ a {
     background: #011038
       url("../img/hockey-goal.png") top right / contain
       no-repeat;
+  }
+}
+
+.geo-hero {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #063e78 100%);
+  color: var(--color-white);
+}
+
+.geo-hero h1 {
+  max-width: 18ch;
+  margin-top: 0.65rem;
+  font-size: clamp(2.25rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.geo-eyebrow {
+  color: #d8e0e5;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.geo-intro {
+  max-width: 65ch;
+  margin-top: 1.5rem;
+  color: #edf2f5;
+  font-size: 1.1rem;
+  line-height: 1.75;
+}
+
+.geo-hero-image {
+  position: relative;
+  min-height: 300px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+  aspect-ratio: 3 / 2;
+}
+
+.geo-hero-image img {
+  object-fit: cover;
+}
+
+.geo-image-placeholder {
+  display: grid;
+  min-height: 300px;
+  place-items: center;
+  border: 2px dashed rgba(255, 255, 255, 0.65);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 2rem;
+  color: #edf2f5;
+  text-align: center;
+}
+
+.geo-content > section + section {
+  margin-top: 4rem;
+}
+
+.geo-supporting-images {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 4rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.geo-supporting-images .geo-image-placeholder {
+  min-height: 240px;
+  border-color: #8191a0;
+  background: #eef2f4;
+  color: var(--color-primary);
+}
+
+.geo-supporting-image {
+  position: relative;
+  min-height: 240px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #eef2f4;
+  aspect-ratio: 3 / 2;
+}
+
+.geo-supporting-image img {
+  object-fit: cover;
+}
+
+.geo-content h2 {
+  color: var(--color-primary);
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.geo-content h3 {
+  color: var(--color-primary);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.geo-content p,
+.geo-content li {
+  color: var(--color-charcoal);
+  line-height: 1.8;
+}
+
+.geo-content section > p:first-of-type,
+.geo-content section > ul {
+  margin-top: 1.25rem;
+}
+
+.geo-content section > p + p {
+  margin-top: 1rem;
+}
+
+.geo-content ul {
+  list-style: disc;
+  padding-left: 1.4rem;
+}
+
+.geo-related-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.geo-related-grid article {
+  border: 1px solid #d8e0e5;
+  border-radius: 8px;
+  padding: 1.25rem;
+  background: #f7f9fa;
+}
+
+.geo-related-grid a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.geo-related-grid p {
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+}
+
+.geo-faq-list {
+  margin-top: 1.5rem;
+  border-top: 1px solid #d8e0e5;
+}
+
+.geo-faq-list details {
+  border-bottom: 1px solid #d8e0e5;
+  padding: 1rem 0;
+}
+
+.geo-faq-list summary {
+  cursor: pointer;
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+.geo-faq-list p {
+  margin-top: 0.75rem;
+}
+
+.geo-closing {
+  border-radius: 10px;
+  background: #e9eef1;
+  padding: clamp(1.5rem, 5vw, 3rem);
+}
+
+.geo-closing .site-button {
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 639.98px) {
+  .geo-supporting-images {
+    grid-template-columns: 1fr;
   }
 }

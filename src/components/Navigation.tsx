@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { LanguageSelector } from "@/components/LanguageSelector";
@@ -10,19 +12,21 @@ import { localizedPath, type Locale } from "@/lib/i18n";
 import silverGuardianLogo from "@/img/silver-guardian-w-child.png";
 
 export function Navigation({ locale = "en" }: { locale?: Locale }) {
+  const [showCanada, setShowCanada] = useState(false);
   const isFrench = locale === "fr-CA";
   const links = [
     { label: isFrench ? "Accueil" : "Home", href: "/" },
     { label: isFrench ? "Marquez un but" : "Score a Goal", href: "/fundraising" },
     { label: isFrench ? "32 souhaits" : "32 Wishes", href: "/32-wishes" },
     { label: isFrench ? "Mouvement" : "Movement", href: "/movement-therapy-center" },
-    { label: isFrench ? "Nous joindre" : "Contact Us", href: "/contact" },
   ];
 
   return (
-    <>
-      <LanguageSelector />
-      <Navbar expand="md" className="site-navbar" fixed="top">
+    <header className="site-header">
+      <div className="language-bar">
+        <LanguageSelector />
+      </div>
+      <Navbar expand="md" className="site-navbar">
       <Container className="site-navbar__inner">
         <Navbar.Brand className="site-navbar__brand h3 mb-0" href={localizedPath("/", locale)}>
           <Image
@@ -64,11 +68,44 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
                   {link.label}
                 </Nav.Link>
               ))}
+              <Nav.Link href={localizedPath("/contact", locale)}>
+                {isFrench ? "Nous joindre" : "Contact Us"}
+              </Nav.Link>
+              <NavDropdown
+                align="end"
+                autoClose="outside"
+                className="site-nav-dropdown"
+                id="areas-navigation"
+                title={isFrench ? "Régions" : "Areas"}
+              >
+                <div
+                  className={`site-nav-submenu${showCanada ? " show" : ""}`}
+                  onMouseEnter={() => setShowCanada(true)}
+                  onMouseLeave={() => setShowCanada(false)}
+                >
+                  <button
+                    aria-expanded={showCanada}
+                    className="dropdown-item dropdown-toggle site-nav-submenu__toggle"
+                    onClick={() => setShowCanada((current) => !current)}
+                    type="button"
+                  >
+                    Canada
+                  </button>
+                  <div className={`dropdown-menu site-nav-submenu__menu${showCanada ? " show" : ""}`}>
+                    <NavDropdown.Item href={localizedPath("/montreal", locale)}>Montréal</NavDropdown.Item>
+                    <NavDropdown.Item href={localizedPath("/laval", locale)}>Laval</NavDropdown.Item>
+                    <NavDropdown.Item href={localizedPath("/longueuil", locale)}>Longueuil</NavDropdown.Item>
+                    <NavDropdown.Item href={localizedPath("/brossard", locale)}>Brossard</NavDropdown.Item>
+                    <NavDropdown.Item href={localizedPath("/terrebonne", locale)}>Terrebonne</NavDropdown.Item>
+                    <NavDropdown.Item href={localizedPath("/pointe-claire", locale)}>Pointe-Claire</NavDropdown.Item>
+                  </div>
+                </div>
+              </NavDropdown>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
       </Navbar>
-    </>
+    </header>
   );
 }

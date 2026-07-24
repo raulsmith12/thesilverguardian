@@ -1,5 +1,11 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
+import { montrealTopicSlugs } from "@/lib/montrealContent";
+import { lavalTopicSlugs } from "@/lib/lavalContent";
+import { longueuilTopicSlugs } from "@/lib/longueuilContent";
+import { brossardTopicSlugs } from "@/lib/brossardContent";
+import { terrebonneTopicSlugs } from "@/lib/terrebonneContent";
+import { pointeClaireTopicSlugs } from "@/lib/pointeClaireContent";
 
 export const dynamic = "force-static";
 
@@ -14,6 +20,42 @@ const routes = [
   },
   { path: "/contact/", priority: 0.7, changeFrequency: "yearly" },
   { path: "/privacy/", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/montreal/", priority: 0.8, changeFrequency: "monthly" },
+  ...montrealTopicSlugs.map((topic) => ({
+    path: `/montreal/${topic}/` as const,
+    priority: 0.7,
+    changeFrequency: "monthly" as const,
+  })),
+  { path: "/laval/", priority: 0.8, changeFrequency: "monthly" },
+  ...lavalTopicSlugs.map((topic) => ({
+    path: `/laval/${topic}/` as const,
+    priority: 0.7,
+    changeFrequency: "monthly" as const,
+  })),
+  { path: "/longueuil/", priority: 0.8, changeFrequency: "monthly" },
+  ...longueuilTopicSlugs.map((topic) => ({
+    path: `/longueuil/${topic}/` as const,
+    priority: 0.7,
+    changeFrequency: "monthly" as const,
+  })),
+  { path: "/brossard/", priority: 0.8, changeFrequency: "monthly" },
+  ...brossardTopicSlugs.map((topic) => ({
+    path: `/brossard/${topic}/` as const,
+    priority: 0.7,
+    changeFrequency: "monthly" as const,
+  })),
+  { path: "/terrebonne/", priority: 0.8, changeFrequency: "monthly" },
+  ...terrebonneTopicSlugs.map((topic) => ({
+    path: `/terrebonne/${topic}/` as const,
+    priority: 0.7,
+    changeFrequency: "monthly" as const,
+  })),
+  { path: "/pointe-claire/", priority: 0.8, changeFrequency: "monthly" },
+  ...pointeClaireTopicSlugs.map((topic) => ({
+    path: `/pointe-claire/${topic}/` as const,
+    priority: 0.7,
+    changeFrequency: "monthly" as const,
+  })),
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
