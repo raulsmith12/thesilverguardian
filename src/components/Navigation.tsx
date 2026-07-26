@@ -13,6 +13,7 @@ import silverGuardianLogo from "@/img/silver-guardian-w-child.png";
 
 export function Navigation({ locale = "en" }: { locale?: Locale }) {
   const [showCanada, setShowCanada] = useState(false);
+  const [showQuebec, setShowQuebec] = useState(false);
   const isFrench = locale === "fr-CA";
   const links = [
     { label: isFrench ? "Accueil" : "Home", href: "/" },
@@ -81,23 +82,47 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
                 <div
                   className={`site-nav-submenu${showCanada ? " show" : ""}`}
                   onMouseEnter={() => setShowCanada(true)}
-                  onMouseLeave={() => setShowCanada(false)}
+                  onMouseLeave={() => {
+                    setShowCanada(false);
+                    setShowQuebec(false);
+                  }}
                 >
                   <button
                     aria-expanded={showCanada}
+                    aria-controls="canada-navigation"
                     className="dropdown-item dropdown-toggle site-nav-submenu__toggle"
-                    onClick={() => setShowCanada((current) => !current)}
+                    onClick={() => {
+                      if (showCanada) setShowQuebec(false);
+                      setShowCanada(!showCanada);
+                    }}
                     type="button"
                   >
                     Canada
                   </button>
-                  <div className={`dropdown-menu site-nav-submenu__menu${showCanada ? " show" : ""}`}>
-                    <NavDropdown.Item href={localizedPath("/montreal", locale)}>Montréal</NavDropdown.Item>
-                    <NavDropdown.Item href={localizedPath("/laval", locale)}>Laval</NavDropdown.Item>
-                    <NavDropdown.Item href={localizedPath("/longueuil", locale)}>Longueuil</NavDropdown.Item>
-                    <NavDropdown.Item href={localizedPath("/brossard", locale)}>Brossard</NavDropdown.Item>
-                    <NavDropdown.Item href={localizedPath("/terrebonne", locale)}>Terrebonne</NavDropdown.Item>
-                    <NavDropdown.Item href={localizedPath("/pointe-claire", locale)}>Pointe-Claire</NavDropdown.Item>
+                  <div id="canada-navigation" className={`dropdown-menu site-nav-submenu__menu${showCanada ? " show" : ""}`}>
+                    <div
+                      className={`site-nav-submenu${showQuebec ? " show" : ""}`}
+                      onMouseEnter={() => setShowQuebec(true)}
+                      onMouseLeave={() => setShowQuebec(false)}
+                    >
+                      <button
+                        aria-expanded={showQuebec}
+                        aria-controls="quebec-navigation"
+                        className="dropdown-item dropdown-toggle site-nav-submenu__toggle"
+                        onClick={() => setShowQuebec((current) => !current)}
+                        type="button"
+                      >
+                        Quebec
+                      </button>
+                      <div id="quebec-navigation" className={`dropdown-menu site-nav-submenu__menu${showQuebec ? " show" : ""}`}>
+                        <NavDropdown.Item href={localizedPath("/montreal", locale)}>Montréal</NavDropdown.Item>
+                        <NavDropdown.Item href={localizedPath("/laval", locale)}>Laval</NavDropdown.Item>
+                        <NavDropdown.Item href={localizedPath("/longueuil", locale)}>Longueuil</NavDropdown.Item>
+                        <NavDropdown.Item href={localizedPath("/brossard", locale)}>Brossard</NavDropdown.Item>
+                        <NavDropdown.Item href={localizedPath("/terrebonne", locale)}>Terrebonne</NavDropdown.Item>
+                        <NavDropdown.Item href={localizedPath("/pointe-claire", locale)}>Pointe-Claire</NavDropdown.Item>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </NavDropdown>

@@ -6,7 +6,7 @@ import newsletterImage from "@/img/charlesdeluvio-FdDkfYFHqe4-unsplash.jpg";
 import movementTherapyImage from "@/img/lorenzo-fatto-offidani-de5OZMjb5ww-unsplash.jpg";
 import scoreGoalImage from "@/img/samantha-gades-iks9hBNKa6E-unsplash.jpg";
 import silverGuardianLogo from "@/img/silver-guardian-w-child.png";
-import wishesImage from "@/img/vitolda-klein-OD1_HupXwxI-unsplash.jpg";
+import wishesImage from "@/img/hockey-hero-rising-stockcake.jpg";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -63,13 +63,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mission-note-section">
-          <div className="mx-auto w-full max-w-6xl px-6 py-12">
-            <p>
-              The Silver Guardian is a group of business owners and community advocates who have joined together to gather community support for an innovative pediatric care facility with a kid friendly ice hockey theme designed to inspire hope and healing in the face of life threatening conditions, primarily cancer and heart disease.
-            </p>
-            <p>Thank you,</p>
-            <p>The Silver Guardian Team</p>
+        <section className="publication-feature" aria-labelledby="publication-feature-title">
+          <div className="publication-feature__inner">
+            <p className="section-kicker">See the vision</p>
+            <h2 id="publication-feature-title">Explore The Silver Guardian Initiative</h2>
+            <p>Open our interactive teaser for a closer look at the ideas and purpose behind the initiative.</p>
+            <a
+              className="publication-feature__link"
+              href="https://cloud-screen.com/v2/publications/the-silver-guardian-initiative-teaser-v2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View the initiative teaser <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </section>
 
@@ -98,7 +104,7 @@ export default function Home() {
                 text: "Every year, one of our goals is to grant 32 hockey related wishes to brave kids in 32 cities across the US and Canada.",
                 url: "/32-wishes",
                 image: wishesImage,
-                alt: "Children standing in a sunny field",
+                alt: "Illustration of an ice hockey player handling a puck on fractured ice",
               },
               {
                 title: "Movement Therapy",
@@ -126,7 +132,7 @@ export default function Home() {
                       alt={alt}
                       fill
                       placeholder="blur"
-                      sizes="(max-width: 767px) 30vw, 22rem"
+                      sizes="(max-width: 767px) calc(100vw - 3rem), 22rem"
                       unoptimized
                     />
                   </div>
@@ -140,6 +146,16 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        <section className="mission-note-section">
+          <div className="mx-auto w-full max-w-6xl px-6 py-12">
+            <p>
+              The Silver Guardian is a group of business owners and community advocates who have joined together to gather community support for an innovative pediatric care facility with a kid friendly ice hockey theme designed to inspire hope and healing in the face of life threatening conditions, primarily cancer and heart disease.
+            </p>
+            <p>Thank you,</p>
+            <p>The Silver Guardian Team</p>
           </div>
         </section>
       </main>

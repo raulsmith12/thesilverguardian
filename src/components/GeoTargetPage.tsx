@@ -9,6 +9,8 @@ import hockeyPlayerImage from "@/img/gerhard-crous-doivHPaG-Vw-unsplash.jpg";
 import neonHockeyGoalImage from "@/img/hockey-goal.jpg";
 import pediatricianWithBabyImage from "@/img/aditya-romansa-5zp0jym2w9M-unsplash.jpg";
 import pediatricianWithTeddyImage from "@/img/derek-finch-Gi8Q8IfpxdY-unsplash.jpg";
+import hospitalTeddyImage from "@/img/ortopediatri-cocuk-ortopedi-akademisi-8JjW4xVwQqc-unsplash.jpg";
+import childWithPediatricianImage from "@/img/national-cancer-institute-vbuR2q56EZM-unsplash.jpg";
 
 export function GeoTargetPage({ content, locale }: { content: MontrealPageContent; locale: Locale }) {
   const faqStructuredData = {
@@ -96,6 +98,43 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
                 <Image
                   src={pediatricianWithTeddyImage}
                   alt={locale === "fr-CA" ? "Pédiatre prenant soin d’un ourson en peluche pendant des soins pédiatriques" : "Pediatrician caring for stuffed teddy bear during pediatric care"}
+                  fill
+                  placeholder="blur"
+                  sizes="(max-width: 639px) 100vw, 50vw"
+                  unoptimized
+                />
+              </div>
+            </div>
+          )}
+
+          {(content.supportingImageSet === "childrens-hospital" || content.supportingImageSet === "hospital-wishes") && (
+            <div className="geo-supporting-images" aria-label={locale === "fr-CA" ? "Images d’hôpital pour enfants" : "Children's hospital images"}>
+              <div className="geo-supporting-image">
+                <Image
+                  src={hospitalTeddyImage}
+                  alt={content.supportingImageSet === "hospital-wishes"
+                    ? locale === "fr-CA"
+                      ? "Enfant devant un pédiatre pouvant potentiellement recevoir un souhait à l’hôpital"
+                      : "Child in front of pediatrician potentially geting a hospital wish"
+                    : locale === "fr-CA"
+                      ? "Enfant avec un animal en peluche devant un pédiatre dans un hôpital pour enfants"
+                      : "Child with stuffed animal in front of pediatrician in children's hospital"}
+                  fill
+                  placeholder="blur"
+                  sizes="(max-width: 639px) 100vw, 50vw"
+                  unoptimized
+                />
+              </div>
+              <div className="geo-supporting-image">
+                <Image
+                  src={childWithPediatricianImage}
+                  alt={content.supportingImageSet === "hospital-wishes"
+                    ? locale === "fr-CA"
+                      ? "Dessin inspirant dans un hôpital encourageant les enfants à ne jamais abandonner"
+                      : "Inspirational drawing in hospital urging kids to never give up"
+                    : locale === "fr-CA"
+                      ? "Dessin inspirant dans un hôpital pour enfants les encourageant à ne jamais abandonner"
+                      : "Children's hospital inspirational drawing urging kids to never give up"}
                   fill
                   placeholder="blur"
                   sizes="(max-width: 639px) 100vw, 50vw"

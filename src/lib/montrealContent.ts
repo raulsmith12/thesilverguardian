@@ -24,7 +24,7 @@ export type MontrealPageContent = {
   imageLabel: string;
   imageAlt: string;
   supportingImages?: { label: string; alt: string }[];
-  supportingImageSet?: "hockey-wishes" | "pediatric-care";
+  supportingImageSet?: "hockey-wishes" | "pediatric-care" | "childrens-hospital" | "hospital-wishes";
   sections: Section[];
   relatedHeading: string;
   relatedLinks: RelatedLink[];
@@ -260,7 +260,11 @@ export function getMontrealTopicContent(slug: string, locale: Locale) {
         ? ("hockey-wishes" as const)
         : slug === "pediatric-cancer"
           ? ("pediatric-care" as const)
-          : undefined,
+          : slug === "childrens-hospital"
+            ? ("childrens-hospital" as const)
+            : slug === "hospital-wishes"
+              ? ("hospital-wishes" as const)
+              : undefined,
     sections: [...content.sections, ...montrealExpansions[slug][locale]],
     supportingImages: [
       {
