@@ -1522,6 +1522,15 @@ a {
   object-fit: cover;
 }
 
+@media (max-width: 767.98px) {
+  .geo-hero-image {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 0;
+  }
+}
+
 .geo-image-placeholder {
   display: grid;
   min-height: 300px;

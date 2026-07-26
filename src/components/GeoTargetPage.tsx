@@ -41,7 +41,7 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
                 fill
                 placeholder="blur"
                 priority
-                sizes="(max-width: 767px) 100vw, 40vw"
+                sizes="(max-width: 767px) calc(100vw - 3rem), 40vw"
                 unoptimized
               />
             </div>
