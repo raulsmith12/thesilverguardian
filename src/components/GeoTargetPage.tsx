@@ -11,8 +11,12 @@ import pediatricianWithBabyImage from "@/img/aditya-romansa-5zp0jym2w9M-unsplash
 import pediatricianWithTeddyImage from "@/img/derek-finch-Gi8Q8IfpxdY-unsplash.jpg";
 import hospitalTeddyImage from "@/img/ortopediatri-cocuk-ortopedi-akademisi-8JjW4xVwQqc-unsplash.jpg";
 import childWithPediatricianImage from "@/img/national-cancer-institute-vbuR2q56EZM-unsplash.jpg";
+import raleighDurhamSkylineImage from "@/img/tj-wallace-qa5ouCk-Xoo-unsplash.jpg";
+import movementTrainingImage from "@/img/lorenzo-fatto-offidani-de5OZMjb5ww-unsplash.jpg";
+import groupMovementImage from "@/img/gabin-vallet-J154nEkpzlQ-unsplash.jpg";
 
 export function GeoTargetPage({ content, locale }: { content: MontrealPageContent; locale: Locale }) {
+  const isRaleighDurham = content.heroImage === "raleigh-durham";
   const faqStructuredData = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -36,8 +40,14 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
             </div>
             <div className="geo-hero-image">
               <Image
-                src={montrealSkylineImage}
-                alt={locale === "fr-CA" ? "Vue de Montréal, Québec, Canada depuis le fleuve Saint-Laurent" : "View of Montreal, Quebec, Canada from the St. Lawrence River"}
+                src={isRaleighDurham ? raleighDurhamSkylineImage : montrealSkylineImage}
+                alt={isRaleighDurham
+                  ? locale === "fr-CA"
+                    ? "Vue du centre-ville de Raleigh, en Caroline du Nord, près des voies ferrées"
+                    : "View of downtown Raleigh, North Carolina near railroad tracks"
+                  : locale === "fr-CA"
+                    ? "Vue de Montréal, Québec, Canada depuis le fleuve Saint-Laurent"
+                    : "View of Montreal, Quebec, Canada from the St. Lawrence River"}
                 fill
                 placeholder="blur"
                 priority
@@ -56,6 +66,13 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
               {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
             </section>
           ))}
+
+          <section className="geo-independent-role" aria-labelledby="independent-role-heading">
+            <h2 id="independent-role-heading">{locale === "fr-CA" ? "Un rôle communautaire indépendant" : "An independent community role"}</h2>
+            <p>{locale === "fr-CA"
+              ? "The Silver Guardian ne possède, n’exploite, ne gère, ne dirige et ne représente aucun hôpital, clinique ni fournisseur de soins. L’organisme n’exerce aucune autorité sur les soins, les décisions médicales, les programmes hospitaliers ou les recommandations. Toute initiative présentée sur cette page est indépendante et ne doit pas être interprétée comme un service clinique ou une affiliation hospitalière."
+              : "The Silver Guardian does not own, operate, manage, direct or represent any hospital, clinic or healthcare provider. The organization has no authority over care, medical decisions, hospital programs or referrals. Every initiative described on this page is independent and should not be interpreted as a clinical service or hospital affiliation."}</p>
+          </section>
 
           {content.supportingImageSet === "hockey-wishes" && (
             <div className="geo-supporting-images" aria-label={locale === "fr-CA" ? "Images de hockey" : "Hockey images"}>
@@ -107,18 +124,12 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
             </div>
           )}
 
-          {(content.supportingImageSet === "childrens-hospital" || content.supportingImageSet === "hospital-wishes") && (
-            <div className="geo-supporting-images" aria-label={locale === "fr-CA" ? "Images d’hôpital pour enfants" : "Children's hospital images"}>
+          {content.supportingImageSet === "hospital-wishes" && (
+            <div className="geo-supporting-images" aria-label={locale === "fr-CA" ? "Images de souhaits à l’hôpital" : "Hospital wish images"}>
               <div className="geo-supporting-image">
                 <Image
                   src={hospitalTeddyImage}
-                  alt={content.supportingImageSet === "hospital-wishes"
-                    ? locale === "fr-CA"
-                      ? "Enfant devant un pédiatre pouvant potentiellement recevoir un souhait à l’hôpital"
-                      : "Child in front of pediatrician potentially geting a hospital wish"
-                    : locale === "fr-CA"
-                      ? "Enfant avec un animal en peluche devant un pédiatre dans un hôpital pour enfants"
-                      : "Child with stuffed animal in front of pediatrician in children's hospital"}
+                  alt={locale === "fr-CA" ? "Enfant devant un pédiatre pouvant potentiellement recevoir un souhait à l’hôpital" : "Child in front of pediatrician potentially geting a hospital wish"}
                   fill
                   placeholder="blur"
                   sizes="(max-width: 639px) 100vw, 50vw"
@@ -128,13 +139,32 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
               <div className="geo-supporting-image">
                 <Image
                   src={childWithPediatricianImage}
-                  alt={content.supportingImageSet === "hospital-wishes"
-                    ? locale === "fr-CA"
-                      ? "Dessin inspirant dans un hôpital encourageant les enfants à ne jamais abandonner"
-                      : "Inspirational drawing in hospital urging kids to never give up"
-                    : locale === "fr-CA"
-                      ? "Dessin inspirant dans un hôpital pour enfants les encourageant à ne jamais abandonner"
-                      : "Children's hospital inspirational drawing urging kids to never give up"}
+                  alt={locale === "fr-CA" ? "Dessin inspirant dans un hôpital encourageant les enfants à ne jamais abandonner" : "Inspirational drawing in hospital urging kids to never give up"}
+                  fill
+                  placeholder="blur"
+                  sizes="(max-width: 639px) 100vw, 50vw"
+                  unoptimized
+                />
+              </div>
+            </div>
+          )}
+
+          {content.supportingImageSet === "movement-therapy" && (
+            <div className="geo-supporting-images" aria-label={locale === "fr-CA" ? "Images de thérapie par le mouvement" : "Movement therapy images"}>
+              <div className="geo-supporting-image">
+                <Image
+                  src={movementTrainingImage}
+                  alt={locale === "fr-CA" ? "Athlète participant à un entraînement de mouvement avec des gants de boxe" : "Athlete participating in movement training with boxing gloves"}
+                  fill
+                  placeholder="blur"
+                  sizes="(max-width: 639px) 100vw, 50vw"
+                  unoptimized
+                />
+              </div>
+              <div className="geo-supporting-image">
+                <Image
+                  src={groupMovementImage}
+                  alt={locale === "fr-CA" ? "Groupe participant à des exercices de mouvement adaptés à l’extérieur" : "Group participating in adapted outdoor movement exercises"}
                   fill
                   placeholder="blur"
                   sizes="(max-width: 639px) 100vw, 50vw"

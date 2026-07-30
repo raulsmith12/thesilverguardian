@@ -6,6 +6,7 @@ import { longueuilTopicSlugs } from "@/lib/longueuilContent";
 import { brossardTopicSlugs } from "@/lib/brossardContent";
 import { terrebonneTopicSlugs } from "@/lib/terrebonneContent";
 import { pointeClaireTopicSlugs } from "@/lib/pointeClaireContent";
+import { raleighDurhamTopicSlugs } from "@/lib/raleighDurhamContent";
 
 export const dynamic = "force-static";
 
@@ -53,6 +54,12 @@ const routes = [
   { path: "/pointe-claire/", priority: 0.8, changeFrequency: "monthly" },
   ...pointeClaireTopicSlugs.map((topic) => ({
     path: `/pointe-claire/${topic}/` as const,
+    priority: 0.7,
+    changeFrequency: "monthly" as const,
+  })),
+  { path: "/raleigh-durham/", priority: 0.8, changeFrequency: "monthly" },
+  ...raleighDurhamTopicSlugs.map((topic) => ({
+    path: `/raleigh-durham/${topic}/` as const,
     priority: 0.7,
     changeFrequency: "monthly" as const,
   })),

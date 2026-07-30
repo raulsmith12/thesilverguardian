@@ -14,6 +14,8 @@ import silverGuardianLogo from "@/img/silver-guardian-w-child.png";
 export function Navigation({ locale = "en" }: { locale?: Locale }) {
   const [showCanada, setShowCanada] = useState(false);
   const [showQuebec, setShowQuebec] = useState(false);
+  const [showUnitedStates, setShowUnitedStates] = useState(false);
+  const [showNorthCarolina, setShowNorthCarolina] = useState(false);
   const isFrench = locale === "fr-CA";
   const links = [
     { label: isFrench ? "Accueil" : "Home", href: "/" },
@@ -75,7 +77,7 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
               <NavDropdown
                 align="end"
                 autoClose="outside"
-                className="site-nav-dropdown"
+                className="d-none site-nav-dropdown"
                 id="areas-navigation"
                 title={isFrench ? "Régions" : "Areas"}
               >
@@ -121,6 +123,47 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
                         <NavDropdown.Item href={localizedPath("/brossard", locale)}>Brossard</NavDropdown.Item>
                         <NavDropdown.Item href={localizedPath("/terrebonne", locale)}>Terrebonne</NavDropdown.Item>
                         <NavDropdown.Item href={localizedPath("/pointe-claire", locale)}>Pointe-Claire</NavDropdown.Item>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className={`site-nav-submenu${showUnitedStates ? " show" : ""}`}
+                  onMouseEnter={() => setShowUnitedStates(true)}
+                  onMouseLeave={() => {
+                    setShowUnitedStates(false);
+                    setShowNorthCarolina(false);
+                  }}
+                >
+                  <button
+                    aria-expanded={showUnitedStates}
+                    aria-controls="united-states-navigation"
+                    className="dropdown-item dropdown-toggle site-nav-submenu__toggle"
+                    onClick={() => {
+                      if (showUnitedStates) setShowNorthCarolina(false);
+                      setShowUnitedStates(!showUnitedStates);
+                    }}
+                    type="button"
+                  >
+                    {isFrench ? "États-Unis" : "United States"}
+                  </button>
+                  <div id="united-states-navigation" className={`dropdown-menu site-nav-submenu__menu${showUnitedStates ? " show" : ""}`}>
+                    <div
+                      className={`site-nav-submenu${showNorthCarolina ? " show" : ""}`}
+                      onMouseEnter={() => setShowNorthCarolina(true)}
+                      onMouseLeave={() => setShowNorthCarolina(false)}
+                    >
+                      <button
+                        aria-expanded={showNorthCarolina}
+                        aria-controls="north-carolina-navigation"
+                        className="dropdown-item dropdown-toggle site-nav-submenu__toggle"
+                        onClick={() => setShowNorthCarolina((current) => !current)}
+                        type="button"
+                      >
+                        {isFrench ? "Caroline du Nord" : "North Carolina"}
+                      </button>
+                      <div id="north-carolina-navigation" className={`dropdown-menu site-nav-submenu__menu${showNorthCarolina ? " show" : ""}`}>
+                        <NavDropdown.Item href={localizedPath("/raleigh-durham", locale)}>Raleigh–Durham</NavDropdown.Item>
                       </div>
                     </div>
                   </div>
