@@ -20,6 +20,7 @@ const routes = [
     changeFrequency: "monthly",
   },
   { path: "/contact/", priority: 0.7, changeFrequency: "yearly" },
+  { path: "/more-info/", priority: 0.9, changeFrequency: "monthly" },
   { path: "/privacy/", priority: 0.3, changeFrequency: "yearly" },
   { path: "/montreal/", priority: 0.8, changeFrequency: "monthly" },
   ...montrealTopicSlugs.map((topic) => ({

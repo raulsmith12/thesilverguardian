@@ -6,6 +6,7 @@ This directory contains the first MySQL schema for the site backend.
 
 - `newsletter_subscribers`: registered newsletter subscribers with `name`, unique `email`, and `date_joined`.
 - `contact_form_submissions`: contact form records with `name`, unique `email`, `subject`, `message`, and `submitted_at`.
+- `petition_signatures`: community petition signatures with `name`, unique `email`, `postal_code`, and `signed_at`.
 - `paypal_donations`: PayPal donation records with donor identity, indexed `email`, amount, currency, PayPal identifiers, status, and raw webhook/order payload storage.
 - `support_payments`: $1 support payment records for the custom processor. The table stores customer identity, chosen payment method, status, processor identifiers, and a SHA-256 payload hash only. It intentionally does not store card numbers, CVV, wallet tokens, or raw processor payloads.
 

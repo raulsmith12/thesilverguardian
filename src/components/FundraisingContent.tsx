@@ -22,6 +22,26 @@ export function FundraisingContent({ locale = "en" }: { locale?: "en" | "fr-CA" 
         </p>
       </section>
 
+      <aside className="petition-cta petition-cta--fundraising" aria-labelledby="fundraising-petition-title">
+        <div>
+          <p className="section-kicker">{isFrench ? "Faites entendre votre voix" : "Add your voice"}</p>
+          <h2 id="fundraising-petition-title">
+            {isFrench ? "Appuyez les 32 souhaits" : "Stand behind 32 Wishes"}
+          </h2>
+          <p>
+            {isFrench
+              ? "Ajoutez votre nom à la pétition communautaire et contribuez à faire avancer cette vision."
+              : "Add your name to the community petition and help move this vision forward."}
+          </p>
+        </div>
+        <a
+          className="site-button site-button--secondary"
+          href={isFrench ? "/fr-ca/more-info/#petition" : "/more-info/#petition"}
+        >
+          {isFrench ? "Signer la pétition des 32 souhaits" : "Sign the 32 Wishes petition"}
+        </a>
+      </aside>
+
       <section className="fundraising-grid" aria-label={isFrench ? "Options de collecte de fonds" : "Fundraising options"}>
         <article className="fundraising-card">
           <p className="fundraising-card__season">{isFrench ? "Printemps / Été / Automne" : "Spring / Summer / Fall"}</p>
@@ -59,7 +79,7 @@ export function FundraisingContent({ locale = "en" }: { locale?: "en" | "fr-CA" 
           </div>
           <p>
             {isFrench ? (
-              <>Connaissez-vous une personne touchée par le cancer?<br /><br />Êtes-vous amateur de hockey sur glace?<br /><br />Si oui, versez 1 $ pour témoigner de votre appui communautaire à cette initiative.<br /><br />Nous demandons que les contributions correspondent au nombre exact de personnes dans le ménage immédiat : 4 personnes = 4 $.<br /><br />(À la fin de la campagne, ces contributions seront remises à un organisme caritatif pertinent lié au cancer, qui aide à renforcer le réseau de soutien des familles parcourant ensemble le chemin du cancer.)</>
+              <>Connaissez-vous une personne touchée par le cancer?<br /><br />Êtes-vous amateur de hockey sur glace?<br /><br />Si oui, versez 1 $ pour témoigner de votre appui communautaire à cette initiative.<br /><br />Nous demandons que les contributions correspondent au nombre exact de personnes dans le ménage immédiat : 4 personnes = 4 $.<br /><br />(À la fin de la campagne, ces contributions seront remises à un organisme caritatif reconnu dans le domaine du cancer, qui contribue à renforcer le réseau de soutien des familles traversant ensemble le parcours du cancer.)</>
             ) : (
               <>Do you know someone who has been affected by cancer?<br /><br />Are you an ice hockey fan?<br /><br />If so, please contribute $1 as a demonstration of community support for this initiative.<br /><br />We ask that tokens of support be limited to the exact number of people in immediate households: 4 people = $4.<br /><br />(At the end of the campaign, these tokens of support will be donated to a meaningful, cancer related charity focused on strengthening the support network for families walking the cancer journey together.)</>
             )}
@@ -94,7 +114,7 @@ export function FundraisingContent({ locale = "en" }: { locale?: "en" | "fr-CA" 
           </div>
           <p>
             {isFrench
-              ? "Un concours de danse de salon unique est en préparation afin de renforcer les communautés touchées par le cancer et les maladies cardiaques pédiatriques grâce au mouvement artistique et à la résilience dans la compétition."
+              ? "Un concours de danse de salon unique est en préparation afin de renforcer les communautés touchées par le cancer et les maladies cardiaques pédiatriques grâce au mouvement artistique et au dépassement de soi."
               : "A one of a kind ballroom dance competition is being developed to strengthen pediatric cancer/heart disease communities through artistic movement and competitive resilience."}
           </p>
           <span>{isFrench ? "À venir" : "Coming soon"}</span>

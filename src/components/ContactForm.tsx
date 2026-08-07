@@ -102,7 +102,7 @@ export function ContactForm({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
             inputMode="email"
             maxLength={320}
             pattern={emailValidationPattern}
-            title={emailValidationTitle}
+            title={isFrench ? "Entrez une adresse courriel valide." : emailValidationTitle}
             required
           />
         </label>

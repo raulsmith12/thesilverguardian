@@ -491,6 +491,17 @@ function WishesContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
               </p>
             </div>
 
+            <aside className="petition-cta" aria-labelledby="wishes-petition-title">
+              <div>
+                <p className="section-kicker">Add your voice</p>
+                <h2 id="wishes-petition-title">Help move 32 Wishes forward</h2>
+                <p>Show your support for the vision by adding your name to the community petition.</p>
+              </div>
+              <a className="site-button site-button--secondary" href="/more-info/#petition">
+                Sign the 32 Wishes petition
+              </a>
+            </aside>
+
             <div className="wishes-grid">
               <section className="wishes-region" aria-labelledby="west-title">
                 <h2 id="west-title">{isFrench ? "Ouest" : "West"}</h2>

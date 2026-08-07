@@ -16,6 +16,9 @@ export function Footer({ locale = "en" }: { locale?: Locale }) {
           <Link className="transition" href={localizedPath("/privacy", locale)}>
             {isFrench ? "Confidentialité" : "Privacy"}
           </Link>
+          <Link className="transition" href={localizedPath("/more-info", locale)}>
+            {isFrench ? "Calendrier de l’initiative" : "Initiative Timeline"}
+          </Link>
           <Link className="transition" href={localizedPath("/contact", locale)}>
             {isFrench ? "Nous joindre" : "Contact"}
           </Link>

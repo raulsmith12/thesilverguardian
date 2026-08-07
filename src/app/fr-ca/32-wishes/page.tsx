@@ -36,6 +36,10 @@ export default function FrenchWishesPage() {
               <p>L’un de nos objectifs est de réaliser chaque année 32 souhaits liés au hockey sur glace pour de courageux enfants dans 32 villes, lors d’un seul événement conçu pour répandre l’espoir et la joie au sein de la communauté touchée par le cancer et les maladies cardiaques pédiatriques.</p>
               <p>Revenez régulièrement pour découvrir quels membres de la communauté nord-américaine du hockey professionnel ont accepté de s’associer à nous dans cette initiative.</p>
             </div>
+            <aside className="petition-cta" aria-labelledby="wishes-petition-title-fr">
+              <div><p className="section-kicker">Faites entendre votre voix</p><h2 id="wishes-petition-title-fr">Aidez à faire avancer les 32 souhaits</h2><p>Manifestez votre appui à la vision en ajoutant votre nom à la pétition communautaire.</p></div>
+              <a className="site-button site-button--secondary" href="/fr-ca/more-info/#petition">Signer la pétition des 32 souhaits</a>
+            </aside>
             <div className="wishes-grid">
               {["Ouest", "Est"].map((region) => (
                 <section className="wishes-region" aria-labelledby={`region-${region}`} key={region}>

@@ -23,6 +23,11 @@ const {
   createPaypalDonationOrder,
   isDuplicatePaypalDonationError,
 } = require("./server/paypalDonations");
+const {
+  createPetitionSignature,
+  isDuplicatePetitionEmailError,
+  validatePetitionSignature,
+} = require("./server/petitionSignatures");
 
 dotenv.config();
 
@@ -181,6 +186,25 @@ app.post("/newsletter", async (req, res) => {
       ok: false,
       error: "server_error",
     });
+  }
+});
+
+app.post("/petition", async (req, res) => {
+  const validation = validatePetitionSignature(req.body);
+  if (!validation.ok) {
+    res.status(400).json({ ok: false, error: "validation_error", fields: validation.errors });
+    return;
+  }
+  try {
+    const id = await createPetitionSignature(validation.data);
+    res.status(201).json({ ok: true, id });
+  } catch (error) {
+    if (isDuplicatePetitionEmailError(error)) {
+      res.status(409).json({ ok: false, error: "duplicate_email" });
+      return;
+    }
+    console.error("Petition signature workflow failed", error);
+    res.status(500).json({ ok: false, error: "server_error" });
   }
 });
 

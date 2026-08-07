@@ -3,7 +3,16 @@ export const databaseTables = {
   contactFormSubmissions: "contact_form_submissions",
   paypalDonations: "paypal_donations",
   supportPayments: "support_payments",
+  petitionSignatures: "petition_signatures",
 } as const;
+
+export type PetitionSignature = {
+  id: number;
+  name: string;
+  email: string;
+  postalCode: string;
+  signedAt: string;
+};
 
 export type NewsletterSubscriber = {
   id: number;
