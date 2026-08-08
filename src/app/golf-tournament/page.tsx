@@ -25,7 +25,7 @@ export default function GolfTournamentPage() {
       <main className="flex-1">
         <section className="page-hero page-hero--compact">
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
-            <h1>Golf Tournament</h1>
+            <h1>Golf Tournaments</h1>
           </div>
         </section>
         <section className="page-content page-content--green">

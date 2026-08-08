@@ -38,7 +38,7 @@ export default function MovementTherapyCenterPage() {
       image: generalExerciseImage,
       alt: "Athlete exercising in a gym",
       summary:
-        "A review indexed by the National Library of Medicine describes evidence that appropriately prescribed exercise can support cardiovascular health, physical function, fatigue, and quality of life during and after cancer treatment. Exercise should be adapted with guidance from qualified healthcare professionals.",
+        "A review indexed by the National Library of Medicine describes evidence that appropriately prescribed exercise, such as non-contact boxing, can support cardiovascular health, physical function, fatigue, and quality of life during and after cancer treatment. Exercise should be adapted with guidance from qualified healthcare professionals.",
       url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11264125/",
     },
     {
@@ -73,7 +73,7 @@ export default function MovementTherapyCenterPage() {
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
             <section className="movement-intro">
               <p>
-                The Silver Guardian is exploring a network of movement therapy centers focused on artistic, adapted, and sport-inspired activity. This is a developing community concept, not an operating clinical service. Any future health-related programming would require qualified professionals, appropriate safeguards, and individual medical guidance. Please check back for confirmed details.
+                The Silver Guardian will empower a network of movement therapy centers focused on artistic, adapted, and sport-inspired activity. This is a developing community concept, not an operating clinical service. Any future health-related programming would require qualified professionals, appropriate safeguards, and individual medical guidance. Please check back for confirmed details.
               </p>
             </section>
 

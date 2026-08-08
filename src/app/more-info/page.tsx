@@ -39,7 +39,7 @@ const milestones = [
   {
     number: "04",
     title: "Site Selection",
-    summary: "Complete a thorough site-selection evaluation for the proposed pediatric cencer/cardiovascular research hospital.",
+    summary: "Complete a thorough site-selection evaluation for the proposed pediatric cancer/cardiovascular research hospital.",
     detail: "Currently, the site projection focus is on the southeastern United States, between Atlanta, GA and Chattanooga, TN.",
   },
   {

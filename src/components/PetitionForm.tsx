@@ -92,7 +92,7 @@ export function PetitionForm({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
           <span>
             {isFrench
               ? "Équipe professionnelle nord-américaine de hockey préférée"
-              : "Favorite professional North American hockey team"}
+              : "Favorite professional North American ice hockey team"}
           </span>
           <input name="favoriteHockeyTeam" type="text" maxLength={255} required />
         </label>
