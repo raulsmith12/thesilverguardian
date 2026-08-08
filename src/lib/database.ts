@@ -10,7 +10,7 @@ export type PetitionSignature = {
   id: number;
   name: string;
   email: string;
-  postalCode: string;
+  favoriteHockeyTeam: string;
   signedAt: string;
 };
 

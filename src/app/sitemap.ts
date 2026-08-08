@@ -13,6 +13,8 @@ export const dynamic = "force-static";
 const routes = [
   { path: "/", priority: 1, changeFrequency: "monthly" },
   { path: "/fundraising/", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/golf-tournament/", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/ballroom-dance-tournament/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/32-wishes/", priority: 0.8, changeFrequency: "monthly" },
   {
     path: "/movement-therapy-center/",

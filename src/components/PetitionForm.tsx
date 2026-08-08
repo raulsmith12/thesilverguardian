@@ -29,7 +29,7 @@ export function PetitionForm({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
         body: JSON.stringify({
           name: formData.get("name"),
           email: formData.get("email"),
-          postalCode: formData.get("postalCode"),
+          favoriteHockeyTeam: formData.get("favoriteHockeyTeam"),
           consent: formData.get("consent") === "on",
         }),
       });
@@ -89,8 +89,12 @@ export function PetitionForm({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
           />
         </label>
         <label>
-          <span>{isFrench ? "Code postal" : "ZIP / postal code"}</span>
-          <input name="postalCode" type="text" autoComplete="postal-code" maxLength={20} required />
+          <span>
+            {isFrench
+              ? "Équipe professionnelle nord-américaine de hockey préférée"
+              : "Favorite professional North American hockey team"}
+          </span>
+          <input name="favoriteHockeyTeam" type="text" maxLength={255} required />
         </label>
       </div>
 
@@ -99,7 +103,7 @@ export function PetitionForm({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
         <span>
           {isFrench
             ? "Je confirme mon appui à la vision de The Silver Guardian et j’accepte que ma signature soit comptée."
-            : "I support The Silver Guardian’s vision and agree to have my signature counted."}
+            : "I support The Silver Guardian initiative and agree to have my signature counted."}
         </span>
       </label>
 

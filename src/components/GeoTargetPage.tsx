@@ -129,7 +129,7 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
               <div className="geo-supporting-image">
                 <Image
                   src={hospitalTeddyImage}
-                  alt={locale === "fr-CA" ? "Enfant devant un pédiatre pouvant potentiellement recevoir un souhait à l’hôpital" : "Child in front of pediatrician potentially geting a hospital wish"}
+                  alt={locale === "fr-CA" ? "Enfant devant un pédiatre pouvant potentiellement recevoir un souhait à l’hôpital" : "Child in front of pediatrician potentially getting a hospital wish"}
                   fill
                   placeholder="blur"
                   sizes="(max-width: 639px) 100vw, 50vw"

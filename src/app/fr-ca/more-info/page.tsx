@@ -36,7 +36,7 @@ export default function MoreInfoFrenchPage() {
         <section className="timeline-section" aria-labelledby="timeline-title">
           <div className="mx-auto w-full max-w-6xl px-6 py-20">
             <div className="timeline-intro"><div><p className="section-kicker">Le parcours proposé</p><h2 id="timeline-title">Un plan par étapes</h2></div><p>Chaque jalon dépend de la participation communautaire, d’études de faisabilité, du financement, des examens réglementaires et de partenaires qualifiés. Ces étapes présentent une orientation, et non des dates d’achèvement annoncées.</p></div>
-            <ol className="action-timeline">{milestones.map(([number, title, summary, detail]) => <li className="action-timeline__item" key={number}><article className="action-timeline__card"><div className="action-timeline__number" aria-hidden="true">{number}</div><div><h3>{title}</h3><p>{summary}</p><p className="action-timeline__detail">{detail}</p></div><span className="action-timeline__arrow" aria-hidden="true">↗</span></article></li>)}</ol>
+            <ol className="action-timeline">{milestones.map(([number, title, summary, detail]) => <li className="action-timeline__item" key={number}><article className="action-timeline__card"><div className="action-timeline__number" aria-hidden="true">{number}</div><div><h3>{title}</h3><p>{summary}</p><p className="action-timeline__detail">{detail}</p></div></article></li>)}</ol>
           </div>
         </section>
         <section id="petition" className="petition-section" aria-labelledby="petition-title">

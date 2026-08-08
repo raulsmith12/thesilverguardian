@@ -39,7 +39,6 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
           href: localizedPath("/movement-therapy-center", locale),
         },
         { label: isFrench ? "Régions desservies" : "Service Areas", href: "#" },
-        { label: isFrench ? "Renseignements importants" : "Important Info", href: "#" },
       ],
     },
     {
@@ -213,9 +212,9 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
                 id="events-navigation"
                 title={isFrench ? "Collectes de fonds à venir" : "Future Fundraising Events"}
               >
-                <NavDropdown.Item href="#">{isFrench ? "Tournoi de golf" : "Golf Tournament"}</NavDropdown.Item>
-                <NavDropdown.Item href="#">{isFrench ? "Tournoi de danse de salon" : "Ballroom Dance Tournament"}</NavDropdown.Item>
-                <NavDropdown.Item href="#">Festival Seeds of Hope</NavDropdown.Item>
+                <NavDropdown.Item href={localizedPath("/golf-tournament", locale)}>{isFrench ? "Tournoi de golf" : "Golf Tournament"}</NavDropdown.Item>
+                <NavDropdown.Item href={localizedPath("/ballroom-dance-tournament", locale)}>{isFrench ? "Tournoi de danse de salon" : "Ballroom Dance Tournament"}</NavDropdown.Item>
+                <NavDropdown.Item href="#">Seeds of Hope Festival</NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href={localizedPath("/contact", locale)}>
                 {isFrench ? "Nous joindre" : "Contact"}

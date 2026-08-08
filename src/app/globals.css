@@ -868,7 +868,7 @@ a {
 }
 
 .petition-cta--fundraising {
-  order: 1;
+  grid-column: 1 / -1;
 }
 
 .petition-cta .section-kicker {
@@ -1170,8 +1170,14 @@ a {
 .fundraising-grid {
   display: grid;
   gap: 1.25rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   order: 2;
+}
+
+.fundraising-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 760px;
+  margin-inline: auto;
 }
 
 .fundraising-card {
@@ -1185,6 +1191,7 @@ a {
 }
 
 .fundraising-card--featured {
+  grid-column: 1 / -1;
   border-color: var(--color-primary);
   background: color-mix(in srgb, var(--color-secondary) 18%, white);
 }
@@ -1198,6 +1205,7 @@ a {
   text-transform: uppercase;
 }
 
+.fundraising-card h2,
 .fundraising-card h3 {
   margin: 0;
   color: var(--color-primary);
@@ -1257,7 +1265,6 @@ a {
   grid-column: 1 / -1;
   grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
   align-items: center;
-  order: 4;
   border-radius: 8px;
   background: var(--color-secondary);
   color: var(--color-white);
@@ -1675,18 +1682,6 @@ a {
 
   .fundraising-grid {
     order: 2;
-  }
-
-  .fundraising-card {
-    order: 1;
-  }
-
-  .fundraising-card--featured {
-    order: -1;
-  }
-
-  .fundraising-tracker {
-    order: 0;
   }
 
   .fundraising-tracker__numbers {

@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS petition_signatures (
   name VARCHAR(255) NOT NULL,
   email VARCHAR(320) NOT NULL,
   email_normalized VARCHAR(320) GENERATED ALWAYS AS (LOWER(email)) STORED,
-  postal_code VARCHAR(20) NOT NULL,
+  favorite_hockey_team VARCHAR(255) NOT NULL,
   signed_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   UNIQUE KEY petition_signatures_email_unique (email_normalized)

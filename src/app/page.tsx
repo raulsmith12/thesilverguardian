@@ -93,13 +93,6 @@ export default function Home() {
           <div className="feature-callout-list">
             {[
               {
-                title: "Score a Goal",
-                text: "Seasonal events and community campaigns will help gather the resources needed to both construct and support the care facility concept.",
-                url: "/fundraising",
-                image: scoreGoalImage,
-                alt: "Ice hockey player standing near the goal",
-              },
-              {
                 title: "32 Wishes in 32 Cities",
                 text: "Every year, one of our goals is to grant 32 hockey related wishes to brave kids in 32 cities across the US and Canada.",
                 url: "/32-wishes",
@@ -112,6 +105,13 @@ export default function Home() {
                 url: "/movement-therapy-center",
                 image: movementTherapyImage,
                 alt: "Athlete training with boxing gloves",
+              },
+              {
+                title: "Score a Goal",
+                text: "Seasonal events and community campaigns will help gather the resources needed to both construct and support the care facility concept.",
+                url: "/fundraising",
+                image: scoreGoalImage,
+                alt: "Ice hockey player standing near the goal",
               },
               {
                 title: "Newsletter",

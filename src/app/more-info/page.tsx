@@ -21,32 +21,32 @@ const milestones = [
   {
     number: "01",
     title: "Concept presale",
-    summary: "Build early momentum through a hospital-pod branding concept for professional hockey organizations across North America.",
+    summary: "Establish proof-of-concept support through the presale of hospital-pod branding rights to the professional hockey organizations across North America.",
     detail: "The proposal envisions two wings of 16 pods each, creating 32 potential club-aligned opportunities.",
   },
   {
     number: "02",
-    title: "Movement centers & 32 Wishes",
-    summary: "Begin developing the Movement Therapy Center network and planning the 2027 Seeds of Hope Festival.",
-    detail: "The festival is envisioned as a vehicle for the annual 32 Wishes in 32 Cities initiative.",
+    title: "Movement & 32 Wishes",
+    summary: "Begin developing the Movement Therapy Center network and planning the inaugural 32 Wishes event.",
+    detail: "The Movement Therapy Center network is designed to strategically strengthen the cancer patient support network in local communities.",
   },
   {
     number: "03",
-    title: "The Silver Gryphon & fundraisers",
-    summary: "Establish the proposed charitable organization and launch recurring community fundraising events.",
-    detail: "The concept includes annual golf and ballroom-dance events designed to grow awareness and support.",
+    title: "The Silver Gryphon & Seasonal Fundraisers",
+    summary: "Establish the proposed charity research hospital organization and launch recurring community fundraising events.",
+    detail: "Seasonal fundraisers will be annual golf and ballroom-dance events designed to grow awareness and gather support.",
   },
   {
     number: "04",
-    title: "Site selection",
-    summary: "Complete a thorough site-selection evaluation for the proposed pediatric hospital.",
-    detail: "The current projection focuses on northwest Georgia, between Atlanta and Chattanooga, Tennessee.",
+    title: "Site Selection",
+    summary: "Complete a thorough site-selection evaluation for the proposed pediatric cencer/cardiovascular research hospital.",
+    detail: "Currently, the site projection focus is on the southeastern United States, between Atlanta, GA and Chattanooga, TN.",
   },
   {
     number: "05",
-    title: "Break ground",
+    title: "Break Ground",
     summary: "Move from planning to construction once the required support, site, approvals, funding, and partnerships are in place.",
-    detail: "The long-term vision is a pediatric hospital focused on cancer and cardiovascular research and care.",
+    detail: "The long-term vision is a pediatric hospital focused on cancer and cardiovascular care with a kid-friendly ice hockey theme.",
   },
 ];
 
@@ -77,7 +77,7 @@ export default function MoreInfoPage() {
                 <h2 id="timeline-title">A plan built in stages</h2>
               </div>
               <p>
-                Each milestone depends on community participation, feasibility work, fundraising, regulatory review, and qualified clinical and development partners. These stages describe the initiative’s direction; they are not announced completion dates.
+                Each milestone depends on community participation and qualified development partners. This is meant to illustrate the initiative&rsquo;s projected direction; completion dates have not yet been announced.
               </p>
             </div>
 
@@ -91,7 +91,6 @@ export default function MoreInfoPage() {
                       <p>{milestone.summary}</p>
                       <p className="action-timeline__detail">{milestone.detail}</p>
                     </div>
-                    <span className="action-timeline__arrow" aria-hidden="true">↗</span>
                   </article>
                 </li>
               ))}
@@ -103,13 +102,13 @@ export default function MoreInfoPage() {
           <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div className="petition-section__copy">
               <p className="section-kicker">Add your voice</p>
-              <h2 id="petition-title">Stand behind the vision</h2>
+              <h2 id="petition-title">Stand With The Silver Guardian</h2>
               <p>
-                Sign the community petition to show that families, advocates, and neighbors want bold ideas for pediatric care to keep moving forward.
+                Please sign the 32 Wishes Petition to show that families, advocates, and communities embrace a holistic approach to caring for children affected by pediatric cancer.
               </p>
               <div className="petition-section__note">
                 <span aria-hidden="true">✓</span>
-                <p>Your signature demonstrates support; it does not create a donation or financial commitment.</p>
+                <p>Your signature demonstrates non-monetary support only.</p>
               </div>
             </div>
             <PetitionForm />

@@ -30,15 +30,15 @@ export default function MovementTherapyCenterPage() {
       image: danceImage,
       alt: "Dancers performing together",
       summary:
-        "According to Oxford Academic in the United Kingdom, just 45 minutes of community dancing per week can improve the health of a cancer patient.",
-      url: "https://academic.oup.com/heapro/article/38/4/daad077/7236781?login=false",
+        "A systematic review of community dance programs found improvements in functional capacity, fatigue, quality of life, and depression among people living with cancer compared with no intervention. The authors described dance as feasible and enjoyable for many participants.",
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10400145/",
     },
     {
       title: "General Exercise",
       image: generalExerciseImage,
       alt: "Athlete exercising in a gym",
       summary:
-        "According to the National Library of Medicine in Bethesda, MD, general exercise, such as non-contact boxing, can provide significant cardiovascular health improvement for patients on their cancer journey.",
+        "A review indexed by the National Library of Medicine describes evidence that appropriately prescribed exercise can support cardiovascular health, physical function, fatigue, and quality of life during and after cancer treatment. Exercise should be adapted with guidance from qualified healthcare professionals.",
       url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11264125/",
     },
     {
@@ -46,15 +46,15 @@ export default function MovementTherapyCenterPage() {
       image: hockeyLoungeImage,
       alt: "Illuminated ice hockey goal in an indoor rink",
       summary:
-        "To increase morale for cancer patients on their journey and for the community in general, the Movement Therapy Centers will incorporate an innovative ice hockey lounge to encourage socialization after exercising or receiving care in the Physical Therapy/Esthetic Care suite.",
+        "The proposed center concept includes an ice hockey-themed lounge where participants and community members could socialize after movement activities or other independently provided services.",
       url: null,
     },
     {
-      title: "Physical Therapy/Aesthetic Care Suite",
+      title: "Physical Therapy",
       image: physicalTherapyImage,
       alt: "Group taking part in an outdoor guided exercise session",
       summary:
-        "PT: For cancer patients, general exercise and physical therapy typically go hand in hand. To increase ease of access to both essential activities, the Movement Therapy Centers will incorporate a suite where licensed Physical Therapists can help guide exercise regimens for patients on their cancer journey. Aesthetic: For some cancer patients, treatment can be very hard on the skin and overall body image, thus increasing stress and reducing morale. The Movement Therapy Centers will seek to reverse this trend by increasing ease of access to reputable skin care technicians through the Aesthetic Care portion of our Physical Therapy suite.",
+        "The proposed concept includes space where licensed physical therapists could independently assess participants and guide appropriate exercise plans. Any physical therapy would require qualified providers, individual assessment, and coordination with each participant’s care team.",
       url: null,
     },
   ];
@@ -73,12 +73,12 @@ export default function MovementTherapyCenterPage() {
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
             <section className="movement-intro">
               <p>
-                The Silver Guardian will be contributing to the everyday care of patients and communities by directly investing in a chain of unique &ldquo;movement therapy centers&rdquo; to encourage positive quality of life through artistic and competitive exercise. Please check back soon for more details.
+                The Silver Guardian is exploring a network of movement therapy centers focused on artistic, adapted, and sport-inspired activity. This is a developing community concept, not an operating clinical service. Any future health-related programming would require qualified professionals, appropriate safeguards, and individual medical guidance. Please check back for confirmed details.
               </p>
             </section>
 
             <section className="stats-section" aria-labelledby="stats-title">
-              <h2 id="stats-title">Stats</h2>
+              <h2 id="stats-title">Research and proposed spaces</h2>
               <div className="stats-grid">
                 {stats.map((stat) => (
                   <article className="stats-card" key={stat.title}>

@@ -1,8 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import ballroomDanceImage from "@/img/c3a93a8777a0af0f74eb8ff120553e56fb08dd2d-1.jpeg";
-import golfTournamentImage from "@/img/e4f884df0b93d4eb7d893f327084b05c3ccbf956-1.jpg";
 import scoreAGoalImage from "@/img/hockey-goal.png";
 
 export function FundraisingContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
@@ -22,48 +20,7 @@ export function FundraisingContent({ locale = "en" }: { locale?: "en" | "fr-CA" 
         </p>
       </section>
 
-      <aside className="petition-cta petition-cta--fundraising" aria-labelledby="fundraising-petition-title">
-        <div>
-          <p className="section-kicker">{isFrench ? "Faites entendre votre voix" : "Add your voice"}</p>
-          <h2 id="fundraising-petition-title">
-            {isFrench ? "Appuyez les 32 souhaits" : "Stand behind 32 Wishes"}
-          </h2>
-          <p>
-            {isFrench
-              ? "Ajoutez votre nom à la pétition communautaire et contribuez à faire avancer cette vision."
-              : "Add your name to the community petition and help move this vision forward."}
-          </p>
-        </div>
-        <a
-          className="site-button site-button--secondary"
-          href={isFrench ? "/fr-ca/more-info/#petition" : "/more-info/#petition"}
-        >
-          {isFrench ? "Signer la pétition des 32 souhaits" : "Sign the 32 Wishes petition"}
-        </a>
-      </aside>
-
       <section className="fundraising-grid" aria-label={isFrench ? "Options de collecte de fonds" : "Fundraising options"}>
-        <article className="fundraising-card">
-          <p className="fundraising-card__season">{isFrench ? "Printemps / Été / Automne" : "Spring / Summer / Fall"}</p>
-          <h3>{isFrench ? "Tournois de golf annuels" : "Annual Golf Tournaments"}</h3>
-          <div className="fundraising-card__image">
-            <Image
-              src={golfTournamentImage}
-              alt={isFrench ? "Balle de golf près d’un trou sur un terrain de golf" : "Golf ball resting beside a hole on a golf course"}
-              fill
-              placeholder="blur"
-              sizes="(max-width: 767px) 100vw, 33vw"
-              unoptimized
-            />
-          </div>
-          <p>
-            {isFrench
-              ? "Les événements de golf caritatifs seront des occasions privilégiées de démontrer notre appui à la communauté touchée par le cancer et les maladies cardiaques pédiatriques."
-              : "Charity golf events will be signature opportunities to demonstrate support for the pediatric cancer/heart disease community."}
-          </p>
-          <span>{isFrench ? "À venir" : "Coming soon"}</span>
-        </article>
-
         <article className="fundraising-card fundraising-card--featured">
           <p className="fundraising-card__season">{isFrench ? "Campagne Marquez un but" : "Score a Goal Campaign"}</p>
           <h3>{isFrench ? "1 $ par personne" : "$1 Per Person"}</h3>
@@ -89,6 +46,21 @@ export function FundraisingContent({ locale = "en" }: { locale?: "en" | "fr-CA" 
           </a>
         </article>
 
+        <aside className="petition-cta petition-cta--fundraising" aria-labelledby="fundraising-petition-title">
+          <div>
+            <p className="section-kicker">{isFrench ? "Faites entendre votre voix" : "Add your voice"}</p>
+            <h2 id="fundraising-petition-title">
+              {isFrench ? "Soutenez The Silver Guardian" : "Stand With The Silver Guardian"}
+            </h2>
+          </div>
+          <a
+            className="site-button site-button--secondary"
+            href={isFrench ? "/fr-ca/more-info/#petition" : "/more-info/#petition"}
+          >
+            {isFrench ? "Signer la pétition des 32 souhaits" : "Sign the 32 Wishes petition"}
+          </a>
+        </aside>
+
         <section
           className="fundraising-tracker"
           aria-label={isFrench ? "Suivi de la collecte de fonds" : "Fundraising tracker"}
@@ -96,29 +68,7 @@ export function FundraisingContent({ locale = "en" }: { locale?: "en" | "fr-CA" 
           <h2>{isFrench ? "Suivi de l’objectif" : "Goal Tracker"}</h2>
           <script src="https://donorbox.org/widget.js" async={true}></script>
           <iframe height="93px" width="100%" src="https://donorbox.org/embed/score-a-goal?donation_meter_color=%23001c57&only_donation_meter=true&preview=true" style={{minWidth: "250px", minHeight: "90px", maxHeight: "none", maxWidth: "none"}} seamless name="donorbox" frameBorder="0"> </iframe>
-
         </section>
-
-        <article className="fundraising-card">
-          <p className="fundraising-card__season">{isFrench ? "Hiver" : "Winter"}</p>
-          <h3>{isFrench ? "Tournoi annuel de danse de salon" : "Annual Ballroom Dance Tournament"}</h3>
-          <div className="fundraising-card__image">
-            <Image
-              src={ballroomDanceImage}
-              alt={isFrench ? "Danseurs de salon en prestation" : "Ballroom dancers performing together"}
-              fill
-              placeholder="blur"
-              sizes="(max-width: 767px) 100vw, 33vw"
-              unoptimized
-            />
-          </div>
-          <p>
-            {isFrench
-              ? "Un concours de danse de salon unique est en préparation afin de renforcer les communautés touchées par le cancer et les maladies cardiaques pédiatriques grâce au mouvement artistique et au dépassement de soi."
-              : "A one of a kind ballroom dance competition is being developed to strengthen pediatric cancer/heart disease communities through artistic movement and competitive resilience."}
-          </p>
-          <span>{isFrench ? "À venir" : "Coming soon"}</span>
-        </article>
       </section>
     </div>
   );
