@@ -212,7 +212,7 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
                 id="events-navigation"
                 title={isFrench ? "Collectes de fonds à venir" : "Future Fundraising Events"}
               >
-                <NavDropdown.Item href={localizedPath("/golf-tournament", locale)}>{isFrench ? "Tournoi de golf" : "Golf Tournament"}</NavDropdown.Item>
+                <NavDropdown.Item href={localizedPath("/golf-tournament", locale)}>{isFrench ? "Tournoi de golf" : "Golf Tournaments"}</NavDropdown.Item>
                 <NavDropdown.Item href={localizedPath("/ballroom-dance-tournament", locale)}>{isFrench ? "Tournoi de danse de salon" : "Ballroom Dance Tournament"}</NavDropdown.Item>
                 <NavDropdown.Item href="#">Seeds of Hope Festival</NavDropdown.Item>
               </NavDropdown>

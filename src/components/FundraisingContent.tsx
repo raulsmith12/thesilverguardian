@@ -46,6 +46,15 @@ export function FundraisingContent({ locale = "en" }: { locale?: "en" | "fr-CA" 
           </a>
         </article>
 
+        <section
+          className="fundraising-tracker"
+          aria-label={isFrench ? "Suivi de la collecte de fonds" : "Fundraising tracker"}
+        >
+          <h2>{isFrench ? "Suivi de l’objectif" : "Goal Tracker"}</h2>
+          <script src="https://donorbox.org/widget.js" async={true}></script>
+          <iframe height="93px" width="100%" src="https://donorbox.org/embed/score-a-goal?donation_meter_color=%23001c57&only_donation_meter=true&preview=true" style={{minWidth: "250px", minHeight: "90px", maxHeight: "none", maxWidth: "none"}} seamless name="donorbox" frameBorder="0"> </iframe>
+        </section>
+
         <aside className="petition-cta petition-cta--fundraising" aria-labelledby="fundraising-petition-title">
           <div>
             <p className="section-kicker">{isFrench ? "Faites entendre votre voix" : "Add your voice"}</p>
@@ -60,15 +69,6 @@ export function FundraisingContent({ locale = "en" }: { locale?: "en" | "fr-CA" 
             {isFrench ? "Signer la pétition des 32 souhaits" : "Sign the 32 Wishes petition"}
           </a>
         </aside>
-
-        <section
-          className="fundraising-tracker"
-          aria-label={isFrench ? "Suivi de la collecte de fonds" : "Fundraising tracker"}
-        >
-          <h2>{isFrench ? "Suivi de l’objectif" : "Goal Tracker"}</h2>
-          <script src="https://donorbox.org/widget.js" async={true}></script>
-          <iframe height="93px" width="100%" src="https://donorbox.org/embed/score-a-goal?donation_meter_color=%23001c57&only_donation_meter=true&preview=true" style={{minWidth: "250px", minHeight: "90px", maxHeight: "none", maxWidth: "none"}} seamless name="donorbox" frameBorder="0"> </iframe>
-        </section>
       </section>
     </div>
   );
