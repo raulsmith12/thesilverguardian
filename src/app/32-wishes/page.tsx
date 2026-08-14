@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
+import { WishProgress } from "@/components/WishProgress";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -438,11 +439,21 @@ const eastSkylines: Skyline[] = [
   },
 ];
 
-function SkylineCard({ skyline }: { skyline: Skyline }) {
+const westCities = [
+  "Anaheim", "Calgary", "Chicago", "Dallas", "Denver", "Edmonton", "Los Angeles", "Nashville",
+  "Salt Lake City", "San Jose", "Seattle", "St. Louis", "St. Paul", "Vancouver", "Vegas", "Winnipeg",
+] as const;
+
+const eastCities = [
+  "Boston", "Buffalo", "Columbus", "Detroit", "Long Island", "Montreal", "New York", "Newark",
+  "Ottawa", "Philadelphia", "Pittsburgh", "Raleigh", "Sunrise", "Tampa", "Toronto", "Washington",
+] as const;
+
+function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city: string; locale?: "en" | "fr-CA" }) {
   return (
     <article
       className="wish-skyline-card"
-      aria-label={`${skyline.region} ${skyline.wishNumber} skyline silhouette`}
+      aria-label={`${city} skyline silhouette`}
     >
       <div className="wish-skyline-card__sky" aria-hidden="true">
         <div className="wish-skyline-card__buildings">
@@ -458,7 +469,8 @@ function SkylineCard({ skyline }: { skyline: Skyline }) {
           ))}
         </div>
       </div>
-      <span>Wish {skyline.wishNumber}</span>
+      <h3>{city}</h3>
+      <WishProgress city={city} locale={locale} />
     </article>
   );
 }
@@ -507,10 +519,12 @@ function WishesContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
                 <h2 id="west-title">{isFrench ? "Ouest" : "West"}</h2>
                 <h4 className="text-center">{isFrench ? "Qui sera le premier?" : "Who Will Be First?"}</h4>
                 <div className="wishes-placeholder-grid">
-                  {westSkylines.map((skyline) => (
+                  {westSkylines.map((skyline, index) => (
                     <SkylineCard
                       key={`${skyline.region}-${skyline.wishNumber}`}
                       skyline={skyline}
+                      city={westCities[index]}
+                      locale={locale}
                     />
                   ))}
                 </div>
@@ -520,10 +534,12 @@ function WishesContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
                 <h2 id="east-title">{isFrench ? "Est" : "East"}</h2>
                 <h4 className="text-center">{isFrench ? "Qui sera le premier?" : "Who Will Be First?"}</h4>
                 <div className="wishes-placeholder-grid">
-                  {eastSkylines.map((skyline) => (
+                  {eastSkylines.map((skyline, index) => (
                     <SkylineCard
                       key={`${skyline.region}-${skyline.wishNumber}`}
                       skyline={skyline}
+                      city={eastCities[index]}
+                      locale={locale}
                     />
                   ))}
                 </div>

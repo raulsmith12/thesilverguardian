@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
+import { WishProgress } from "@/components/WishProgress";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -19,16 +20,17 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function FrenchWishesPage() {
-  const wishes = Array.from({ length: 16 }, (_, index) => index + 1);
+  const regions = {
+    Ouest: ["Anaheim", "Calgary", "Chicago", "Dallas", "Denver", "Edmonton", "Los Angeles", "Nashville", "Salt Lake City", "San Jose", "Seattle", "St. Louis", "St. Paul", "Vancouver", "Vegas", "Winnipeg"],
+    Est: ["Boston", "Buffalo", "Columbus", "Detroit", "Long Island", "Montreal", "New York", "Newark", "Ottawa", "Philadelphia", "Pittsburgh", "Raleigh", "Sunrise", "Tampa", "Toronto", "Washington"],
+  } as const;
 
   return (
     <div className="flex min-h-screen flex-col">
       <Navigation locale="fr-CA" />
       <main className="flex-1">
         <section className="page-hero page-hero--compact">
-          <div className="mx-auto w-full max-w-6xl px-6 py-16">
-            <h1>32 souhaits dans 32 villes</h1>
-          </div>
+          <div className="mx-auto w-full max-w-6xl px-6 py-16"><h1>32 souhaits dans 32 villes</h1></div>
         </section>
         <section className="page-content">
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
@@ -41,25 +43,22 @@ export default function FrenchWishesPage() {
               <a className="site-button site-button--secondary" href="/fr-ca/more-info/#petition">Signer la pétition des 32 souhaits</a>
             </aside>
             <div className="wishes-grid">
-              {["Ouest", "Est"].map((region) => (
+              {Object.entries(regions).map(([region, cities]) => (
                 <section className="wishes-region" aria-labelledby={`region-${region}`} key={region}>
                   <h2 id={`region-${region}`}>{region}</h2>
                   <h4 className="text-center">Qui sera le premier?</h4>
                   <div className="wishes-placeholder-grid">
-                    {wishes.map((wishNumber) => (
-                      <article className="wish-skyline-card" key={`${region}-${wishNumber}`} aria-label={`${region}, souhait ${wishNumber}`}>
+                    {cities.map((city, wishIndex) => (
+                      <article className="wish-skyline-card" key={city} aria-label={`Silhouette urbaine de ${city}`}>
                         <div className="wish-skyline-card__sky" aria-hidden="true">
                           <div className="wish-skyline-card__buildings">
                             {[42, 61, 50, 72, 47, 57].map((height, index) => (
-                              <span
-                                className={`wish-building wish-building--${["flat", "step", "slope", "antenna", "cap", "dome"][index]}`}
-                                key={index}
-                                style={{ height: `${height + ((wishNumber + index) % 5)}%`, width: `${11 + (index % 4)}%` }}
-                              />
+                              <span className={`wish-building wish-building--${["flat", "step", "slope", "antenna", "cap", "dome"][index]}`} key={index} style={{ height: `${height + ((wishIndex + index) % 5)}%`, width: `${11 + (index % 4)}%` }} />
                             ))}
                           </div>
                         </div>
-                        <span>Souhait {wishNumber}</span>
+                        <h3>{city}</h3>
+                        <WishProgress city={city} locale="fr-CA" />
                       </article>
                     ))}
                   </div>

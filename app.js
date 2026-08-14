@@ -28,6 +28,7 @@ const {
   isDuplicatePetitionEmailError,
   validatePetitionSignature,
 } = require("./server/petitionSignatures");
+const { getWishSignatureCounts } = require("./server/wishSignatureCounts");
 
 dotenv.config();
 
@@ -205,6 +206,16 @@ app.post("/petition", async (req, res) => {
     }
     console.error("Petition signature workflow failed", error);
     res.status(500).json({ ok: false, error: "server_error" });
+  }
+});
+
+app.get("/petition/wish-progress", async (_req, res) => {
+  try {
+    const counts = await getWishSignatureCounts();
+    res.json({ ok: true, goal: 156250, counts });
+  } catch (error) {
+    console.error("Wish signature progress lookup failed", error);
+    res.status(503).json({ ok: false, error: "database_unavailable" });
   }
 });
 
