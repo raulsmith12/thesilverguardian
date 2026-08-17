@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import { WishProgress } from "@/components/WishProgress";
@@ -469,7 +470,7 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
           ))}
         </div>
       </div>
-      <h3>{city}</h3>
+      <h3>{city === "Seattle" ? <Link href={locale === "fr-CA" ? "/fr-ca/seattle/" : "/seattle/"}>{city}</Link> : city}</h3>
       <WishProgress city={city} locale={locale} />
     </article>
   );
@@ -509,9 +510,9 @@ function WishesContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
                 <h2 id="wishes-petition-title">Help move 32 Wishes forward</h2>
                 <p>Show your support for the vision by adding your name to the community petition.</p>
               </div>
-              <a className="site-button site-button--secondary" href="/more-info/#petition">
+              <Link className="site-button site-button--secondary" href="/more-info/#petition">
                 Sign the 32 Wishes petition
-              </a>
+              </Link>
             </aside>
 
             <div className="wishes-grid">

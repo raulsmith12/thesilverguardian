@@ -951,6 +951,18 @@ a {
   font-weight: 900;
 }
 
+.wish-skyline-card > h3 a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.wish-skyline-card > h3 a:hover,
+.wish-skyline-card > h3 a:focus {
+  color: #04672f;
+}
+
 .wish-progress {
   display: grid;
   gap: 0.45rem;

@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import { GeoTargetPage } from "@/components/GeoTargetPage";
-import { movementTherapyCenterContent } from "@/lib/movementTherapyCenterContent";
+import { unitedStatesServiceAreaContent } from "@/lib/serviceAreaContent";
 import { createPageMetadata } from "@/lib/seo";
 
-const content = movementTherapyCenterContent["fr-CA"];
+const content = unitedStatesServiceAreaContent["fr-CA"];
 
 export const metadata: Metadata = createPageMetadata({
   title: content.title,
   description: content.description,
-  path: "/fr-ca/movement-therapy-center/",
+  path: "/fr-ca/service-areas/united-states/",
   locale: "fr-CA",
   keywords: content.keywords,
 });
 
-export default function FrenchMovementTherapyPage() {
+export default function FrenchUnitedStatesPage() {
   return <GeoTargetPage content={content} locale="fr-CA" />;
 }

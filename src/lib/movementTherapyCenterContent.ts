@@ -1,0 +1,160 @@
+import type { Locale } from "@/lib/i18n";
+import type { MontrealPageContent } from "@/lib/montrealContent";
+import movementAdaptedSport from "@/img/generated/movement-adapted-sport.webp";
+import movementArtisticSession from "@/img/generated/movement-artistic-session.webp";
+import movementStudioHero from "@/img/generated/movement-studio-hero.webp";
+
+export const movementTherapyCenterContent: Record<Locale, MontrealPageContent> = {
+  en: {
+    title: "Movement Therapy Centers",
+    description: "Explore a careful vision for accessible movement therapy centers built around artistic activity, adapted exercise and community participation.",
+    keywords: ["movement therapy centers", "accessible movement programs", "adapted exercise community center", "artistic movement activities", "non-contact boxing activities"],
+    eyebrow: "An accessible community concept",
+    heading: "Movement Therapy Centers for adaptable, encouraging activity",
+    introduction: "The Silver Guardian is exploring a network of Movement Therapy Centers where artistic, adapted and sport-inspired activity could help people reconnect with movement at their own pace. This is a developing community concept, not an operating center, rehabilitation program or clinical service. Any future activity would require defined leadership, appropriate safeguards and clear boundaries around healthcare.",
+    imageLabel: "Welcoming adaptable movement space",
+    imageAlt: "Accessible community space designed for adaptable movement activities",
+    heroAsset: { src: movementStudioHero, alt: "Inclusive community movement class offering seated and standing participation in an accessible studio" },
+    supportingImageAssets: [
+      { src: movementArtisticSession, alt: "Participants using scarves and hand percussion during an accessible artistic movement session" },
+      { src: movementAdaptedSport, alt: "Older adults participating in supervised non-contact boxing-inspired movement with seated options" },
+    ],
+    sections: [
+      {
+        heading: "What Movement Therapy Centers means on this page",
+        paragraphs: [
+          "Movement Therapy Centers is the name of a proposed community concept. Here, movement may include dance, rhythm, balance, mobility, stretching, active games, non-contact boxing-inspired drills and other adaptable forms of exercise. The word therapy does not mean that The Silver Guardian currently provides healthcare, physical therapy, psychotherapy, rehabilitation or prescribed exercise. It describes an aspiration to create supportive settings where movement feels purposeful, social and responsive to the participant rather than tied to a single performance standard.",
+          "No center, property, instructor team, class schedule, registration process, eligibility policy or opening date is announced. The Silver Guardian is not inviting people to begin an exercise program through this page. A future location or activity would need confirmed operators, appropriate insurance, qualified leadership, accessible facilities, emergency procedures and accurate participant information before it could be described as available. Until those elements exist, supporters should understand the page as a framework for responsible planning and relationship-building.",
+        ],
+      },
+      {
+        heading: "Why adaptable movement can matter to a community",
+        paragraphs: [
+          "People relate to movement in very different ways. Age, disability, fatigue, pain, confidence, treatment schedules, transportation, sensory preferences and previous experiences can all shape participation. A conventional gym or competitive class may feel welcoming to one person and inaccessible to another. The proposed center model starts with a simpler question: what conditions would allow someone to participate with dignity, make choices and take a break without feeling that they have failed?",
+          "A community movement space cannot remove the demands of pediatric cancer, heart disease or another debilitating condition. It also cannot promise recovery, improved symptoms or a particular quality-of-life result. It may, however, be designed to make social connection and adaptable activity easier to approach. The value of a future program would need to be assessed honestly through accessibility, participant experience, safety and consistency—not through unsupported medical claims or dramatic before-and-after stories.",
+        ],
+      },
+      {
+        heading: "Artistic and sport-inspired options without pressure",
+        paragraphs: [
+          "The concept brings artistic and competitive ideas into the same space without requiring every activity to be a contest. Dance and rhythmic movement can offer creative expression. Balance stations, mobility exercises and active games can provide personal challenges. Non-contact boxing-inspired activities can use footwork, timing or target work without sparring. A hockey-themed lounge or visual element can create a familiar social connection without requiring anyone to skate or play hockey.",
+          "Each format should allow more than one way to take part. A participant might stand, sit, observe, use adapted equipment, follow a shorter sequence or choose a quieter alternative. Competition, if offered, should be optional and structured around fair categories, personal goals and respectful conduct. No one should be encouraged to ignore pain, dizziness, fatigue, clinical restrictions or a need for rest. Enjoyment and belonging matter more than completing a prescribed number of movements.",
+        ],
+        bullets: [
+          "Dance, rhythm and creative movement with seated and standing options",
+          "Adapted exercise and active games scaled to different abilities",
+          "Non-contact sport-inspired drills without sparring or forced competition",
+          "Quiet participation, observation and rest options in every session design",
+        ],
+      },
+      {
+        heading: "Movement is not a substitute for treatment or rehabilitation",
+        paragraphs: [
+          "Medical decisions belong to the participant, family and qualified healthcare professionals. Someone receiving cancer treatment, recovering from surgery, managing a cardiovascular condition or living with mobility limitations may need individualized guidance before changing activity. A general community instructor cannot diagnose a condition, change a care plan or determine whether an activity is medically appropriate. Public descriptions should never suggest that participation treats cancer, replaces physical therapy or produces guaranteed health outcomes.",
+          "If a future center included independently provided clinical services, those services would require properly licensed professionals, separate consent and documentation, professional standards and a clearly identified provider relationship. The Silver Guardian does not currently announce such services or providers. Community programming and clinical care should remain visibly distinct so participants know who is responsible, what information is being collected and where to direct medical questions. When uncertainty exists, the activity should pause until qualified guidance is available.",
+        ],
+      },
+      {
+        heading: "Accessibility must shape the center from the beginning",
+        paragraphs: [
+          "Accessibility is not a final checklist added after a room and schedule have been chosen. It affects entrances, routes, washrooms, seating, equipment, lighting, sound, signage, communication, registration and the length and pace of activities. A future center should involve people with lived experience and relevant accessibility expertise early enough to influence decisions. Feedback should be welcomed privately as well as publicly, because not every participant will feel comfortable identifying a barrier in front of a group.",
+          "The concept should also account for practical access. Caregivers may need to remain nearby. Families may be coordinating school, employment, medical appointments and sibling care. Transportation, weather and changing energy can make a fixed weekly commitment difficult. Shorter sessions, flexible participation, predictable cancellation rules and clear descriptions of the physical environment can reduce uncertainty. Language access and low-sensory options can help more people understand what to expect before deciding whether a future activity fits.",
+        ],
+      },
+      {
+        heading: "Safety, supervision and participant information",
+        paragraphs: [
+          "A responsible movement activity needs more than enthusiastic volunteers. Organizers would need to define instructor qualifications, participant-to-leader ratios, equipment checks, emergency procedures, incident reporting, caregiver roles and rules for stopping an activity. Screening questions should collect only information that is genuinely necessary and can be protected appropriately. Children require age-appropriate supervision, family consent and safeguards for photography, changing areas, transportation and interaction with adults.",
+          "Public information should explain the activity in plain language: its intensity, duration, equipment, environment, accessibility features, intended participants and limits. It should identify whether the session is community recreation or a regulated service and name the organization responsible for delivery. The Silver Guardian should not publish a registration link until those details are confirmed. Clear limits are not a weakness; they allow families and qualified advisers to decide whether participation is suitable.",
+        ],
+      },
+      {
+        heading: "How a Movement Therapy Center could be developed responsibly",
+        paragraphs: [
+          "Development would begin with listening rather than announcing a location. Community organizations, adapted recreation leaders, dance educators, disability advocates, healthcare professionals, caregivers and potential participants may each identify different needs. Those conversations are exploratory until roles, resources and responsibilities are documented. Interest from one person or organization does not establish a partnership, and a donated space does not automatically meet accessibility, safety, insurance or operational requirements.",
+          "A practical next step could be a narrowly scoped pilot led by qualified people in an approved community setting. A pilot would need a written purpose, participant information, safety plan, accessibility review, budget and feedback process. Organizers could then evaluate whether people understood the activity, felt able to request adaptations and could participate without pressure. Expansion should follow evidence of safe, consistent operations—not a fixed promise to create a network on a particular timetable.",
+        ],
+      },
+      {
+        heading: "The role of community partners and supporters",
+        paragraphs: [
+          "Community centers, recreation organizations, dance groups, adapted sport programs, businesses and funders may eventually contribute space, experience, equipment or financial support. Any involvement should be confirmed in writing and described accurately. A community introduction is not a clinical endorsement. Sponsorship does not give access to participant information, and recognition should not overwhelm the purpose of the space. The responsible operator would retain control over programming, privacy and day-to-day decisions.",
+          "Supporters can currently learn about The Silver Guardian’s mission, follow verified updates and participate in established fundraising activities. They should not collect medical information, recruit participants or promise a class on the organization’s behalf. If a pilot or center is confirmed later, public materials should identify its location, operator, schedule, costs, eligibility, accessibility, safety practices and complaint process. Until then, support is for the development of a careful concept rather than access to a service.",
+        ],
+      },
+      {
+        heading: "What is confirmed today and what remains a goal",
+        paragraphs: [
+          "The confirmed fact is that The Silver Guardian is exploring Movement Therapy Centers as part of its wider community vision. This page explains principles that could guide future artistic, adapted and sport-inspired activity. It does not announce an operating network, healthcare affiliation, physical location, program staff, class calendar, participant capacity, research study or therapeutic service. No clinical outcome is promised, and no person should alter medical care or exercise based on this information.",
+          "The work ahead is to test whether the idea responds to community needs and whether qualified organizations are willing to define appropriate roles. Transparent updates should separate early discussions from signed agreements and completed preparations. By keeping the language precise, The Silver Guardian can invite thoughtful participation without creating expectations it cannot yet meet. The goal is a model built around dignity, access and responsible collaboration if—and only if—the necessary people and safeguards come together.",
+        ],
+      },
+    ],
+    relatedHeading: "Explore related parts of the mission",
+    relatedLinks: [
+      { href: "/fundraising/", label: "Learn about community fundraising", description: "Explore current campaigns that help demonstrate support for The Silver Guardian’s independent mission." },
+      { href: "/ballroom-dance-tournament/", label: "Explore the ballroom dance concept", description: "Read about a proposed community fundraiser connecting artistic movement and friendly competition." },
+      { href: "/32-wishes/", label: "Discover 32 Wishes in 32 Cities", description: "Learn about the annual goal for hockey-related wishes and community participation." },
+      { href: "/kid-friendly-research-hospital/", label: "Read the kid-friendly environment vision", description: "Explore how sports-inspired surroundings could be developed carefully with willing healthcare providers." },
+    ],
+    faqHeading: "Movement Therapy Centers FAQ",
+    faqs: [
+      { question: "Are any Movement Therapy Centers currently open?", answer: "No. The Silver Guardian is describing a developing community concept. No center, location, schedule, registration process or opening date is currently announced." },
+      { question: "Does The Silver Guardian currently provide movement therapy?", answer: "No. It does not currently provide clinical therapy, physical therapy, rehabilitation, prescribed exercise or an operating community movement program." },
+      { question: "What kinds of movement could a future center include?", answer: "The concept may include dance, rhythm, balance, mobility, adapted exercise, active games and non-contact sport-inspired activities, subject to qualified leadership and confirmed safeguards." },
+      { question: "Would participants need to be athletes?", answer: "No. A responsible future program would offer different ways to participate, including seated, standing, adapted, quiet and observation-based options." },
+      { question: "Can movement activities replace medical treatment or physical therapy?", answer: "No. Community movement cannot replace diagnosis, treatment, rehabilitation or individualized advice from qualified healthcare professionals." },
+      { question: "Can someone register now?", answer: "No registration is open. The Silver Guardian should publish enrollment information only after an operator, location, leadership, accessibility measures and safety procedures are confirmed." },
+    ],
+    closingHeading: "Follow the concept as responsible plans develop",
+    closingText: "Explore the current community initiatives and follow confirmed updates as The Silver Guardian listens to potential participants, qualified leaders and organizations that may help shape an accessible movement model.",
+    ctaLabel: "Explore community fundraising",
+    ctaHref: "/fundraising/",
+  },
+  "fr-CA": {
+    title: "Centres de thérapie par le mouvement",
+    description: "Découvrez une vision prudente de centres accessibles axés sur le mouvement artistique, l’exercice adapté et la participation communautaire.",
+    keywords: ["centres de thérapie par le mouvement", "programme de mouvement accessible", "exercice adapté communautaire", "activités de mouvement artistique", "boxe sans contact adaptée"],
+    eyebrow: "Un concept communautaire accessible",
+    heading: "Des centres de thérapie par le mouvement adaptables et encourageants",
+    introduction: "The Silver Guardian explore un réseau de centres de thérapie par le mouvement où des activités artistiques, adaptées et inspirées du sport pourraient aider les gens à renouer avec le mouvement à leur rythme. Il s’agit d’un concept communautaire en développement, et non d’un centre en activité, d’un programme de réadaptation ou d’un service clinique.",
+    imageLabel: "Espace de mouvement accueillant et adaptable",
+    imageAlt: "Lieu communautaire accessible consacré à des activités de mouvement adaptables",
+    heroAsset: { src: movementStudioHero, alt: "Cours communautaire inclusif offrant des options de mouvement assises et debout dans un studio accessible" },
+    supportingImageAssets: [
+      { src: movementArtisticSession, alt: "Personnes utilisant des foulards et des percussions pendant une séance de mouvement artistique accessible" },
+      { src: movementAdaptedSport, alt: "Adultes âgés participant à des mouvements inspirés de la boxe sans contact avec options assises" },
+    ],
+    sections: [
+      { heading: "Ce que signifie Centres de thérapie par le mouvement", paragraphs: ["Centres de thérapie par le mouvement est le nom d’un concept communautaire proposé. Le mouvement peut comprendre la danse, le rythme, l’équilibre, la mobilité, les étirements, les jeux actifs, des exercices inspirés de la boxe sans contact et d’autres formes d’activité adaptable. Le mot thérapie ne signifie pas que The Silver Guardian fournit actuellement des soins, de la physiothérapie, de la psychothérapie, de la réadaptation ou des exercices prescrits. Il décrit l’ambition de créer des milieux où le mouvement serait significatif, social et adapté à la personne.", "Aucun centre, terrain, groupe d’instructeurs, horaire, processus d’inscription, politique d’admissibilité ou date d’ouverture n’est annoncé. Cette page n’invite personne à commencer un programme d’exercice. Un futur lieu nécessiterait des exploitants confirmés, une assurance appropriée, un encadrement qualifié, des installations accessibles, des procédures d’urgence et une information exacte avant d’être présenté comme disponible. Pour l’instant, la page constitue un cadre de planification responsable et de création de relations."] },
+      { heading: "Pourquoi le mouvement adaptable peut compter dans une communauté", paragraphs: ["Chaque personne entretient un rapport différent au mouvement. L’âge, un handicap, la fatigue, la douleur, la confiance, les traitements, le transport, les préférences sensorielles et les expériences passées peuvent influencer la participation. Un gymnase traditionnel ou un cours compétitif peut accueillir une personne et en exclure une autre. Le modèle proposé commence par une question simple : quelles conditions permettraient de participer avec dignité, de faire des choix et de prendre une pause sans avoir l’impression d’échouer?", "Un espace communautaire ne peut éliminer les exigences d’un cancer pédiatrique, d’une maladie cardiaque ou d’une autre condition invalidante. Il ne peut promettre une récupération, une amélioration des symptômes ou un résultat précis. Il peut toutefois être conçu pour rendre le lien social et l’activité adaptable plus accessibles. La valeur d’un futur programme devrait être évaluée honnêtement selon l’accessibilité, l’expérience des participants, la sécurité et la régularité, et non au moyen d’allégations médicales non étayées."] },
+      { heading: "Des options artistiques et sportives sans pression", paragraphs: ["Le concept réunit des idées artistiques et compétitives sans transformer chaque activité en concours. La danse et le rythme peuvent favoriser l’expression créative. L’équilibre, la mobilité et les jeux actifs peuvent proposer des défis personnels. Les exercices inspirés de la boxe sans contact peuvent utiliser les déplacements, le rythme ou des cibles sans combat. Un salon ou un élément visuel sur le thème du hockey peut créer un lien social familier sans obliger quiconque à patiner ou à jouer.", "Chaque format devrait offrir plusieurs façons de participer. Une personne pourrait se tenir debout, s’asseoir, observer, utiliser du matériel adapté, suivre une séquence plus courte ou choisir une option calme. La compétition devrait être facultative et organisée autour d’objectifs personnels et d’une conduite respectueuse. Personne ne devrait être poussé à ignorer la douleur, les étourdissements, la fatigue, les limites cliniques ou le besoin de repos. Le plaisir et le sentiment d’appartenance comptent davantage que la quantité de mouvements."], bullets: ["Danse, rythme et mouvement créatif avec options assises et debout", "Exercice adapté et jeux actifs modulés selon différentes capacités", "Exercices sportifs sans contact, combat ni compétition imposée", "Possibilités calmes, observation et repos dans chaque modèle de séance"] },
+      { heading: "Le mouvement ne remplace ni traitement ni réadaptation", paragraphs: ["Les décisions médicales appartiennent à la personne, à sa famille et aux professionnels qualifiés. Une personne en traitement contre le cancer, en récupération après une chirurgie, aux prises avec une condition cardiovasculaire ou vivant avec des limites de mobilité peut avoir besoin de conseils individualisés avant de modifier son activité. Un instructeur communautaire général ne peut diagnostiquer une condition, changer un plan de soins ou déterminer si une activité convient médicalement. Les communications ne devraient jamais prétendre que la participation traite le cancer, remplace la physiothérapie ou garantit un résultat de santé.", "Si un futur centre comprenait des services cliniques offerts indépendamment, ceux-ci exigeraient des professionnels dûment autorisés, un consentement et une documentation distincts, des normes professionnelles et une relation clairement identifiée. The Silver Guardian n’annonce actuellement aucun service ni fournisseur de ce genre. Les activités communautaires et les soins cliniques doivent rester visiblement distincts afin que les participants sachent qui est responsable, quels renseignements sont recueillis et où poser leurs questions médicales."] },
+      { heading: "L’accessibilité doit guider le centre dès le début", paragraphs: ["L’accessibilité n’est pas une liste vérifiée après le choix d’une salle et d’un horaire. Elle touche les entrées, les parcours, les toilettes, les sièges, le matériel, l’éclairage, le son, la signalisation, la communication, l’inscription ainsi que la durée et le rythme des activités. Un futur centre devrait faire participer assez tôt des personnes ayant une expérience vécue et une expertise pertinente pour influencer les décisions. Les commentaires devraient pouvoir être transmis en privé, puisque tout le monde ne souhaite pas signaler un obstacle devant un groupe.", "Le concept doit aussi tenir compte de l’accès pratique. Un proche aidant peut devoir rester sur place. Les familles peuvent concilier l’école, le travail, les rendez-vous et la fratrie. Le transport, la météo et une énergie changeante rendent parfois un engagement hebdomadaire difficile. Des séances plus courtes, une participation souple, des règles d’annulation prévisibles et une description claire du lieu peuvent réduire l’incertitude. L’accès linguistique et des options peu stimulantes peuvent aider chacun à décider si une activité lui convient."] },
+      { heading: "Sécurité, encadrement et information des participants", paragraphs: ["Une activité responsable exige plus que des bénévoles enthousiastes. Il faudrait définir les compétences des instructeurs, les ratios d’encadrement, la vérification du matériel, les procédures d’urgence, la déclaration des incidents, le rôle des proches et les règles d’arrêt. Les questions de présélection devraient recueillir uniquement les renseignements nécessaires et pouvant être protégés. Les enfants exigent une supervision adaptée à l’âge, le consentement familial et des mesures concernant la photographie, les vestiaires, le transport et les interactions avec les adultes.", "L’information publique devrait décrire simplement l’intensité, la durée, le matériel, le milieu, l’accessibilité, les participants visés et les limites. Elle devrait préciser si la séance est un loisir communautaire ou un service réglementé et nommer l’organisme responsable. The Silver Guardian ne devrait pas publier de lien d’inscription avant la confirmation de ces détails. Des limites claires permettent aux familles et aux conseillers qualifiés de décider si la participation convient."] },
+      { heading: "Développer un centre de manière responsable", paragraphs: ["Le développement commencerait par l’écoute plutôt que par l’annonce d’un lieu. Des organismes communautaires, des responsables du loisir adapté, des enseignants de danse, des défenseurs des personnes handicapées, des professionnels de la santé, des proches et de futurs participants peuvent cerner des besoins différents. Ces conversations demeurent exploratoires jusqu’à ce que les rôles, les ressources et les responsabilités soient documentés. L’intérêt d’une personne ou d’un organisme ne crée pas un partenariat, et un espace offert ne répond pas automatiquement aux exigences.", "Une prochaine étape pratique pourrait être un projet pilote étroitement défini, dirigé par des personnes qualifiées dans un lieu communautaire approuvé. Il nécessiterait un objectif écrit, de l’information pour les participants, un plan de sécurité, une vérification de l’accessibilité, un budget et un processus de rétroaction. Les organisateurs pourraient évaluer si les gens comprennent l’activité, peuvent demander une adaptation et participent sans pression. Une expansion devrait suivre des activités sûres et constantes, et non une promesse de réseau selon un calendrier fixe."] },
+      { heading: "Le rôle des partenaires communautaires et des sympathisants", paragraphs: ["Des centres communautaires, organismes de loisir, groupes de danse, programmes de sport adapté, entreprises et bailleurs de fonds pourraient un jour fournir un lieu, de l’expérience, du matériel ou un soutien financier. Toute participation devrait être confirmée par écrit et décrite exactement. Une présentation communautaire n’est pas une approbation clinique. Une commandite ne donne aucun accès aux renseignements personnels, et la reconnaissance ne devrait pas dominer le lieu. L’exploitant responsable conserverait le contrôle de la programmation, de la vie privée et des décisions quotidiennes.", "Les sympathisants peuvent actuellement découvrir la mission, suivre les mises à jour vérifiées et participer aux activités de financement établies. Ils ne devraient pas recueillir de renseignements médicaux, recruter des participants ni promettre un cours au nom de l’organisme. Si un projet pilote ou un centre est confirmé, les communications devraient préciser le lieu, l’exploitant, l’horaire, les coûts, l’admissibilité, l’accessibilité, la sécurité et le processus de plainte. Pour l’instant, l’appui concerne le développement d’un concept prudent, et non l’accès à un service."] },
+      { heading: "Ce qui est confirmé aujourd’hui et ce qui demeure un objectif", paragraphs: ["The Silver Guardian explore les Centres de thérapie par le mouvement dans le cadre de sa vision communautaire élargie. Cette page présente des principes pouvant guider de futures activités artistiques, adaptées et inspirées du sport. Elle n’annonce aucun réseau en activité, affiliation avec le milieu de la santé, emplacement, personnel, calendrier de cours, capacité d’accueil, étude de recherche ou service thérapeutique. Aucun résultat clinique n’est promis, et personne ne devrait modifier ses soins ou son activité selon cette information.", "Il reste à vérifier si l’idée répond aux besoins de la communauté et si des organismes qualifiés souhaitent définir des rôles appropriés. Les mises à jour transparentes devraient distinguer les premières discussions des ententes signées et des préparatifs terminés. Une formulation précise permet d’inviter une participation réfléchie sans créer d’attentes impossibles à satisfaire. L’objectif est un modèle fondé sur la dignité, l’accès et la collaboration responsable, seulement si les personnes et les mesures nécessaires sont réunies."] },
+    ],
+    relatedHeading: "Découvrir les autres volets de la mission",
+    relatedLinks: [
+      { href: "/fundraising/", label: "Découvrir le financement communautaire", description: "Explorez les campagnes actuelles qui témoignent de l’appui envers la mission indépendante." },
+      { href: "/ballroom-dance-tournament/", label: "Explorer le concept de danse de salon", description: "Découvrez une activité proposée réunissant mouvement artistique, compétition amicale et financement." },
+      { href: "/32-wishes/", label: "Découvrir 32 souhaits dans 32 villes", description: "Découvrez l’objectif annuel de souhaits liés au hockey et de participation communautaire." },
+      { href: "/kid-friendly-research-hospital/", label: "Lire la vision d’un milieu adapté aux enfants", description: "Explorez comment des espaces inspirés du sport pourraient être développés prudemment avec des fournisseurs volontaires." },
+    ],
+    faqHeading: "FAQ sur les centres de thérapie par le mouvement",
+    faqs: [
+      { question: "Des centres de thérapie par le mouvement sont-ils ouverts?", answer: "Non. The Silver Guardian décrit un concept communautaire en développement. Aucun centre, lieu, horaire, processus d’inscription ou date d’ouverture n’est annoncé." },
+      { question: "The Silver Guardian offre-t-il actuellement de la thérapie par le mouvement?", answer: "Non. Il n’offre actuellement ni thérapie clinique, ni physiothérapie, ni réadaptation, ni exercice prescrit, ni programme communautaire de mouvement en activité." },
+      { question: "Quels mouvements un futur centre pourrait-il proposer?", answer: "Le concept peut comprendre la danse, le rythme, l’équilibre, la mobilité, l’exercice adapté, les jeux actifs et des activités sportives sans contact, sous réserve d’un encadrement qualifié." },
+      { question: "Faudrait-il être athlète pour participer?", answer: "Non. Un futur programme responsable offrirait différentes façons de participer : assis, debout, avec adaptation, dans le calme ou par observation." },
+      { question: "Les activités peuvent-elles remplacer un traitement ou la physiothérapie?", answer: "Non. Le mouvement communautaire ne remplace jamais un diagnostic, un traitement, une réadaptation ou un conseil individualisé de professionnels qualifiés." },
+      { question: "Peut-on s’inscrire maintenant?", answer: "Aucune inscription n’est ouverte. L’information ne devrait être publiée qu’après la confirmation d’un exploitant, d’un lieu, d’un encadrement et de mesures d’accessibilité et de sécurité." },
+    ],
+    closingHeading: "Suivre le concept pendant le développement responsable",
+    closingText: "Découvrez les initiatives communautaires actuelles et suivez les mises à jour confirmées pendant que The Silver Guardian écoute les futurs participants, responsables qualifiés et organismes susceptibles de façonner un modèle accessible.",
+    ctaLabel: "Explorer le financement communautaire",
+    ctaHref: "/fundraising/",
+  },
+};

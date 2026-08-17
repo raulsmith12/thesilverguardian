@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
@@ -46,18 +47,18 @@ export default function Home() {
                 An Innovative Pediatric Care Experience
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <a
+                <Link
                   className="site-button site-button--secondary"
                   href="/contact"
                 >
                   Contact Us
-                </a>
-                <a
+                </Link>
+                <Link
                   className="site-button site-button--outline"
                   href="/fundraising"
                 >
                   Learn More
-                </a>
+                </Link>
               </div>
             </div>
           </div>

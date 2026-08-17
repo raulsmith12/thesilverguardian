@@ -7,6 +7,8 @@ import { brossardTopicSlugs } from "@/lib/brossardContent";
 import { terrebonneTopicSlugs } from "@/lib/terrebonneContent";
 import { pointeClaireTopicSlugs } from "@/lib/pointeClaireContent";
 import { raleighDurhamTopicSlugs } from "@/lib/raleighDurhamContent";
+import { seattleTopicSlugs } from "@/lib/seattleContent";
+import { washingtonAreaSlugs, washingtonAreaTopicSlugs } from "@/lib/washingtonAreaContent";
 
 export const dynamic = "force-static";
 
@@ -17,6 +19,11 @@ const routes = [
   { path: "/ballroom-dance-tournament/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/32-wishes/", priority: 0.8, changeFrequency: "monthly" },
   {
+    path: "/kid-friendly-research-hospital/",
+    priority: 0.8,
+    changeFrequency: "monthly",
+  },
+  {
     path: "/movement-therapy-center/",
     priority: 0.8,
     changeFrequency: "monthly",
@@ -24,6 +31,27 @@ const routes = [
   { path: "/contact/", priority: 0.7, changeFrequency: "yearly" },
   { path: "/more-info/", priority: 0.9, changeFrequency: "monthly" },
   { path: "/privacy/", priority: 0.3, changeFrequency: "yearly" },
+  { path: "/service-areas/", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/service-areas/united-states/", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/service-areas/canada/", priority: 0.8, changeFrequency: "monthly" },
+  { path: "/seattle/", priority: 0.8, changeFrequency: "monthly" },
+  ...seattleTopicSlugs.map((topic) => ({
+    path: `/seattle/${topic}/` as const,
+    priority: 0.7,
+    changeFrequency: "monthly" as const,
+  })),
+  ...washingtonAreaSlugs.map((serviceArea) => ({
+    path: `/${serviceArea}/` as const,
+    priority: 0.7,
+    changeFrequency: "monthly" as const,
+  })),
+  ...washingtonAreaSlugs.flatMap((serviceArea) =>
+    washingtonAreaTopicSlugs.map((topic) => ({
+      path: `/${serviceArea}/${topic}/` as const,
+      priority: 0.7,
+      changeFrequency: "monthly" as const,
+    })),
+  ),
   { path: "/montreal/", priority: 0.8, changeFrequency: "monthly" },
   ...montrealTopicSlugs.map((topic) => ({
     path: `/montreal/${topic}/` as const,

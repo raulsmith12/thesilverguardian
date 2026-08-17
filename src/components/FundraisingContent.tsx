@@ -41,7 +41,7 @@ export function FundraisingContent({ locale = "en" }: { locale?: "en" | "fr-CA" 
               <>Do you know someone who has been affected by cancer?<br /><br />Are you an ice hockey fan?<br /><br />If so, please contribute $1 as a demonstration of community support for this initiative.<br /><br />We ask that tokens of support be limited to the exact number of people in immediate households: 4 people = $4.<br /><br />(At the end of the campaign, these tokens of support will be donated to a meaningful, cancer related charity focused on strengthening the support network for families walking the cancer journey together.)</>
             )}
           </p>
-          <a target="_blank" className="dbox-donation-page-button" href="https://donorbox.org/score-a-goal?" style={{background: "rgb(0,28,87)", color: "white", textDecoration: "none", fontFamily: "Verdana, sans-serif", display: "block", gap: "8px", width: "100%", fontSize: "16px", fontWeight: "bold", borderRadius: "5px", lineHeight: "24px", padding: "8px 24px", margin: "auto"}}>
+          <a target="_blank" rel="noopener noreferrer" className="dbox-donation-page-button" href="https://donorbox.org/score-a-goal?" style={{background: "rgb(0,28,87)", color: "white", textDecoration: "none", fontFamily: "Verdana, sans-serif", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px", width: "fit-content", fontSize: "16px", fontWeight: "bold", borderRadius: "5px", lineHeight: "24px", padding: "8px 24px", margin: "1.25rem 0 0"}}>
             {isFrench ? "Appuyer la campagne" : "Support Here"}
           </a>
         </article>

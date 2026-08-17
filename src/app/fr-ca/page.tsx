@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
@@ -46,8 +47,8 @@ export default function FrenchHomePage() {
               </h1>
               <p className="hero-message mt-13 max-w-3xl">Une expérience novatrice en soins pédiatriques</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <a className="site-button site-button--secondary" href="/fr-ca/contact/">Nous joindre</a>
-                <a className="site-button site-button--outline" href="/fr-ca/fundraising/">En savoir plus</a>
+                <Link className="site-button site-button--secondary" href="/fr-ca/contact/">Nous joindre</Link>
+                <Link className="site-button site-button--outline" href="/fr-ca/fundraising/">En savoir plus</Link>
               </div>
             </div>
           </div>

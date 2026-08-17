@@ -17,6 +17,8 @@ import groupMovementImage from "@/img/gabin-vallet-J154nEkpzlQ-unsplash.jpg";
 
 export function GeoTargetPage({ content, locale }: { content: MontrealPageContent; locale: Locale }) {
   const isRaleighDurham = content.heroImage === "raleigh-durham";
+  const hasPlaceholderHero = content.heroImage === "placeholder";
+  const heroAsset = content.heroAsset;
   const faqStructuredData = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -39,21 +41,37 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
               <p className="geo-intro">{content.introduction}</p>
             </div>
             <div className="geo-hero-image">
-              <Image
-                src={isRaleighDurham ? raleighDurhamSkylineImage : montrealSkylineImage}
-                alt={isRaleighDurham
-                  ? locale === "fr-CA"
-                    ? "Vue du centre-ville de Raleigh, en Caroline du Nord, près des voies ferrées"
-                    : "View of downtown Raleigh, North Carolina near railroad tracks"
-                  : locale === "fr-CA"
-                    ? "Vue de Montréal, Québec, Canada depuis le fleuve Saint-Laurent"
-                    : "View of Montreal, Quebec, Canada from the St. Lawrence River"}
-                fill
-                placeholder="blur"
-                priority
-                sizes="(max-width: 767px) calc(100vw - 3rem), 40vw"
-                unoptimized
-              />
+              {heroAsset ? (
+                <Image
+                  src={heroAsset.src}
+                  alt={heroAsset.alt}
+                  fill
+                  placeholder="blur"
+                  priority
+                  sizes="(max-width: 767px) calc(100vw - 3rem), 40vw"
+                  unoptimized
+                />
+              ) : hasPlaceholderHero ? (
+                <div className="geo-image-placeholder" role="img" aria-label={content.imageAlt}>
+                  <span aria-hidden="true">{content.imageLabel}</span>
+                </div>
+              ) : (
+                <Image
+                  src={isRaleighDurham ? raleighDurhamSkylineImage : montrealSkylineImage}
+                  alt={isRaleighDurham
+                    ? locale === "fr-CA"
+                      ? "Vue du centre-ville de Raleigh, en Caroline du Nord, près des voies ferrées"
+                      : "View of downtown Raleigh, North Carolina near railroad tracks"
+                    : locale === "fr-CA"
+                      ? "Vue de Montréal, Québec, Canada depuis le fleuve Saint-Laurent"
+                      : "View of Montreal, Quebec, Canada from the St. Lawrence River"}
+                  fill
+                  placeholder="blur"
+                  priority
+                  sizes="(max-width: 767px) calc(100vw - 3rem), 40vw"
+                  unoptimized
+                />
+              )}
             </div>
           </div>
         </section>
@@ -64,6 +82,7 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
               <h2>{section.heading}</h2>
               {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
+              {section.links && <ul>{section.links.map((link) => <li key={link.href}><Link href={localizedPath(link.href, locale)}>{link.label}</Link> — {link.description}</li>)}</ul>}
             </section>
           ))}
 
@@ -174,11 +193,28 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
             </div>
           )}
 
-          {!content.supportingImageSet && content.supportingImages && (
+          {!content.supportingImageSet && !content.supportingImageAssets && content.supportingImages && (
             <div className="geo-supporting-images" aria-label={locale === "fr-CA" ? "Images de soutien" : "Supporting images"}>
               {content.supportingImages.map((image) => (
                 <div className="geo-image-placeholder" role="img" aria-label={image.alt} key={image.alt}>
                   <span aria-hidden="true">{image.label}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {!content.supportingImageSet && content.supportingImageAssets && (
+            <div className="geo-supporting-images" aria-label={locale === "fr-CA" ? "Images de soutien" : "Supporting images"}>
+              {content.supportingImageAssets.map((asset) => (
+                <div className="geo-supporting-image" key={asset.alt}>
+                  <Image
+                    src={asset.src}
+                    alt={asset.alt}
+                    fill
+                    placeholder="blur"
+                    sizes="(max-width: 639px) 100vw, 50vw"
+                    unoptimized
+                  />
                 </div>
               ))}
             </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import { WishProgress } from "@/components/WishProgress";
@@ -40,7 +41,7 @@ export default function FrenchWishesPage() {
             </div>
             <aside className="petition-cta" aria-labelledby="wishes-petition-title-fr">
               <div><p className="section-kicker">Faites entendre votre voix</p><h2 id="wishes-petition-title-fr">Aidez à faire avancer les 32 souhaits</h2><p>Manifestez votre appui à la vision en ajoutant votre nom à la pétition communautaire.</p></div>
-              <a className="site-button site-button--secondary" href="/fr-ca/more-info/#petition">Signer la pétition des 32 souhaits</a>
+              <Link className="site-button site-button--secondary" href="/fr-ca/more-info/#petition">Signer la pétition des 32 souhaits</Link>
             </aside>
             <div className="wishes-grid">
               {Object.entries(regions).map(([region, cities]) => (
@@ -57,7 +58,7 @@ export default function FrenchWishesPage() {
                             ))}
                           </div>
                         </div>
-                        <h3>{city}</h3>
+                        <h3>{city === "Seattle" ? <Link href="/fr-ca/seattle/">{city}</Link> : city}</h3>
                         <WishProgress city={city} locale="fr-CA" />
                       </article>
                     ))}

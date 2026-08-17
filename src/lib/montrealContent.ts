@@ -1,4 +1,5 @@
 import type { Locale } from "@/lib/i18n";
+import type { StaticImageData } from "next/image";
 import { montrealExpansions } from "@/lib/montrealExpansions";
 
 export const montrealTopicSlugs = [
@@ -11,7 +12,7 @@ export const montrealTopicSlugs = [
 export type MontrealTopicSlug = (typeof montrealTopicSlugs)[number];
 
 type Faq = { question: string; answer: string };
-type Section = { heading: string; paragraphs: string[]; bullets?: string[] };
+type Section = { heading: string; paragraphs: string[]; bullets?: string[]; links?: RelatedLink[] };
 type RelatedLink = { href: string; label: string; description: string };
 
 export type MontrealPageContent = {
@@ -23,8 +24,10 @@ export type MontrealPageContent = {
   introduction: string;
   imageLabel: string;
   imageAlt: string;
-  heroImage?: "raleigh-durham";
+  heroImage?: "raleigh-durham" | "placeholder";
+  heroAsset?: { src: StaticImageData; alt: string };
   supportingImages?: { label: string; alt: string }[];
+  supportingImageAssets?: { src: StaticImageData; alt: string }[];
   supportingImageSet?: "hockey-wishes" | "pediatric-care" | "hospital-wishes" | "movement-therapy";
   sections: Section[];
   relatedHeading: string;
