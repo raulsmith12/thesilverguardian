@@ -212,7 +212,7 @@ app.post("/petition", async (req, res) => {
 app.get("/petition/wish-progress", async (_req, res) => {
   try {
     const counts = await getWishSignatureCounts();
-    res.json({ ok: true, goal: 156250, counts });
+    res.json({ ok: true, goal: 31250, counts });
   } catch (error) {
     console.error("Wish signature progress lookup failed", error);
     res.status(503).json({ ok: false, error: "database_unavailable" });

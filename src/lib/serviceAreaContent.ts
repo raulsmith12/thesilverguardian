@@ -204,7 +204,7 @@ export const canadaServiceAreaContent: Record<Locale, MontrealPageContent> = {
     heroAsset: { src: montrealSkylineImage, alt: "Montreal skyline across the St. Lawrence River representing Canadian service-area resources" },
     supportingImageAssets: [
       { src: hockeyPlayerImage, alt: "Hockey player taking a shot during an indoor community game" },
-      { src: pediatricEnvironmentHero, alt: "Welcoming accessible pediatric family lounge with subtle sports-inspired details" },
+      { src: pediatricEnvironmentHero, alt: "Welcoming accessible pediatric family lounge with subtle ice-hockey-inspired details" },
     ],
     sections: [
       { heading: "Quebec communities", paragraphs: ["Published Canadian French resources currently cover Montreal, Laval, Longueuil, Brossard, Terrebonne and Pointe-Claire. Each page addresses local travel, language, accessibility and community relationships without suggesting that a healthcare program or partnership exists."], bullets: ["Montreal", "Laval", "Longueuil", "Brossard", "Terrebonne", "Pointe-Claire"] },
@@ -238,7 +238,7 @@ export const canadaServiceAreaContent: Record<Locale, MontrealPageContent> = {
     heroAsset: { src: montrealSkylineImage, alt: "Panorama de Montréal depuis le fleuve Saint-Laurent représentant les zones canadiennes" },
     supportingImageAssets: [
       { src: hockeyPlayerImage, alt: "Joueur de hockey effectuant un tir pendant une partie communautaire intérieure" },
-      { src: pediatricEnvironmentHero, alt: "Salon familial pédiatrique accueillant, accessible et subtilement inspiré du sport" },
+      { src: pediatricEnvironmentHero, alt: "Salon familial pédiatrique accueillant, accessible et subtilement inspiré du hockey sur glace" },
     ],
     sections: [
       { heading: "Communautés du Québec", paragraphs: ["Les ressources canadiennes françaises publiées couvrent Montréal, Laval, Longueuil, Brossard, Terrebonne et Pointe-Claire. Chaque page aborde les déplacements, la langue, l’accessibilité et les relations communautaires sans laisser croire à un programme ou partenariat de soins."], bullets: ["Montréal", "Laval", "Longueuil", "Brossard", "Terrebonne", "Pointe-Claire"] },

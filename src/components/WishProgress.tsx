@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { apiBaseUrl } from "@/lib/api";
 
-const SIGNATURE_GOAL = 156_250;
+const SIGNATURE_GOAL = 31_250;
 type Counts = Record<string, number>;
 let countsRequest: Promise<Counts> | undefined;
 

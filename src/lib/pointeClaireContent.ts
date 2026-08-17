@@ -100,5 +100,8 @@ export function getPointeClaireTopicContent(slug: string, locale: Locale) {
   if (!pointeClaireTopicSlugs.includes(slug as PointeClaireTopicSlug)) return undefined;
   const source = getMontrealTopicContent(slug, locale); if (!source) return undefined;
   const content = transformContent(source);
-  return { ...content, sections: [...localSections[slug as PointeClaireTopicSlug][locale], ...content.sections] };
+  const title = locale === "fr-CA" && slug === "movement-therapy"
+    ? "Thérapie du mouvement à Pointe-Claire"
+    : content.title;
+  return { ...content, title, sections: [...localSections[slug as PointeClaireTopicSlug][locale], ...content.sections] };
 }

@@ -441,13 +441,13 @@ const eastSkylines: Skyline[] = [
 ];
 
 const westCities = [
-  "Anaheim", "Calgary", "Chicago", "Dallas", "Denver", "Edmonton", "Los Angeles", "Nashville",
-  "Salt Lake City", "San Jose", "Seattle", "St. Louis", "St. Paul", "Vancouver", "Vegas", "Winnipeg",
+  "Anaheim", "Calgary", "Chicago", "Dallas", "Denver", "Edmonton", "Los Angeles", "Minnesota", "Nashville",
+  "San Jose", "Seattle", "St. Louis", "Utah", "Vancouver", "Vegas", "Winnipeg",
 ] as const;
 
 const eastCities = [
-  "Boston", "Buffalo", "Columbus", "Detroit", "Long Island", "Montreal", "New York", "Newark",
-  "Ottawa", "Philadelphia", "Pittsburgh", "Raleigh", "Sunrise", "Tampa", "Toronto", "Washington",
+  "Boston", "Buffalo", "Carolina", "Columbus", "Detroit", "Florida", "Long Island", "Montreal", "New Jersey", "New York",
+  "Ottawa", "Philadelphia", "Pittsburgh", "Tampa", "Toronto", "Washington DC",
 ] as const;
 
 function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city: string; locale?: "en" | "fr-CA" }) {

@@ -86,13 +86,6 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
             </section>
           ))}
 
-          <section className="geo-independent-role" aria-labelledby="independent-role-heading">
-            <h2 id="independent-role-heading">{locale === "fr-CA" ? "Un rôle communautaire indépendant" : "An independent community role"}</h2>
-            <p>{locale === "fr-CA"
-              ? "The Silver Guardian ne possède, n’exploite, ne gère, ne dirige et ne représente aucun hôpital, clinique ni fournisseur de soins. L’organisme n’exerce aucune autorité sur les soins, les décisions médicales, les programmes hospitaliers ou les recommandations. Toute initiative présentée sur cette page est indépendante et ne doit pas être interprétée comme un service clinique ou une affiliation hospitalière."
-              : "The Silver Guardian does not own, operate, manage, direct or represent any hospital, clinic or healthcare provider. The organization has no authority over care, medical decisions, hospital programs or referrals. Every initiative described on this page is independent and should not be interpreted as a clinical service or hospital affiliation."}</p>
-          </section>
-
           {content.supportingImageSet === "hockey-wishes" && (
             <div className="geo-supporting-images" aria-label={locale === "fr-CA" ? "Images de hockey" : "Hockey images"}>
               <div className="geo-supporting-image">
