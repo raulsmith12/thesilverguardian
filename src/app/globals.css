@@ -963,41 +963,13 @@ a {
   color: #04672f;
 }
 
-.wish-progress {
-  display: grid;
-  gap: 0.45rem;
-}
-
-.wish-progress__labels {
-  display: flex;
-  gap: 0.35rem;
-  justify-content: space-between;
+.wish-signature-count {
+  margin: 0;
   color: #4f5b61;
-  font-size: 0.7rem;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 800;
   line-height: 1.3;
-  text-align: left;
-}
-
-.wish-progress__labels span:last-child {
-  text-align: right;
-}
-
-.wish-progress__track {
-  height: 10px;
-  border-radius: 999px;
-  background: #dce3e7;
-  box-shadow: inset 0 1px 2px rgba(0, 28, 87, 0.12);
-  overflow: hidden;
-}
-
-.wish-progress__track > span {
-  display: block;
-  width: 0;
-  height: 100%;
-  border-radius: inherit;
-  background: var(--color-green, #04672f);
-  transition: width 400ms ease;
+  text-align: center;
 }
 
 .wish-skyline-card__sky {

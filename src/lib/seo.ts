@@ -17,6 +17,33 @@ type PageMetadata = {
   locale?: Locale;
 };
 
+// Keep city-targeted and service-area SEO pages live while temporarily asking
+// crawlers not to index them. Remove the matching route from this set to make a
+// page family indexable again.
+const temporarilyNonIndexableGeoRoutes = new Set([
+  "bellevue",
+  "brossard",
+  "everett",
+  "gig-harbor",
+  "laval",
+  "longueuil",
+  "montreal",
+  "pointe-claire",
+  "raleigh-durham",
+  "renton",
+  "seattle",
+  "service-areas",
+  "tacoma",
+  "terrebonne",
+]);
+
+function isTemporarilyNonIndexableGeoPage(path: PageMetadata["path"]) {
+  const segments = path.split("/").filter(Boolean);
+  const route = segments[0] === "fr-ca" ? segments[1] : segments[0];
+
+  return route ? temporarilyNonIndexableGeoRoutes.has(route) : false;
+}
+
 export function createPageMetadata({
   title,
   description,
@@ -24,11 +51,16 @@ export function createPageMetadata({
   keywords,
   locale = "en",
 }: PageMetadata): Metadata {
+  const isTemporarilyNonIndexable = isTemporarilyNonIndexableGeoPage(path);
+
   return {
     title,
     description,
     keywords,
     alternates: getLocalizedAlternates(path, locale),
+    ...(isTemporarilyNonIndexable
+      ? { robots: { index: false, follow: true } }
+      : {}),
     openGraph: {
       type: "website",
       locale: locale === "fr-CA" ? "fr_CA" : "en_US",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
-import { WishProgress } from "@/components/WishProgress";
+import { WishSignatureCount } from "@/components/WishProgress";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -22,8 +22,8 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function FrenchWishesPage() {
   const regions = {
-    Ouest: ["Anaheim", "Calgary", "Chicago", "Dallas", "Denver", "Edmonton", "Los Angeles", "Nashville", "Salt Lake City", "San Jose", "Seattle", "St. Louis", "St. Paul", "Vancouver", "Vegas", "Winnipeg"],
-    Est: ["Boston", "Buffalo", "Columbus", "Detroit", "Long Island", "Montreal", "New York", "Newark", "Ottawa", "Philadelphia", "Pittsburgh", "Raleigh", "Sunrise", "Tampa", "Toronto", "Washington"],
+    Ouest: ["Anaheim", "Calgary", "Chicago", "Dallas", "Denver", "Edmonton", "Los Angeles", "Minnesota", "Nashville", "San Jose", "Seattle", "St. Louis", "Utah", "Vancouver", "Vegas", "Winnipeg"],
+    Est: ["Boston", "Buffalo", "Carolina", "Columbus", "Detroit", "Florida", "Long Island", "Montreal", "New Jersey", "New York", "Ottawa", "Philadelphia", "Pittsburgh", "Tampa", "Toronto", "Washington DC"],
   } as const;
 
   return (
@@ -58,8 +58,8 @@ export default function FrenchWishesPage() {
                             ))}
                           </div>
                         </div>
-                        <h3>{city === "Seattle" ? <Link href="/fr-ca/seattle/">{city}</Link> : city}</h3>
-                        <WishProgress city={city} locale="fr-CA" />
+                        <h3>{city}</h3>
+                        <WishSignatureCount city={city} locale="fr-CA" />
                       </article>
                     ))}
                   </div>

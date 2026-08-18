@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
-import { WishProgress } from "@/components/WishProgress";
+import { WishSignatureCount } from "@/components/WishProgress";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -470,8 +470,8 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
           ))}
         </div>
       </div>
-      <h3>{city === "Seattle" ? <Link href={locale === "fr-CA" ? "/fr-ca/seattle/" : "/seattle/"}>{city}</Link> : city}</h3>
-      <WishProgress city={city} locale={locale} />
+      <h3>{city}</h3>
+      <WishSignatureCount city={city} locale={locale} />
     </article>
   );
 }

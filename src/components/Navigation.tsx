@@ -50,10 +50,12 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
             {
               label: isFrench ? "États-Unis" : "United States",
               href: localizedPath("/service-areas/united-states", locale),
+              disabled: true,
             },
             {
               label: "Canada",
               href: localizedPath("/service-areas/canada", locale),
+              disabled: true,
             },
           ],
         },
@@ -206,11 +208,21 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
                                 className={`dropdown-menu site-nav-submenu__menu${isSubgroupOpen ? " show" : ""}`}
                                 id="service-areas-navigation"
                               >
-                                {link.links.map((nestedLink) => (
-                                  <NavDropdown.Item href={nestedLink.href} key={nestedLink.label}>
-                                    {nestedLink.label}
-                                  </NavDropdown.Item>
-                                ))}
+                                {link.links.map((nestedLink) =>
+                                  "disabled" in nestedLink && nestedLink.disabled ? (
+                                    <span
+                                      aria-disabled="true"
+                                      className="dropdown-item disabled"
+                                      key={nestedLink.label}
+                                    >
+                                      {nestedLink.label}
+                                    </span>
+                                  ) : (
+                                    <NavDropdown.Item href={nestedLink.href} key={nestedLink.label}>
+                                      {nestedLink.label}
+                                    </NavDropdown.Item>
+                                  ),
+                                )}
                               </div>
                             </div>
                           );
