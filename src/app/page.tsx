@@ -44,7 +44,7 @@ export default function Home() {
                 <span>The Silver Guardian</span>
               </h1>
               <p className="hero-message mt-13 max-w-3xl">
-                An Innovative Pediatric Care Experience
+                An Innovative Vision for Pediatric Cancer and Cardiovascular Care Inspired by Ice Hockey
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link
@@ -66,7 +66,7 @@ export default function Home() {
 
         <section className="publication-feature" aria-labelledby="publication-feature-title">
           <div className="publication-feature__inner">
-            <p className="section-kicker">See the vision</p>
+            <p className="section-kicker publication-feature__ribbon-title">Explore the Vision</p>
             <h2 id="publication-feature-title">Explore The Silver Guardian Initiative</h2>
             <p>Open our interactive teaser for a closer look at the ideas and purpose behind the initiative.</p>
             <a

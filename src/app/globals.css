@@ -5,6 +5,7 @@
   --foreground: #111111;
   --color-primary: #001c57;
   --color-secondary: #bcc6cc;
+  --color-gold: #d4af37;
   --color-black: #000000;
   --color-white: #ffffff;
   --color-charcoal: #2f3437;
@@ -1475,6 +1476,10 @@ a {
 
 .publication-feature .section-kicker {
   color: var(--color-secondary);
+}
+
+.publication-feature .publication-feature__ribbon-title {
+  color: var(--color-gold);
 }
 
 .publication-feature h2 {

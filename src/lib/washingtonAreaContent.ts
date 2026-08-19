@@ -124,6 +124,29 @@ const details: Record<WashingtonAreaSlug, AreaDetail> = {
   },
 };
 
+const localLifeProfiles: Record<WashingtonAreaSlug, Record<Locale, string[]>> = {
+  tacoma: {
+    en: ["Tacoma’s visitor identity includes the Museum District, waterfronts along Commencement Bay, Point Defiance and neighborhood arts. Its food scene ranges from waterfront dining to international restaurants and casual markets.", "Local movement preferences can include waterfront walking and rolling, park trails, cycling, community fitness and indoor recreation. Tacoma’s hockey history includes the former Tacoma Rockets and Tacoma Sabercats, while current fans also connect with junior and major professional hockey across the Puget Sound region."],
+    "fr-CA": ["L’identité touristique de Tacoma comprend le Museum District, le littoral de Commencement Bay, Point Defiance et les arts de quartier. Sa scène culinaire va des restaurants riverains aux cuisines internationales et marchés décontractés.", "Les activités locales comprennent la marche et les déplacements sur roues au bord de l’eau, les sentiers, le vélo, la mise en forme communautaire et les loisirs intérieurs. L’histoire du hockey comprend les anciens Rockets et Sabercats de Tacoma, tandis que les partisans suivent aussi le hockey junior et professionnel de Puget Sound."],
+  },
+  renton: {
+    en: ["Renton visitors and residents use the Cedar River, Gene Coulon Memorial Beach Park, Lake Washington shoreline and downtown community destinations. The food scene reflects the city’s cultural variety through independent restaurants, cafés, bakeries and international cuisines.", "Walking and rolling on river and lake routes, team sports, dance, fitness and adaptive recreation all offer clues about local movement preferences. Renton does not have a current major professional hockey club, but it sits within the Seattle-area hockey market and within reach of regional rinks and teams."],
+    "fr-CA": ["Les visiteurs et résidents de Renton profitent de la Cedar River, du parc Gene Coulon, du lac Washington et des destinations du centre-ville. La scène culinaire reflète la diversité de la ville par des restaurants indépendants, cafés, boulangeries et cuisines internationales.", "Les parcours riverains, les sports d’équipe, la danse, la mise en forme et les loisirs adaptés éclairent les préférences locales. Renton n’a pas de grand club professionnel actuel, mais se trouve dans le marché de hockey de Seattle et près de patinoires régionales."],
+  },
+  bellevue: {
+    en: ["Bellevue combines a walkable downtown, botanical garden, parks, shopping, arts and quick access to lakes and regional trails. Its current food scene includes Pacific Northwest cooking and a broad range of Asian and other international restaurants.", "Walking, hiking, cycling, paddling, court sports and studio fitness reflect the Eastside’s mix of outdoor and indoor movement. Bellevue has no current major professional hockey club of its own, but it is closely connected to Seattle-area professional hockey and regional ice facilities."],
+    "fr-CA": ["Bellevue réunit un centre-ville propice à la marche, un jardin botanique, des parcs, le magasinage, les arts et un accès aux lacs et sentiers régionaux. Sa scène culinaire comprend la cuisine du Nord-Ouest et de nombreux restaurants asiatiques et internationaux.", "La marche, la randonnée, le vélo, le canotage, les sports de terrain et la mise en forme en studio reflètent les activités de l’Eastside. Bellevue n’a pas de grand club professionnel propre, mais est liée au hockey professionnel de Seattle et aux installations régionales."],
+  },
+  "gig-harbor": {
+    en: ["Gig Harbor’s working waterfront, harbor views, maritime history, parks and walkable downtown shape its visitor appeal. Seafood, cafés, bakeries and independent waterfront restaurants are visible parts of the local food scene.", "Walking, boating, paddling, cycling and park-based recreation fit the peninsula setting. Gig Harbor has no current major or minor professional hockey club, so hockey interest connects through youth and recreational activity and the wider Puget Sound market."],
+    "fr-CA": ["Le port actif, les vues, l’histoire maritime, les parcs et le centre-ville piétonnier façonnent l’attrait touristique de Gig Harbor. Les fruits de mer, cafés, boulangeries et restaurants indépendants du front de mer font partie de la scène culinaire.", "La marche, la navigation, le canotage, le vélo et les loisirs de parc conviennent à la péninsule. Gig Harbor n’a aucun club professionnel majeur ou mineur actuel; l’intérêt pour le hockey passe donc par les activités jeunesse et récréatives et le marché élargi de Puget Sound."],
+  },
+  everett: {
+    en: ["Everett’s visitor landscape includes the waterfront, marina, aviation attractions, downtown arts and access to Snohomish County parks. Its food scene includes seafood, breweries, cafés and a range of independent and international restaurants.", "Waterfront walking, boating, cycling, field sports and community fitness are among the area’s movement options. Everett has a current junior-hockey presence through the Silvertips and a longer local arena tradition, giving hockey a direct place in community life."],
+    "fr-CA": ["Le paysage touristique d’Everett comprend le front de mer, la marina, l’aviation, les arts du centre-ville et l’accès aux parcs du comté de Snohomish. Sa scène culinaire comprend fruits de mer, brasseries, cafés et restaurants indépendants et internationaux.", "La marche riveraine, la navigation, le vélo, les sports et la mise en forme font partie des activités locales. Everett possède une présence actuelle en hockey junior avec les Silvertips et une tradition d’aréna qui donne au hockey une place directe dans la communauté."],
+  },
+};
+
 const areaLinks = (locale: Locale, current: WashingtonAreaSlug): MontrealPageContent["relatedLinks"] => {
   const isFrench = locale === "fr-CA";
   return [
@@ -164,6 +187,16 @@ export function getWashingtonAreaContent(slug: string, locale: Locale): Montreal
     ],
     sections: [
       ...localSections,
+      {
+        heading: isFrench ? `Visiter, manger, bouger et découvrir le hockey à ${detail.name}` : `Visit, eat, move and explore hockey in ${detail.name}`,
+        paragraphs: localLifeProfiles[areaSlug][locale],
+      },
+      {
+        heading: isFrench ? "Emplacement potentiel d’un Centre de thérapie par le mouvement" : "Potential Movement Therapy Center Location",
+        paragraphs: isFrench
+          ? [`${detail.name} est identifié comme un emplacement potentiel à explorer, et non comme un lieu choisi ou un centre annoncé. Cette désignation invite l’étude du tourisme local, de la culture du hockey, de la scène culinaire, des habitudes d’exercice, de l’accès et des partenaires possibles avant toute décision.`, "Aucune propriété, entente, approbation, programmation, inscription ou date d’ouverture n’est confirmée. Une future annonce devrait nommer le lieu et l’exploitant responsables et décrire les mesures d’accessibilité et de sécurité."]
+          : [`${detail.name} is identified as a Potential Movement Therapy Center Location to explore, not a selected site or announced center. The designation invites study of local tourism, hockey culture, food, exercise habits, access and possible community roles before any decision is made.`, "No property, agreement, approval, programming, registration or opening date is confirmed. Any future announcement would need to name the responsible venue and operator and describe accessibility and safety measures."],
+      },
       {
         heading: isFrench ? `Deux concepts à explorer à ${detail.name}` : `Two concepts to explore in ${detail.name}`,
         paragraphs: isFrench

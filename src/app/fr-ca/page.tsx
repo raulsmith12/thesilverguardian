@@ -45,7 +45,7 @@ export default function FrenchHomePage() {
                 <Image src={silverGuardianLogo} alt="" className="brand-logo hero-title__logo" priority unoptimized />
                 <span>The Silver Guardian</span>
               </h1>
-              <p className="hero-message mt-13 max-w-3xl">Une expérience novatrice en soins pédiatriques</p>
+              <p className="hero-message mt-13 max-w-3xl">Une vision novatrice des soins du cancer pédiatrique et cardiovasculaires inspirée du hockey sur glace</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link className="site-button site-button--secondary" href="/fr-ca/contact/">Nous joindre</Link>
                 <Link className="site-button site-button--outline" href="/fr-ca/fundraising/">En savoir plus</Link>
@@ -56,7 +56,7 @@ export default function FrenchHomePage() {
 
         <section className="publication-feature" aria-labelledby="publication-feature-title">
           <div className="publication-feature__inner">
-            <p className="section-kicker">Découvrez la vision</p>
+            <p className="section-kicker publication-feature__ribbon-title">Explorez la vision</p>
             <h2 id="publication-feature-title">Découvrez l’initiative The Silver Guardian</h2>
             <p>Consultez notre présentation interactive pour mieux comprendre les idées et la raison d’être de l’initiative.</p>
             <a
