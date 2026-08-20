@@ -14,10 +14,10 @@ export const movementTherapyCenterContent: Record<Locale, MontrealPageContent> =
     introduction: "The Silver Guardian is exploring a network of Movement Therapy Centers where artistic, adapted and ice-hockey-inspired activity could help people reconnect with movement at their own pace. This is a developing community concept, not an operating center, rehabilitation program or clinical service. Any future activity would require defined leadership, appropriate safeguards and clear boundaries around healthcare.",
     imageLabel: "Welcoming adaptable movement space",
     imageAlt: "Accessible community space designed for adaptable movement activities",
-    heroAsset: { src: movementStudioHero, alt: "Inclusive community movement class offering seated and standing participation in an accessible studio" },
+    heroAsset: { src: movementStudioHero, alt: "Children, teenagers and adults joining an inclusive movement class with seated and standing options" },
     supportingImageAssets: [
-      { src: movementArtisticSession, alt: "Participants using scarves and hand percussion during an accessible artistic movement session" },
-      { src: movementAdaptedIceHockey, alt: "Older adults participating in supervised non-contact ice-hockey-inspired movement with seated options" },
+      { src: movementArtisticSession, alt: "Young people and adults using scarves and rhythm props during an accessible artistic movement session" },
+      { src: movementAdaptedIceHockey, alt: "Child, teenager and adult practicing supervised non-contact hockey-inspired movement with a seated option" },
     ],
     sections: [
       {
@@ -162,10 +162,10 @@ export const movementTherapyCenterContent: Record<Locale, MontrealPageContent> =
     introduction: "The Silver Guardian explore un réseau de centres de thérapie par le mouvement où des activités artistiques, adaptées et inspirées du hockey sur glace pourraient aider les gens à renouer avec le mouvement à leur rythme. Il s’agit d’un concept communautaire en développement, et non d’un centre en activité, d’un programme de réadaptation ou d’un service clinique.",
     imageLabel: "Espace de mouvement accueillant et adaptable",
     imageAlt: "Lieu communautaire accessible consacré à des activités de mouvement adaptables",
-    heroAsset: { src: movementStudioHero, alt: "Cours communautaire inclusif offrant des options de mouvement assises et debout dans un studio accessible" },
+    heroAsset: { src: movementStudioHero, alt: "Enfants, adolescents et adultes participant à un cours inclusif avec des options assises et debout" },
     supportingImageAssets: [
-      { src: movementArtisticSession, alt: "Personnes utilisant des foulards et des percussions pendant une séance de mouvement artistique accessible" },
-      { src: movementAdaptedIceHockey, alt: "Adultes âgés participant à des mouvements inspirés du hockey sur glace sans contact avec options assises" },
+      { src: movementArtisticSession, alt: "Jeunes et adultes utilisant des foulards et des accessoires rythmiques pendant une séance de mouvement artistique accessible" },
+      { src: movementAdaptedIceHockey, alt: "Enfant, adolescent et adulte pratiquant des mouvements supervisés inspirés du hockey sans contact avec une option assise" },
     ],
     sections: [
       { heading: "Ce que signifie Centres de thérapie par le mouvement", paragraphs: ["Centres de thérapie par le mouvement est le nom d’un concept communautaire proposé. Le mouvement peut comprendre la danse, le rythme, l’équilibre, la mobilité, les étirements, les jeux actifs, des exercices sans contact inspirés du hockey sur glace et d’autres formes d’activité adaptable. Le mot thérapie ne signifie pas que The Silver Guardian fournit actuellement des soins, de la physiothérapie, de la psychothérapie, de la réadaptation ou des exercices prescrits. Il décrit l’ambition de créer des milieux où le mouvement serait significatif, social et adapté à la personne.", "Aucun centre, terrain, groupe d’instructeurs, horaire, processus d’inscription, politique d’admissibilité ou date d’ouverture n’est annoncé. Cette page n’invite personne à commencer un programme d’exercice. Un futur lieu nécessiterait des exploitants confirmés, une assurance appropriée, un encadrement qualifié, des installations accessibles, des procédures d’urgence et une information exacte avant d’être présenté comme disponible. Pour l’instant, la page constitue un cadre de planification responsable et de création de relations."] },

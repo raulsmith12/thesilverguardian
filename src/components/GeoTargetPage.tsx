@@ -12,8 +12,8 @@ import pediatricianWithTeddyImage from "@/img/derek-finch-Gi8Q8IfpxdY-unsplash.j
 import hospitalTeddyImage from "@/img/ortopediatri-cocuk-ortopedi-akademisi-8JjW4xVwQqc-unsplash.jpg";
 import childWithPediatricianImage from "@/img/national-cancer-institute-vbuR2q56EZM-unsplash.jpg";
 import raleighDurhamSkylineImage from "@/img/tj-wallace-qa5ouCk-Xoo-unsplash.jpg";
-import movementTrainingImage from "@/img/lorenzo-fatto-offidani-de5OZMjb5ww-unsplash.jpg";
-import groupMovementImage from "@/img/gabin-vallet-J154nEkpzlQ-unsplash.jpg";
+import movementTrainingImage from "@/img/generated/movement-adapted-sport.webp";
+import groupMovementImage from "@/img/generated/movement-artistic-session.webp";
 
 export function GeoTargetPage({ content, locale }: { content: MontrealPageContent; locale: Locale }) {
   const isRaleighDurham = content.heroImage === "raleigh-durham";
@@ -166,7 +166,7 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
               <div className="geo-supporting-image">
                 <Image
                   src={movementTrainingImage}
-                  alt={locale === "fr-CA" ? "Athlète participant à un entraînement de mouvement avec des gants de boxe" : "Athlete participating in movement training with boxing gloves"}
+                  alt={locale === "fr-CA" ? "Enfant, adolescent et adulte participant à une activité adaptée inspirée du hockey sans contact" : "Child, teenager and adult participating in an adapted non-contact hockey-inspired activity"}
                   fill
                   placeholder="blur"
                   sizes="(max-width: 639px) 100vw, 50vw"
@@ -176,7 +176,7 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
               <div className="geo-supporting-image">
                 <Image
                   src={groupMovementImage}
-                  alt={locale === "fr-CA" ? "Groupe participant à des exercices de mouvement adaptés à l’extérieur" : "Group participating in adapted outdoor movement exercises"}
+                  alt={locale === "fr-CA" ? "Jeunes et adultes participant à une séance de mouvement artistique avec des options adaptées" : "Young people and adults participating in an artistic movement session with adapted options"}
                   fill
                   placeholder="blur"
                   sizes="(max-width: 639px) 100vw, 50vw"
