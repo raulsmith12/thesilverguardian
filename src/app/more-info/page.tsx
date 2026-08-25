@@ -79,7 +79,7 @@ export default function MoreInfoPage() {
               </div>
               <p>
                 Each milestone depends on community participation and qualified development partners. This is meant to illustrate the initiative&rsquo;s projected direction; completion dates have not yet been announced.
-                {" "}<Link href="/kid-friendly-research-hospital/">Read the careful vision for a kid-friendly research hospital environment.</Link>
+                {" "}<Link href="/kid-friendly-research-hospital/">Read the careful vision for a kid-friendly research environment.</Link>
               </p>
             </div>
 

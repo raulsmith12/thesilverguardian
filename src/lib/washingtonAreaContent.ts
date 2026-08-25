@@ -150,7 +150,7 @@ const localLifeProfiles: Record<WashingtonAreaSlug, Record<Locale, string[]>> = 
 const areaLinks = (locale: Locale, current: WashingtonAreaSlug): MontrealPageContent["relatedLinks"] => {
   const isFrench = locale === "fr-CA";
   return [
-    { href: `/${current}/kid-friendly-research-hospitals/`, label: isFrench ? `hôpitaux de recherche adaptés aux enfants à ${details[current].name}` : `kid-friendly research hospitals in ${details[current].name}`, description: isFrench ? "Découvrez la vision locale d’un milieu pédiatrique inspiré du hockey sur glace et dirigé par un fournisseur volontaire." : "Explore the local vision for a provider-led, ice-hockey-inspired pediatric environment." },
+    { href: `/${current}/kid-friendly-research-hospitals/`, label: isFrench ? `milieux de recherche adaptés aux enfants à ${details[current].name}` : `kid-friendly research environments in ${details[current].name}`, description: isFrench ? "Découvrez la vision locale d’un milieu pédiatrique inspiré du hockey sur glace et dirigé par un fournisseur volontaire." : "Explore the local vision for a provider-led, ice-hockey-inspired pediatric environment." },
     { href: `/${current}/movement-therapy-centers/`, label: isFrench ? `centres de thérapie par le mouvement à ${details[current].name}` : `Movement Therapy Centers in ${details[current].name}`, description: isFrench ? "Découvrez le concept local de mouvement communautaire artistique, adapté et accessible." : "Explore the local concept for artistic, adapted and accessible community movement." },
     { href: "/seattle/", label: isFrench ? "carrefour de Seattle" : "Seattle service-area hub", description: isFrench ? "Explorez les ressources principales de Seattle et ses deux concepts ciblés." : "Explore Seattle’s main resources and two focused concepts." },
     { href: "/service-areas/united-states/", label: isFrench ? "zones desservies aux États-Unis" : "United States service areas", description: isFrench ? "Consultez toutes les ressources publiées sous Washington." : "See all published Washington resources in the national directory." },
@@ -200,8 +200,8 @@ export function getWashingtonAreaContent(slug: string, locale: Locale): Montreal
       {
         heading: isFrench ? `Deux concepts à explorer à ${detail.name}` : `Two concepts to explore in ${detail.name}`,
         paragraphs: isFrench
-          ? ["La vision d’un hôpital de recherche adapté aux enfants concerne un milieu non clinique inspiré du hockey sur glace qui ne pourrait être envisagé qu’avec un fournisseur volontaire dirigeant les décisions, la sécurité et la vie privée. Aucun hôpital, chantier, recherche, programme ou partenariat local n’est annoncé.", "Le concept des Centres de thérapie par le mouvement concerne des activités communautaires artistiques, adaptées et inspirées du hockey sur glace. Il ne constitue ni traitement, ni physiothérapie, ni réadaptation. Aucun lieu, cours, instructeur, horaire ou processus d’inscription local n’est confirmé."]
-          : ["The kid-friendly research hospital vision concerns a non-clinical, ice-hockey-inspired environment that could only be considered if a willing healthcare provider led decisions, safety and privacy. No local hospital, construction, research, program or partnership is announced.", "The Movement Therapy Centers concept concerns artistic, adapted and ice-hockey-inspired community activity. It is not treatment, physical therapy or rehabilitation. No local venue, class, instructor, schedule or registration process is confirmed."],
+          ? ["La vision d’un milieu de recherche adapté aux enfants concerne un espace non clinique inspiré du hockey sur glace qui ne pourrait être envisagé qu’avec un fournisseur volontaire dirigeant les décisions, la sécurité et la vie privée. Aucun hôpital, chantier, recherche, programme ou partenariat local n’est annoncé.", "Le concept des Centres de thérapie par le mouvement concerne des activités communautaires artistiques, adaptées et inspirées du hockey sur glace. Il ne constitue ni traitement, ni physiothérapie, ni réadaptation. Aucun lieu, cours, instructeur, horaire ou processus d’inscription local n’est confirmé."]
+          : ["The kid-friendly research environment vision concerns a non-clinical, ice-hockey-inspired environment that could only be considered if a willing healthcare provider led decisions, safety and privacy. No local hospital, construction, research, program or partnership is announced.", "The Movement Therapy Centers concept concerns artistic, adapted and ice-hockey-inspired community activity. It is not treatment, physical therapy or rehabilitation. No local venue, class, instructor, schedule or registration process is confirmed."],
         bullets: isFrench ? ["Des décisions cliniques laissées aux professionnels qualifiés", "Des options de mouvement accessibles sans promesse de résultat", "Des rôles communautaires confirmés avant toute annonce"] : ["Clinical decisions left to qualified professionals", "Accessible movement options without outcome promises", "Community roles confirmed before any announcement"],
       },
       {
@@ -234,7 +234,7 @@ function areaSeriesLinks(locale: Locale, areaSlug: WashingtonAreaSlug): Montreal
 
   return [
     { href: `/${areaSlug}/`, label: isFrench ? `carrefour de ${name}` : `${name} service-area hub`, description: isFrench ? "Revenez à l’aperçu local, aux limites du projet et aux ressources voisines." : "Return to the local overview, project boundaries and neighboring resources." },
-    { href: `/${areaSlug}/kid-friendly-research-hospitals/`, label: isFrench ? `hôpitaux de recherche adaptés aux enfants à ${name}` : `kid-friendly research hospitals in ${name}`, description: isFrench ? "Explorez une vision de milieux pédiatriques inspirés du hockey sur glace et dirigés par des fournisseurs volontaires." : "Explore a vision for provider-led pediatric environments inspired by ice hockey." },
+    { href: `/${areaSlug}/kid-friendly-research-hospitals/`, label: isFrench ? `milieux de recherche adaptés aux enfants à ${name}` : `kid-friendly research environments in ${name}`, description: isFrench ? "Explorez une vision de milieux pédiatriques inspirés du hockey sur glace et dirigés par des fournisseurs volontaires." : "Explore a vision for provider-led pediatric environments inspired by ice hockey." },
     { href: `/${areaSlug}/movement-therapy-centers/`, label: isFrench ? `centres de thérapie par le mouvement à ${name}` : `Movement Therapy Centers in ${name}`, description: isFrench ? "Découvrez un concept accessible de mouvement artistique, adapté et inspiré du hockey sur glace." : "Explore an accessible concept for artistic, adapted and ice-hockey-inspired movement." },
   ];
 }
@@ -336,8 +336,8 @@ export function getWashingtonAreaTopicContent(
         : `Accessible movement in ${detail.name}`,
     heading: isHospital
       ? isFrench
-        ? `Une vision d’hôpitaux de recherche adaptés aux enfants à ${detail.name}`
-        : `A vision for kid-friendly research hospitals in ${detail.name}`
+        ? `Une vision de milieux de recherche adaptés aux enfants à ${detail.name}`
+        : `A vision for kid-friendly research environments in ${detail.name}`
       : isFrench
         ? `Des centres de thérapie par le mouvement accessibles à ${detail.name}`
         : `Accessible Movement Therapy Centers in ${detail.name}`,

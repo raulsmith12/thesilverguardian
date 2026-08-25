@@ -1,18 +1,15 @@
 import type { Metadata } from "next";
-import { GeoTargetPage } from "@/components/GeoTargetPage";
-import { movementTherapyCenterContent } from "@/lib/movementTherapyCenterContent";
+import { MovementTherapyComingSoon } from "@/components/MovementTherapyComingSoon";
 import { createPageMetadata } from "@/lib/seo";
 
-const content = movementTherapyCenterContent["fr-CA"];
-
 export const metadata: Metadata = createPageMetadata({
-  title: content.title,
-  description: content.description,
+  title: "Centres de thérapie par le mouvement | Bientôt",
+  description: "Le contenu des Centres de thérapie par le mouvement de The Silver Guardian sera bientôt disponible.",
   path: "/fr-ca/movement-therapy-center/",
   locale: "fr-CA",
-  keywords: content.keywords,
+  keywords: ["centres de thérapie par le mouvement", "The Silver Guardian"],
 });
 
 export default function FrenchMovementTherapyPage() {
-  return <GeoTargetPage content={content} locale="fr-CA" />;
+  return <MovementTherapyComingSoon locale="fr-CA" />;
 }

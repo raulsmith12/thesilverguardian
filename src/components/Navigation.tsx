@@ -23,8 +23,8 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
       links: [
         {
           label: isFrench
-            ? "Hôpital de recherche adapté aux enfants"
-            : "Kid-Friendly Research Hospital",
+            ? "Milieu de recherche adapté aux enfants"
+            : "Kid-Friendly Research Environment",
           href: localizedPath("/kid-friendly-research-hospital", locale),
         },
       ],

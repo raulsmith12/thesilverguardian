@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import newsletterImage from "@/img/charlesdeluvio-FdDkfYFHqe4-unsplash.jpg";
 import movementTherapyImage from "@/img/lorenzo-fatto-offidani-de5OZMjb5ww-unsplash.jpg";
-import scoreGoalImage from "@/img/samantha-gades-iks9hBNKa6E-unsplash.jpg";
+import scoreGoalImage from "@/img/hockey-goal.jpg";
 import silverGuardianLogo from "@/img/silver-guardian-w-child.png";
 import wishesImage from "@/img/hockey-hero-rising-stockcake.jpg";
 import { createPageMetadata } from "@/lib/seo";
@@ -44,7 +44,7 @@ export default function Home() {
                 <span>The Silver Guardian</span>
               </h1>
               <p className="hero-message mt-13 max-w-3xl">
-                An Innovative Vision for Pediatric Cancer and Cardiovascular Care Inspired by Ice Hockey
+                An Innovative Vision Inspired by Ice Hockey
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <Link
@@ -86,7 +86,7 @@ export default function Home() {
               <div className="max-w-3xl">
                 <p className="section-kicker">Ways to help</p>
                 <h2 className="section-title">
-                  Every act of support helps move the mission forward.
+                  Every act of support helps move the vision forward.
                 </h2>
               </div>
             </div>

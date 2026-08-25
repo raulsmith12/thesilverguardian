@@ -26,6 +26,7 @@ export type MontrealPageContent = {
   imageAlt: string;
   heroImage?: "raleigh-durham" | "placeholder";
   heroAsset?: { src: StaticImageData; alt: string };
+  heroSecondaryAsset?: { src: StaticImageData; alt: string };
   supportingImages?: { label: string; alt: string }[];
   supportingImageAssets?: { src: StaticImageData; alt: string }[];
   supportingImageSet?: "hockey-wishes" | "pediatric-care" | "hospital-wishes" | "movement-therapy";

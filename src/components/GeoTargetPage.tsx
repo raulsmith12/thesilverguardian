@@ -19,6 +19,7 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
   const isRaleighDurham = content.heroImage === "raleigh-durham";
   const hasPlaceholderHero = content.heroImage === "placeholder";
   const heroAsset = content.heroAsset;
+  const heroSecondaryAsset = content.heroSecondaryAsset;
   const faqStructuredData = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -40,8 +41,33 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
               <h1>{content.heading}</h1>
               <p className="geo-intro">{content.introduction}</p>
             </div>
-            <div className="geo-hero-image">
-              {heroAsset ? (
+            <div className={`geo-hero-image${heroSecondaryAsset ? " geo-hero-image--layered" : ""}`}>
+              {heroAsset && heroSecondaryAsset ? (
+                <>
+                  <div className="geo-hero-image__primary">
+                    <Image
+                      src={heroAsset.src}
+                      alt={heroAsset.alt}
+                      fill
+                      placeholder="blur"
+                      priority
+                      sizes="(max-width: 767px) 55vw, 24vw"
+                      unoptimized
+                    />
+                  </div>
+                  <div className="geo-hero-image__secondary">
+                    <Image
+                      src={heroSecondaryAsset.src}
+                      alt={heroSecondaryAsset.alt}
+                      fill
+                      placeholder="blur"
+                      priority
+                      sizes="(max-width: 767px) 65vw, 28vw"
+                      unoptimized
+                    />
+                  </div>
+                </>
+              ) : heroAsset ? (
                 <Image
                   src={heroAsset.src}
                   alt={heroAsset.alt}

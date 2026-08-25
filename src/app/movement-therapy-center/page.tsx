@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
-import { GeoTargetPage } from "@/components/GeoTargetPage";
-import { movementTherapyCenterContent } from "@/lib/movementTherapyCenterContent";
+import { MovementTherapyComingSoon } from "@/components/MovementTherapyComingSoon";
 import { createPageMetadata } from "@/lib/seo";
 
-const content = movementTherapyCenterContent.en;
-
 export const metadata: Metadata = createPageMetadata({
-  title: content.title,
-  description: content.description,
+  title: "Movement Therapy Centers | Coming Soon",
+  description: "The Silver Guardian’s Movement Therapy Centers content is coming soon.",
   path: "/movement-therapy-center/",
-  keywords: content.keywords,
+  keywords: ["movement therapy centers", "The Silver Guardian"],
 });
 
 export default function MovementTherapyCenterPage() {
-  return <GeoTargetPage content={content} locale="en" />;
+  return <MovementTherapyComingSoon locale="en" />;
 }
