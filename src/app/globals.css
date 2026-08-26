@@ -1895,6 +1895,41 @@ a {
   margin-top: 4rem;
 }
 
+.geo-flow-banner {
+  width: 100vw;
+  margin-top: 4rem;
+  margin-left: calc(50% - 50vw);
+  padding: clamp(3.5rem, 8vw, 6rem) max(1.5rem, calc((100vw - 56rem) / 2 + 1.5rem));
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 248, 211, 0.55), transparent 48%),
+    linear-gradient(135deg, #d4af37, #e3c45b);
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.geo-flow-banner + section {
+  margin-top: 4rem;
+}
+
+.geo-content .geo-flow-banner p {
+  margin: 0;
+  color: inherit;
+  line-height: 1.2;
+}
+
+.geo-flow-banner__eyebrow {
+  font-size: 0.85rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.geo-content .geo-flow-banner__title {
+  margin-top: 0.75rem;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 900;
+}
+
 .geo-supporting-images {
   display: grid;
   gap: 1.5rem;

@@ -308,7 +308,7 @@ export function getWashingtonAreaTopicContent(
     ...base,
     title: isHospital
       ? isFrench
-        ? `Hôpital pour enfants à ${detail.name}`
+        ? `Milieu de recherche adapté aux enfants à ${detail.name}`
         : `Kid-Friendly Hospital ${detail.name}`
       : isFrench
         ? `Thérapie par le mouvement à ${detail.name}`

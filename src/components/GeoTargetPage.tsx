@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Fragment } from "react";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import { localizedPath, type Locale } from "@/lib/i18n";
@@ -104,12 +105,20 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
 
         <div className="geo-content mx-auto w-full max-w-4xl px-6 py-16">
           {content.sections.map((section) => (
-            <section key={section.heading}>
-              <h2>{section.heading}</h2>
-              {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-              {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
-              {section.links && <ul>{section.links.map((link) => <li key={link.href}><Link href={localizedPath(link.href, locale)}>{link.label}</Link> — {link.description}</li>)}</ul>}
-            </section>
+            <Fragment key={section.heading}>
+              {content.flowBanner?.beforeHeading === section.heading && (
+                <aside className="geo-flow-banner" aria-label={`${content.flowBanner.eyebrow}: ${content.flowBanner.title}`}>
+                  <p className="geo-flow-banner__eyebrow">{content.flowBanner.eyebrow}</p>
+                  <p className="geo-flow-banner__title">{content.flowBanner.title}</p>
+                </aside>
+              )}
+              <section>
+                {section.headingLevel === 3 ? <h3>{section.heading}</h3> : <h2>{section.heading}</h2>}
+                {section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                {section.bullets && <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>}
+                {section.links && <ul>{section.links.map((link) => <li key={link.href}><Link href={localizedPath(link.href, locale)}>{link.label}</Link> — {link.description}</li>)}</ul>}
+              </section>
+            </Fragment>
           ))}
 
           {content.supportingImageSet === "hockey-wishes" && (

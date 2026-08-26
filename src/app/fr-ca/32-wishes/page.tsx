@@ -30,7 +30,7 @@ export default function FrenchWishesPage() {
     <div className="flex min-h-screen flex-col">
       <Navigation locale="fr-CA" />
       <main className="flex-1">
-        <section className="page-hero page-hero--compact page-hero--gold">
+        <section className="page-hero page-hero--compact">
           <div className="mx-auto w-full max-w-6xl px-6 py-16"><h1>32 souhaits dans 32 villes</h1></div>
         </section>
         <section className="page-content">

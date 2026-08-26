@@ -483,7 +483,7 @@ function WishesContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
     <div className="flex min-h-screen flex-col">
       <Navigation locale={locale} />
       <main className="flex-1">
-        <section className="page-hero page-hero--compact page-hero--gold">
+        <section className="page-hero page-hero--compact">
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
             <h1>{isFrench ? "32 souhaits dans 32 villes" : "32 Wishes for 32 Cities"}</h1>
           </div>
