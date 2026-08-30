@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import newsletterImage from "@/img/charlesdeluvio-FdDkfYFHqe4-unsplash.jpg";
-import movementTherapyImage from "@/img/lorenzo-fatto-offidani-de5OZMjb5ww-unsplash.jpg";
 import scoreGoalImage from "@/img/hockey-goal.jpg";
 import silverGuardianLogo from "@/img/silver-guardian-w-child.png";
 import wishesImage from "@/img/hockey-hero-rising-stockcake.jpg";
@@ -101,13 +100,6 @@ export default function Home() {
                 alt: "Illustration of an ice hockey player handling a puck on fractured ice",
               },
               {
-                title: "Movement Therapy",
-                text: "Innovative movement therapy centers will encourage patients and community members to build strength through artistic and competitive exercise.",
-                url: "/movement-therapy-center",
-                image: movementTherapyImage,
-                alt: "Athlete training with boxing gloves",
-              },
-              {
                 title: "Score a Goal",
                 text: "Seasonal events and community campaigns will help gather the resources needed to both construct and support the care facility concept.",
                 url: "/fundraising",
@@ -155,8 +147,6 @@ export default function Home() {
             <p>
               The Silver Guardian is a group of business owners and community advocates who have joined together to gather community support for an innovative pediatric care facility with a kid friendly ice hockey theme designed to inspire hope and healing in the face of life threatening conditions, primarily cancer and heart disease.
             </p>
-            <p>Thank you,</p>
-            <p>The Silver Guardian Team</p>
           </div>
         </section>
       </main>

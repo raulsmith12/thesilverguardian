@@ -13,7 +13,6 @@ import silverGuardianLogo from "@/img/silver-guardian-w-child.png";
 
 export function Navigation({ locale = "en" }: { locale?: Locale }) {
   const [openImpactGroup, setOpenImpactGroup] = useState<string | null>(null);
-  const [openImpactSubgroup, setOpenImpactSubgroup] = useState<string | null>(null);
   const [openCampaignGroup, setOpenCampaignGroup] = useState<string | null>(null);
   const isFrench = locale === "fr-CA";
   const impactGroups = [
@@ -24,7 +23,7 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
         {
           label: isFrench
             ? "Milieu de recherche adapté aux enfants"
-            : "Kid-Friendly Research Environment",
+            : "Kid-Friendly Research",
           href: localizedPath("/kid-friendly-research-hospital", locale),
         },
       ],
@@ -40,24 +39,12 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
           href: localizedPath("/movement-therapy-center", locale),
         },
         {
+          label: isFrench ? "Prévention du cancer" : "Cancer Prevention",
+          href: "/cancer-prevention",
+        },
+        {
           label: isFrench ? "Zones desservies" : "Service Areas",
           href: localizedPath("/service-areas", locale),
-          links: [
-            {
-              label: isFrench ? "Aperçu" : "Overview",
-              href: localizedPath("/service-areas", locale),
-            },
-            {
-              label: isFrench ? "États-Unis" : "United States",
-              href: localizedPath("/service-areas/united-states", locale),
-              disabled: true,
-            },
-            {
-              label: "Canada",
-              href: localizedPath("/service-areas/canada", locale),
-              disabled: true,
-            },
-          ],
         },
       ],
     },
@@ -149,11 +136,14 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
                 onToggle={(isOpen) => {
                   if (!isOpen) {
                     setOpenImpactGroup(null);
-                    setOpenImpactSubgroup(null);
                   }
                 }}
                 title={isFrench ? "Points d’impact" : "Points of Impact"}
               >
+                <NavDropdown.Item href="/overview">
+                  {isFrench ? "Aperçu" : "Overview"}
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
                 {impactGroups.map((group) => {
                   const isOpen = openImpactGroup === group.id;
 
@@ -178,53 +168,10 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
                         id={`${group.id}-navigation`}
                       >
                         {group.links.map((link) => {
-                          if (!("links" in link) || !link.links) {
-                            return (
-                              <NavDropdown.Item href={link.href} key={link.label}>
-                                {link.label}
-                              </NavDropdown.Item>
-                            );
-                          }
-
-                          const isSubgroupOpen = openImpactSubgroup === link.label;
-
                           return (
-                            <div
-                              className={`site-nav-submenu site-nav-submenu--nested${isSubgroupOpen ? " show" : ""}`}
-                              key={link.label}
-                              onMouseEnter={() => setOpenImpactSubgroup(link.label)}
-                              onMouseLeave={() => setOpenImpactSubgroup(null)}
-                            >
-                              <button
-                                aria-controls="service-areas-navigation"
-                                aria-expanded={isSubgroupOpen}
-                                className="dropdown-item dropdown-toggle site-nav-submenu__toggle"
-                                onClick={() => setOpenImpactSubgroup(isSubgroupOpen ? null : link.label)}
-                                type="button"
-                              >
-                                {link.label}
-                              </button>
-                              <div
-                                className={`dropdown-menu site-nav-submenu__menu${isSubgroupOpen ? " show" : ""}`}
-                                id="service-areas-navigation"
-                              >
-                                {link.links.map((nestedLink) =>
-                                  "disabled" in nestedLink && nestedLink.disabled ? (
-                                    <span
-                                      aria-disabled="true"
-                                      className="dropdown-item disabled"
-                                      key={nestedLink.label}
-                                    >
-                                      {nestedLink.label}
-                                    </span>
-                                  ) : (
-                                    <NavDropdown.Item href={nestedLink.href} key={nestedLink.label}>
-                                      {nestedLink.label}
-                                    </NavDropdown.Item>
-                                  ),
-                                )}
-                              </div>
-                            </div>
+                            <NavDropdown.Item href={link.href} key={link.label}>
+                              {link.label}
+                            </NavDropdown.Item>
                           );
                         })}
                       </div>
@@ -282,7 +229,7 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
               >
                 <NavDropdown.Item href={localizedPath("/golf-tournament", locale)}>{isFrench ? "Tournoi de golf" : "Golf Tournaments"}</NavDropdown.Item>
                 <NavDropdown.Item href={localizedPath("/ballroom-dance-tournament", locale)}>{isFrench ? "Tournoi de danse de salon" : "Ballroom Dance Tournament"}</NavDropdown.Item>
-                <NavDropdown.Item href="#">Seeds of Hope Festival</NavDropdown.Item>
+                <NavDropdown.Item href={localizedPath("/seeds-of-hope-festival", locale)}>Seeds of Hope Festival</NavDropdown.Item>
               </NavDropdown>
               <Nav.Link href={localizedPath("/contact", locale)}>
                 {isFrench ? "Nous joindre" : "Contact"}

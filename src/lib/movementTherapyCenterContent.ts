@@ -1,10 +1,10 @@
 import type { Locale } from "@/lib/i18n";
-import type { MontrealPageContent } from "@/lib/montrealContent";
+import type { GeoPageContent } from "@/lib/geoPageContent";
 import movementAdaptedIceHockey from "@/img/generated/movement-adapted-sport.webp";
 import movementArtisticSession from "@/img/generated/movement-artistic-session.webp";
 import movementStudioHero from "@/img/generated/movement-studio-hero.webp";
 
-export const movementTherapyCenterContent: Record<Locale, MontrealPageContent> = {
+export const movementTherapyCenterContent: Record<Locale, GeoPageContent> = {
   en: {
     title: "Movement Therapy Centers",
     description: "Explore a careful vision for accessible movement therapy centers built around artistic activity, adapted exercise and community participation.",

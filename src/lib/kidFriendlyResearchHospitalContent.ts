@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/i18n";
-import type { MontrealPageContent } from "@/lib/montrealContent";
+import type { GeoPageContent } from "@/lib/geoPageContent";
 import pediatricEnvironmentHero from "@/img/generated/pediatric-environment-hero.webp";
-import pediatricQuietActivity from "@/img/generated/pediatric-quiet-activity.webp";
+import cancerTreatment from "@/img/cancertreatmentstockphoto2.jpg";
 import hockeyArena from "@/img/hockey arena stock photo.jpg";
 import hockeyHero from "@/img/hockey-hero-rising-stockcake.jpg";
 
@@ -52,33 +52,46 @@ const hockeyEnvironmentSections = {
   ],
 } satisfies Record<Locale, [string, string][]>;
 
+const hockeyEnvironmentH2Headings = new Set([
+  "Artistically Competitive",
+  "Friendly Neighborhood Mascots",
+  "Impressive Arenas",
+  "Equipment Matters",
+  "Artistique et compétitif",
+  "Mascottes amicales du quartier",
+  "Arénas impressionnants",
+  "L’équipement compte",
+]);
+
 const createHockeyEnvironmentSections = (locale: Locale) =>
   hockeyEnvironmentSections[locale].map(([heading, paragraph]) => ({
     heading,
-    headingLevel: 3 as const,
+    ...(hockeyEnvironmentH2Headings.has(heading) ? {} : { headingLevel: 3 as const }),
     paragraphs: [paragraph],
   }));
 
-export const kidFriendlyResearchHospitalContent: Record<Locale, MontrealPageContent> = {
+export const kidFriendlyResearchHospitalContent: Record<Locale, GeoPageContent> = {
   en: {
     title: "Kid-Friendly Research Environment",
     description: "Explore a careful vision for kid-friendly research environments shaped with healthcare providers and ice-hockey-inspired support.",
     keywords: ["kid-friendly research hospital", "children's research hospital environment", "ice-hockey-themed pediatric environment", "pediatric cancer community support"],
     eyebrow: "A community-supported vision",
-    heading: "A kid-friendly research inspired by ice hockey",
+    heading: "A kid-friendly research environment inspired by ice hockey",
     introduction: "A child receiving care for pediatric cancer or another life-threatening condition such as heart disease deserves to be seen as a whole person, not simply as a patient. The Silver Guardian's vision explores how an independent organization can work with willing healthcare providers and community partners to support a welcoming, ice-hockey-themed care environment that respects clinical priorities, caregiver needs and the realities of life-threatening illness.",
     imageLabel: "Welcoming ice-hockey-inspired pediatric environment",
     imageAlt: "Welcoming ice-hockey-inspired pediatric environment designed with children in mind",
     heroAsset: { src: hockeyHero, alt: "Illustration of an ice hockey player handling a puck on fractured ice" },
     heroSecondaryAsset: { src: pediatricEnvironmentHero, alt: "Welcoming provider-designed pediatric family lounge with subtle ice hockey details and accessible seating" },
     supportingImageAssets: [
-      { src: pediatricQuietActivity, alt: "Child using a wheelchair and caregiver choosing a quiet activity in an accessible pediatric family space" },
       { src: hockeyArena, alt: "Interior of a hockey arena with the rink illuminated beneath the seating" },
+      { src: cancerTreatment, alt: "Caregiver talking with a child seated in a pediatric treatment room" },
     ],
     flowBanner: {
       beforeHeading: "Friendly Neighborhood Mascots",
       eyebrow: "Coming soon",
       title: "The Memory Wall",
+      href: "https://cloud-screen.com/v2/publications/silver-guardian-memory-wall",
+      linkLabel: "Explore the Memory Wall",
     },
     sections: [
       {
@@ -161,13 +174,15 @@ export const kidFriendlyResearchHospitalContent: Record<Locale, MontrealPageCont
     heroAsset: { src: hockeyHero, alt: "Illustration d’un joueur de hockey sur glace maniant une rondelle sur une surface de glace fracturée" },
     heroSecondaryAsset: { src: pediatricEnvironmentHero, alt: "Salon familial pédiatrique accueillant, accessible et conçu avec de subtils éléments de hockey sur glace" },
     supportingImageAssets: [
-      { src: pediatricQuietActivity, alt: "Enfant en fauteuil roulant et proche choisissant une activité calme dans un espace pédiatrique accessible" },
       { src: hockeyArena, alt: "Intérieur d’un aréna de hockey avec la patinoire éclairée sous les gradins" },
+      { src: cancerTreatment, alt: "Proche aidante discutant avec un enfant assis dans une salle de traitement pédiatrique" },
     ],
     flowBanner: {
       beforeHeading: "Mascottes amicales du quartier",
       eyebrow: "Bientôt disponible",
       title: "Le mur des souvenirs",
+      href: "https://cloud-screen.com/v2/publications/silver-guardian-memory-wall",
+      linkLabel: "Découvrir le mur des souvenirs",
     },
     sections: [
       { heading: "Pourquoi un milieu de recherche adapté aux enfants compte", paragraphs: ["Une maladie grave peut rendre les journées d’un enfant inconnues et très encadrées. Les rendez-vous, les examens, les traitements, l’attente et la récupération peuvent interrompre l’école, les amitiés, le jeu et les habitudes familiales. Un milieu réfléchi ne peut pas enlever ces difficultés ni modifier un diagnostic, mais il peut reconnaître que les enfants ont toujours besoin de choix, de réconfort, d’imagination et de façons personnelles d’interagir avec ce qui les entoure. Un thème de hockey sur glace peut offrir des couleurs, des histoires et des activités familières sans demander à l’enfant de performer ou de prétendre que les soins sont faciles.", "L’expression milieu de recherche adapté aux enfants désigne ici un objectif d’aménagement, et non un établissement en activité. The Silver Guardian ne prétend pas posséder, construire, exploiter ni gérer un hôpital. L’organisme ne mène pas non plus de recherche médicale et ne fournit aucun diagnostic, traitement, conseil médical ou service de réadaptation. Son rôle possible est communautaire : écouter, mobiliser l’appui et explorer si des fournisseurs de soins souhaitent obtenir une aide indépendante pour des éléments non cliniques clairement définis."] },

@@ -17,24 +17,10 @@ type PageMetadata = {
   locale?: Locale;
 };
 
-// Keep city-targeted and service-area SEO pages live while temporarily asking
-// crawlers not to index them. Remove the matching route from this set to make a
-// page family indexable again.
+// Keep service-area directory pages live while temporarily asking crawlers not
+// to index them.
 const temporarilyNonIndexableGeoRoutes = new Set([
-  "bellevue",
-  "brossard",
-  "everett",
-  "gig-harbor",
-  "laval",
-  "longueuil",
-  "montreal",
-  "pointe-claire",
-  "raleigh-durham",
-  "renton",
-  "seattle",
   "service-areas",
-  "tacoma",
-  "terrebonne",
 ]);
 
 function isTemporarilyNonIndexableGeoPage(path: PageMetadata["path"]) {

@@ -4,21 +4,17 @@ import { Fragment } from "react";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import { localizedPath, type Locale } from "@/lib/i18n";
-import type { MontrealPageContent } from "@/lib/montrealContent";
-import montrealSkylineImage from "@/img/marc-olivier-jodoin-BG9oZ15a4Xk-unsplash.jpg";
+import type { GeoPageContent } from "@/lib/geoPageContent";
 import hockeyPlayerImage from "@/img/gerhard-crous-doivHPaG-Vw-unsplash.jpg";
 import neonHockeyGoalImage from "@/img/hockey-goal.jpg";
 import pediatricianWithBabyImage from "@/img/aditya-romansa-5zp0jym2w9M-unsplash.jpg";
 import pediatricianWithTeddyImage from "@/img/derek-finch-Gi8Q8IfpxdY-unsplash.jpg";
 import hospitalTeddyImage from "@/img/ortopediatri-cocuk-ortopedi-akademisi-8JjW4xVwQqc-unsplash.jpg";
 import childWithPediatricianImage from "@/img/national-cancer-institute-vbuR2q56EZM-unsplash.jpg";
-import raleighDurhamSkylineImage from "@/img/tj-wallace-qa5ouCk-Xoo-unsplash.jpg";
 import movementTrainingImage from "@/img/generated/movement-adapted-sport.webp";
 import groupMovementImage from "@/img/generated/movement-artistic-session.webp";
 
-export function GeoTargetPage({ content, locale }: { content: MontrealPageContent; locale: Locale }) {
-  const isRaleighDurham = content.heroImage === "raleigh-durham";
-  const hasPlaceholderHero = content.heroImage === "placeholder";
+export function GeoTargetPage({ content, locale }: { content: GeoPageContent; locale: Locale }) {
   const heroAsset = content.heroAsset;
   const heroSecondaryAsset = content.heroSecondaryAsset;
   const faqStructuredData = {
@@ -78,26 +74,10 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
                   sizes="(max-width: 767px) calc(100vw - 3rem), 40vw"
                   unoptimized
                 />
-              ) : hasPlaceholderHero ? (
+              ) : (
                 <div className="geo-image-placeholder" role="img" aria-label={content.imageAlt}>
                   <span aria-hidden="true">{content.imageLabel}</span>
                 </div>
-              ) : (
-                <Image
-                  src={isRaleighDurham ? raleighDurhamSkylineImage : montrealSkylineImage}
-                  alt={isRaleighDurham
-                    ? locale === "fr-CA"
-                      ? "Vue du centre-ville de Raleigh, en Caroline du Nord, près des voies ferrées"
-                      : "View of downtown Raleigh, North Carolina near railroad tracks"
-                    : locale === "fr-CA"
-                      ? "Vue de Montréal, Québec, Canada depuis le fleuve Saint-Laurent"
-                      : "View of Montreal, Quebec, Canada from the St. Lawrence River"}
-                  fill
-                  placeholder="blur"
-                  priority
-                  sizes="(max-width: 767px) calc(100vw - 3rem), 40vw"
-                  unoptimized
-                />
               )}
             </div>
           </div>
@@ -110,6 +90,16 @@ export function GeoTargetPage({ content, locale }: { content: MontrealPageConten
                 <aside className="geo-flow-banner" aria-label={`${content.flowBanner.eyebrow}: ${content.flowBanner.title}`}>
                   <p className="geo-flow-banner__eyebrow">{content.flowBanner.eyebrow}</p>
                   <p className="geo-flow-banner__title">{content.flowBanner.title}</p>
+                  {content.flowBanner.href && content.flowBanner.linkLabel && (
+                    <a
+                      className="geo-flow-banner__link"
+                      href={content.flowBanner.href}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      {content.flowBanner.linkLabel} <span aria-hidden="true">↗</span>
+                    </a>
+                  )}
                 </aside>
               )}
               <section>

@@ -1,22 +1,15 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/seo";
-import { montrealTopicSlugs } from "@/lib/montrealContent";
-import { lavalTopicSlugs } from "@/lib/lavalContent";
-import { longueuilTopicSlugs } from "@/lib/longueuilContent";
-import { brossardTopicSlugs } from "@/lib/brossardContent";
-import { terrebonneTopicSlugs } from "@/lib/terrebonneContent";
-import { pointeClaireTopicSlugs } from "@/lib/pointeClaireContent";
-import { raleighDurhamTopicSlugs } from "@/lib/raleighDurhamContent";
-import { seattleTopicSlugs } from "@/lib/seattleContent";
-import { washingtonAreaSlugs, washingtonAreaTopicSlugs } from "@/lib/washingtonAreaContent";
 
 export const dynamic = "force-static";
 
 const routes = [
   { path: "/", priority: 1, changeFrequency: "monthly" },
+  { path: "/overview/", priority: 0.9, changeFrequency: "monthly" },
   { path: "/fundraising/", priority: 0.9, changeFrequency: "weekly" },
   { path: "/golf-tournament/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/ballroom-dance-tournament/", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/seeds-of-hope-festival/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/32-wishes/", priority: 0.8, changeFrequency: "monthly" },
   {
     path: "/kid-friendly-research-hospital/",
@@ -34,66 +27,6 @@ const routes = [
   { path: "/service-areas/", priority: 0.8, changeFrequency: "monthly" },
   { path: "/service-areas/united-states/", priority: 0.8, changeFrequency: "monthly" },
   { path: "/service-areas/canada/", priority: 0.8, changeFrequency: "monthly" },
-  { path: "/seattle/", priority: 0.8, changeFrequency: "monthly" },
-  ...seattleTopicSlugs.map((topic) => ({
-    path: `/seattle/${topic}/` as const,
-    priority: 0.7,
-    changeFrequency: "monthly" as const,
-  })),
-  ...washingtonAreaSlugs.map((serviceArea) => ({
-    path: `/${serviceArea}/` as const,
-    priority: 0.7,
-    changeFrequency: "monthly" as const,
-  })),
-  ...washingtonAreaSlugs.flatMap((serviceArea) =>
-    washingtonAreaTopicSlugs.map((topic) => ({
-      path: `/${serviceArea}/${topic}/` as const,
-      priority: 0.7,
-      changeFrequency: "monthly" as const,
-    })),
-  ),
-  { path: "/montreal/", priority: 0.8, changeFrequency: "monthly" },
-  ...montrealTopicSlugs.map((topic) => ({
-    path: `/montreal/${topic}/` as const,
-    priority: 0.7,
-    changeFrequency: "monthly" as const,
-  })),
-  { path: "/laval/", priority: 0.8, changeFrequency: "monthly" },
-  ...lavalTopicSlugs.map((topic) => ({
-    path: `/laval/${topic}/` as const,
-    priority: 0.7,
-    changeFrequency: "monthly" as const,
-  })),
-  { path: "/longueuil/", priority: 0.8, changeFrequency: "monthly" },
-  ...longueuilTopicSlugs.map((topic) => ({
-    path: `/longueuil/${topic}/` as const,
-    priority: 0.7,
-    changeFrequency: "monthly" as const,
-  })),
-  { path: "/brossard/", priority: 0.8, changeFrequency: "monthly" },
-  ...brossardTopicSlugs.map((topic) => ({
-    path: `/brossard/${topic}/` as const,
-    priority: 0.7,
-    changeFrequency: "monthly" as const,
-  })),
-  { path: "/terrebonne/", priority: 0.8, changeFrequency: "monthly" },
-  ...terrebonneTopicSlugs.map((topic) => ({
-    path: `/terrebonne/${topic}/` as const,
-    priority: 0.7,
-    changeFrequency: "monthly" as const,
-  })),
-  { path: "/pointe-claire/", priority: 0.8, changeFrequency: "monthly" },
-  ...pointeClaireTopicSlugs.map((topic) => ({
-    path: `/pointe-claire/${topic}/` as const,
-    priority: 0.7,
-    changeFrequency: "monthly" as const,
-  })),
-  { path: "/raleigh-durham/", priority: 0.8, changeFrequency: "monthly" },
-  ...raleighDurhamTopicSlugs.map((topic) => ({
-    path: `/raleigh-durham/${topic}/` as const,
-    priority: 0.7,
-    changeFrequency: "monthly" as const,
-  })),
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
