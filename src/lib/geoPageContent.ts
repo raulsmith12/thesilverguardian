@@ -26,7 +26,7 @@ export type GeoPageContent = {
   supportingImageSet?: "hockey-wishes" | "pediatric-care" | "hospital-wishes" | "movement-therapy";
   flowBanner?: {
     beforeHeading: string;
-    eyebrow: string;
+    eyebrow?: string;
     title: string;
     href?: string;
     linkLabel?: string;

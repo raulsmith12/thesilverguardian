@@ -30,6 +30,14 @@ export function GolfTournamentContent({ locale = "en" }: { locale?: "en" | "fr-C
             : "Charity golf events will be signature opportunities to demonstrate support for the pediatric cancer/heart disease community."}
         </p>
         <span>{isFrench ? "À venir" : "Coming soon"}</span>
+        <a
+          className="site-button site-button--primary"
+          href={isFrench ? "/fr-ca/contact/#newsletter-title-fr" : "/contact/#newsletter-title"}
+        >
+          {isFrench
+            ? "Pour rester au courant de cet événement et des autres événements à venir, veuillez vous inscrire à notre infolettre."
+            : "To stay up to date on this and other future events, please signup for our newsletter."}
+        </a>
       </article>
     </section>
   );

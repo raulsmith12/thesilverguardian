@@ -87,8 +87,10 @@ export function GeoTargetPage({ content, locale }: { content: GeoPageContent; lo
           {content.sections.map((section) => (
             <Fragment key={section.heading}>
               {content.flowBanner?.beforeHeading === section.heading && (
-                <aside className="geo-flow-banner" aria-label={`${content.flowBanner.eyebrow}: ${content.flowBanner.title}`}>
-                  <p className="geo-flow-banner__eyebrow">{content.flowBanner.eyebrow}</p>
+                <aside className="geo-flow-banner" aria-label={content.flowBanner.title}>
+                  {content.flowBanner.eyebrow && (
+                    <p className="geo-flow-banner__eyebrow">{content.flowBanner.eyebrow}</p>
+                  )}
                   <p className="geo-flow-banner__title">{content.flowBanner.title}</p>
                   {content.flowBanner.href && content.flowBanner.linkLabel && (
                     <a

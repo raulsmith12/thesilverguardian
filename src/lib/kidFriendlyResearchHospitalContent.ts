@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/i18n";
 import type { GeoPageContent } from "@/lib/geoPageContent";
-import pediatricEnvironmentHero from "@/img/generated/pediatric-environment-hero.webp";
+import cancerTreatmentHero from "@/img/cancertreatmentstockphoto.jpg";
 import cancerTreatment from "@/img/cancertreatmentstockphoto2.jpg";
 import hockeyArena from "@/img/hockey arena stock photo.jpg";
 import hockeyHero from "@/img/hockey-hero-rising-stockcake.jpg";
@@ -81,15 +81,14 @@ export const kidFriendlyResearchHospitalContent: Record<Locale, GeoPageContent> 
     imageLabel: "Welcoming ice-hockey-inspired pediatric environment",
     imageAlt: "Welcoming ice-hockey-inspired pediatric environment designed with children in mind",
     heroAsset: { src: hockeyHero, alt: "Illustration of an ice hockey player handling a puck on fractured ice" },
-    heroSecondaryAsset: { src: pediatricEnvironmentHero, alt: "Welcoming provider-designed pediatric family lounge with subtle ice hockey details and accessible seating" },
+    heroSecondaryAsset: { src: cancerTreatmentHero, alt: "Child receiving support from a caregiver in a pediatric treatment room" },
     supportingImageAssets: [
       { src: hockeyArena, alt: "Interior of a hockey arena with the rink illuminated beneath the seating" },
       { src: cancerTreatment, alt: "Caregiver talking with a child seated in a pediatric treatment room" },
     ],
     flowBanner: {
       beforeHeading: "Friendly Neighborhood Mascots",
-      eyebrow: "Coming soon",
-      title: "The Memory Wall",
+      title: "The Silver Guardian Memory Wall",
       href: "https://cloud-screen.com/v2/publications/silver-guardian-memory-wall",
       linkLabel: "Explore the Memory Wall",
     },
@@ -172,15 +171,14 @@ export const kidFriendlyResearchHospitalContent: Record<Locale, GeoPageContent> 
     imageLabel: "Milieu pédiatrique accueillant inspiré du hockey sur glace",
     imageAlt: "Milieu pédiatrique inspiré du hockey sur glace et pensé pour les enfants",
     heroAsset: { src: hockeyHero, alt: "Illustration d’un joueur de hockey sur glace maniant une rondelle sur une surface de glace fracturée" },
-    heroSecondaryAsset: { src: pediatricEnvironmentHero, alt: "Salon familial pédiatrique accueillant, accessible et conçu avec de subtils éléments de hockey sur glace" },
+    heroSecondaryAsset: { src: cancerTreatmentHero, alt: "Enfant accompagné par une soignante dans une salle de traitement pédiatrique" },
     supportingImageAssets: [
       { src: hockeyArena, alt: "Intérieur d’un aréna de hockey avec la patinoire éclairée sous les gradins" },
       { src: cancerTreatment, alt: "Proche aidante discutant avec un enfant assis dans une salle de traitement pédiatrique" },
     ],
     flowBanner: {
       beforeHeading: "Mascottes amicales du quartier",
-      eyebrow: "Bientôt disponible",
-      title: "Le mur des souvenirs",
+      title: "The Silver Guardian Memory Wall",
       href: "https://cloud-screen.com/v2/publications/silver-guardian-memory-wall",
       linkLabel: "Découvrir le mur des souvenirs",
     },

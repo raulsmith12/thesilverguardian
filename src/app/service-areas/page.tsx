@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
-import { GeoTargetPage } from "@/components/GeoTargetPage";
-import { serviceAreasLandingContent } from "@/lib/serviceAreaContent";
+import { ProjectedServiceAreas } from "@/components/ProjectedServiceAreas";
 import { createPageMetadata } from "@/lib/seo";
 
-const content = serviceAreasLandingContent.en;
-
 export const metadata: Metadata = createPageMetadata({
-  title: content.title,
-  description: content.description,
+  title: "Projected Service Areas",
+  description: "Explore The Silver Guardian’s projected service areas across selected United States and Canadian regions.",
   path: "/service-areas/",
-  keywords: content.keywords,
+  keywords: ["projected service areas", "United States", "Canada", "The Silver Guardian"],
 });
 
 export default function ServiceAreasPage() {
-  return <GeoTargetPage content={content} locale="en" />;
+  return <ProjectedServiceAreas locale="en" />;
 }

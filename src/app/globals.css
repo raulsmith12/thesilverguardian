@@ -1346,6 +1346,15 @@ a {
   object-fit: cover;
 }
 
+.fundraising-card__image--festival-logo {
+  aspect-ratio: 1133 / 392;
+  background: #485748;
+}
+
+.fundraising-card__image--festival-logo img {
+  object-fit: contain;
+}
+
 .fundraising-card p {
   margin: 1rem 0 0;
   line-height: 1.65;
@@ -1625,6 +1634,55 @@ a {
   color: var(--color-white);
 }
 
+.home-overview {
+  background: #f4f6f7;
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.home-overview__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.home-overview__image {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 18px 40px rgba(0, 28, 86, 0.16);
+}
+
+.home-overview__image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.home-overview__content h2 {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.home-overview__content > p:not(.section-kicker) {
+  margin: 1.25rem 0 0;
+  color: #4f5b61;
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.home-overview__content .site-button {
+  margin-top: 1.75rem;
+}
+
 .section-kicker {
   margin: 0 0 0.75rem;
   color: var(--color-primary);
@@ -1753,6 +1811,10 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .home-overview__inner {
+    grid-template-columns: 1fr;
+  }
+
   .feature-callout__image {
     width: 100%;
     min-height: 0;
@@ -1865,6 +1927,189 @@ a {
   }
 }
 
+.service-areas-hero {
+  position: relative;
+  display: grid;
+  min-height: clamp(32rem, 70vh, 46rem);
+  place-items: end start;
+  overflow: hidden;
+  color: var(--color-white);
+}
+
+.service-areas-hero > img {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center 38%;
+}
+
+.service-areas-hero__overlay {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 18, 58, 0.96) 0%, rgba(0, 28, 86, 0.74) 48%, rgba(0, 28, 86, 0.18) 100%);
+}
+
+.service-areas-hero__content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding: clamp(4rem, 9vw, 7rem) 1.5rem;
+}
+
+.service-areas-hero .section-kicker {
+  color: var(--color-secondary);
+}
+
+.service-areas-hero h1 {
+  max-width: 12ch;
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 850;
+  letter-spacing: -0.05em;
+  line-height: 0.98;
+}
+
+.service-areas-hero__content > p:not(.section-kicker) {
+  max-width: 48rem;
+  margin: 1.5rem 0 0;
+  color: #edf2f5;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.7;
+}
+
+.service-areas-content {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding: clamp(3rem, 7vw, 6rem) 1.5rem;
+}
+
+.service-areas-notice {
+  margin: 0;
+  border-left: 4px solid var(--color-secondary);
+  background: #f4f6f7;
+  color: #4f5b61;
+  font-weight: 650;
+  line-height: 1.7;
+  padding: 1.25rem 1.5rem;
+}
+
+.service-country {
+  padding-top: clamp(4rem, 8vw, 7rem);
+}
+
+.service-country + .service-country {
+  margin-top: clamp(4rem, 8vw, 7rem);
+  border-top: 1px solid #d8e0e5;
+}
+
+.service-country__header {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.service-country__flag {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 18px 40px rgba(0, 28, 86, 0.18);
+  aspect-ratio: 2 / 1;
+}
+
+.service-country__flag img {
+  object-fit: cover;
+}
+
+.service-country__header h2 {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 850;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.service-country__header > div:last-child > p:not(.section-kicker) {
+  margin: 1.25rem 0 0;
+  color: #4f5b61;
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+.service-region-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.service-region-card {
+  border-top: 5px solid var(--color-secondary);
+  border-radius: 8px;
+  background: var(--color-primary);
+  box-shadow: 0 14px 30px rgba(0, 28, 86, 0.14);
+  color: var(--color-white);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.service-region-card h3 {
+  margin: 0;
+  color: var(--color-white);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+}
+
+.service-region-card ul {
+  display: grid;
+  gap: 0.85rem;
+  margin: 1.5rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.service-region-card li {
+  color: #edf2f5;
+  line-height: 1.55;
+}
+
+.service-region-card li::marker {
+  color: var(--color-secondary);
+}
+
+.service-region-card strong {
+  color: var(--color-white);
+}
+
+.service-areas-sources {
+  margin-top: 3rem;
+  color: #4f5b61;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.service-areas-sources a {
+  color: var(--color-primary);
+  font-weight: 750;
+}
+
+.service-areas-action {
+  margin-top: 2rem;
+}
+
+@media (max-width: 767.98px) {
+  .service-areas-hero__overlay {
+    background: linear-gradient(180deg, rgba(0, 28, 86, 0.25), rgba(0, 18, 58, 0.96));
+  }
+
+  .service-country__header,
+  .service-region-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .geo-hero {
   background: linear-gradient(135deg, var(--color-primary) 0%, #063e78 100%);
   color: var(--color-white);
@@ -1936,8 +2181,8 @@ a {
 }
 
 .geo-hero-image__secondary {
-  right: 0;
-  bottom: 0;
+  right: -0.75rem;
+  bottom: -0.75rem;
   width: 68%;
   height: 60%;
   border: 5px solid var(--color-white);

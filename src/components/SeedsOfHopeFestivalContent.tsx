@@ -1,5 +1,5 @@
 import Image from "next/image";
-import seedsOfHopeImage from "@/img/vitolda-klein-OD1_HupXwxI-unsplash.jpg";
+import seedsOfHopeImage from "@/img/Festival Logo.jpg";
 
 export function SeedsOfHopeFestivalContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
   const isFrench = locale === "fr-CA";
@@ -10,17 +10,14 @@ export function SeedsOfHopeFestivalContent({ locale = "en" }: { locale?: "en" | 
       aria-label="Seeds of Hope Festival"
     >
       <article className="fundraising-card">
-        <p className="fundraising-card__season">
-          {isFrench ? "À compter de 2027" : "Beginning in 2027"}
-        </p>
         <h2>Seeds of Hope Festival</h2>
-        <div className="fundraising-card__image">
+        <div className="fundraising-card__image fundraising-card__image--festival-logo">
           <Image
             src={seedsOfHopeImage}
             alt={
               isFrench
-                ? "Trois enfants profitant d’un champ ensoleillé"
-                : "Three children enjoying a sunlit field"
+                ? "Logo du festival Seeds of Hope avec un phénix"
+                : "Seeds of Hope Festival logo featuring a phoenix"
             }
             fill
             placeholder="blur"
@@ -34,6 +31,14 @@ export function SeedsOfHopeFestivalContent({ locale = "en" }: { locale?: "en" | 
             : "A one-of-a-kind music and charity festival is being developed to create a cascade of hope through community celebration and the annual granting of 32 ice hockey-related wishes."}
         </p>
         <span>{isFrench ? "À venir" : "Coming soon"}</span>
+        <a
+          className="site-button site-button--primary"
+          href={isFrench ? "/fr-ca/contact/#newsletter-title-fr" : "/contact/#newsletter-title"}
+        >
+          {isFrench
+            ? "Pour rester au courant de cet événement et des autres événements à venir, veuillez vous inscrire à notre infolettre."
+            : "To stay up to date on this and other future events, please signup for our newsletter."}
+        </a>
       </article>
     </section>
   );

@@ -63,27 +63,6 @@ export default function OverviewPage() {
           </div>
         </section>
 
-        <section className="overview-message" aria-labelledby="team-message-title">
-          <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-16 lg:grid-cols-[0.7fr_1.3fr]">
-            <div>
-              <h2 id="team-message-title">A Message from The Silver Guardian Team</h2>
-            </div>
-            <div className="overview-message__copy">
-              <p>
-                The Silver Guardian is a group of business owners and community
-                advocates who have joined together to gather community support
-                for an innovative pediatric care facility with a kid-friendly
-                ice hockey theme designed to inspire hope and healing in the face
-                of life-threatening conditions, primarily cancer and heart disease.
-              </p>
-              <p className="overview-message__signature">
-                Thank you,<br />
-                <strong>The Silver Guardian Team</strong>
-              </p>
-            </div>
-          </div>
-        </section>
-
         <section className="overview-details" aria-label="About The Silver Guardian">
           <div className="mx-auto w-full max-w-6xl px-6 py-20">
             {overviewSections.map((section) => (
@@ -130,6 +109,27 @@ export default function OverviewPage() {
               <Link className="site-button site-button--outline" href="/fundraising">
                 Explore Score a Goal
               </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="overview-message" aria-labelledby="team-message-title">
+          <div className="mx-auto grid w-full max-w-6xl gap-8 px-6 py-16 lg:grid-cols-[0.7fr_1.3fr]">
+            <div>
+              <h2 id="team-message-title">A Message from The Silver Guardian Team</h2>
+            </div>
+            <div className="overview-message__copy">
+              <p>
+                The Silver Guardian is a group of business owners and community advocates who have joined forces to promote this innovative, holistic vision inspiring hope and healing in the face of life-threatening conditions, primarily childhood cancer and heart disease.
+              </p>
+              <p>&nbsp;</p>
+              <p>
+                We thank you in advance for your generous support both through the 32 Wishes Petition and the Score a Goal Campaign. We also encourage you to visit the rest our website pages to discover a more in depth explanation of this innovative vision inspired by the sport of ice hockey!
+              </p>
+              <p className="overview-message__signature">
+                Thank you,<br />
+                <strong>The Silver Guardian Team</strong>
+              </p>
             </div>
           </div>
         </section>

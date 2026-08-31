@@ -4,7 +4,8 @@ import { Navigation } from "@/components/Navigation";
 import ballroomDanceImage from "@/img/c3a93a8777a0af0f74eb8ff120553e56fb08dd2d-1.jpeg";
 import cancerTreatmentImage from "@/img/cancertreatmentstockphoto.jpg";
 import hockeyArenaImage from "@/img/hockey arena stock photo.jpg";
-import boxingImage from "@/img/lorenzo-fatto-offidani-de5OZMjb5ww-unsplash.jpg";
+import boxingImage from "@/img/group-of-women-kickboxing-together-at-gym-3062328787.jpg";
+import silverGuardianLogo from "@/img/silver-guardian-logo.png";
 import type { Locale } from "@/lib/i18n";
 
 const panels: Array<{
@@ -20,7 +21,7 @@ const panels: Array<{
   {
     title: "Non-Contact Boxing",
     image: boxingImage,
-    alt: "A boxer practicing with a heavy bag",
+    alt: "Women practicing non-contact kickboxing with heavy bags in a gym",
   },
   {
     title: "Ice Hockey Coffee Lounge",
@@ -35,41 +36,76 @@ const panels: Array<{
 ];
 
 export function MovementTherapyCenter({ locale }: { locale: Locale }) {
+  const isFrench = locale === "fr-CA";
+
   return (
     <div className="flex min-h-screen flex-col">
       <Navigation locale={locale} />
       <main className="flex-1">
-        <section
-          className="flex w-full flex-wrap"
-          aria-label="Movement Therapy Center spaces"
-        >
-          {panels.map((panel) => (
-            <article
-              className="mx-[3%] my-[0.4rem] w-[44%] overflow-hidden bg-white"
-              key={panel.title}
-            >
-              <Image
-                className="aspect-video h-auto w-full object-cover"
-                src={panel.image}
-                alt={panel.alt}
-                sizes="44vw"
-              />
-              <h2 className="px-2 py-3 text-center text-lg font-bold text-[var(--color-primary)] sm:text-2xl">
-                {panel.title}
-              </h2>
-            </article>
-          ))}
+        <section className="page-hero page-hero--compact">
+          <div className="mx-auto w-full max-w-6xl px-6 py-16">
+            <h1>
+              {isFrench
+                ? "Centres de thérapie par le mouvement"
+                : "Movement Therapy Centers"}
+            </h1>
+          </div>
         </section>
-        <p className="mx-auto w-[94%] py-4 text-sm leading-relaxed text-[var(--color-charcoal)]">
-          <strong>Disclaimer:</strong> The Silver Guardian Initiative uses the
-          term “movement therapy” to refer to the idea of encouraging to be
-          active emotionally, mentally, physically, and socially, whether that
-          is preparing for a ballroom dance competition, working out with a
-          punching bag, sitting down to enjoy a comforting beverage, or
-          attending a treatment session with a licensed physical therapist.
-        </p>
+        <section className="page-content page-content--green">
+          <div className="mx-auto w-full max-w-6xl px-6 py-16">
+            <div className="rounded-lg bg-white p-6 text-center text-[var(--color-charcoal)] shadow-lg md:hidden">
+              <p className="m-0 leading-relaxed">
+                {isFrench
+                  ? "Pour en savoir plus sur les Centres de thérapie par le mouvement, veuillez consulter cette page sur un ordinateur de bureau."
+                  : "For more information about the Movement Therapy Centers, please visit this page on a desktop device."}
+              </p>
+            </div>
+
+            <div
+              className="hidden grid-cols-3 grid-rows-3 gap-5 md:grid"
+              aria-label={
+                isFrench
+                  ? "Espaces des Centres de thérapie par le mouvement"
+                  : "Movement Therapy Center spaces"
+              }
+            >
+              <MovementTherapyCard panel={panels[0]} />
+              <div aria-hidden="true" />
+              <MovementTherapyCard panel={panels[1]} />
+              <div aria-hidden="true" />
+              <div className="flex items-center justify-center p-6">
+                <Image
+                  alt={isFrench ? "Logo de The Silver Guardian" : "The Silver Guardian logo"}
+                  className="h-auto w-full max-w-52 drop-shadow-lg"
+                  src={silverGuardianLogo}
+                />
+              </div>
+              <div aria-hidden="true" />
+              <MovementTherapyCard panel={panels[2]} />
+              <div aria-hidden="true" />
+              <MovementTherapyCard panel={panels[3]} />
+            </div>
+          </div>
+        </section>
       </main>
       <Footer locale={locale} />
     </div>
+  );
+}
+
+function MovementTherapyCard({ panel }: { panel: (typeof panels)[number] }) {
+  return (
+    <article className="overflow-hidden rounded-lg bg-white p-4 shadow-lg">
+      <h2 className="mb-4 text-center text-lg font-bold text-[var(--color-primary)] lg:text-xl">
+        {panel.title}
+      </h2>
+      <Image
+        alt={panel.alt}
+        className="aspect-video h-auto w-full rounded-md object-cover"
+        sizes="(min-width: 1152px) 352px, 30vw"
+        src={panel.image}
+        unoptimized
+      />
+    </article>
   );
 }

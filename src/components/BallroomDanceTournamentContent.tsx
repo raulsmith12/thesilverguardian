@@ -28,6 +28,14 @@ export function BallroomDanceTournamentContent({ locale = "en" }: { locale?: "en
             : "A one of a kind ballroom dance competition is being developed to strengthen pediatric cancer/heart disease communities through artistic movement and competitive resilience."}
         </p>
         <span>{isFrench ? "À venir" : "Coming soon"}</span>
+        <a
+          className="site-button site-button--primary"
+          href={isFrench ? "/fr-ca/contact/#newsletter-title-fr" : "/contact/#newsletter-title"}
+        >
+          {isFrench
+            ? "Pour rester au courant de cet événement et des autres événements à venir, veuillez vous inscrire à notre infolettre."
+            : "To stay up to date on this and other future events, please signup for our newsletter."}
+        </a>
       </article>
     </section>
   );

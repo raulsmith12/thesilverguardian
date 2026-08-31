@@ -34,8 +34,8 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
       links: [
         {
           label: isFrench
-            ? "Centres de thérapie par le mouvement"
-            : "Movement Therapy Centers",
+            ? "Soutien communautaire"
+            : "Community Support",
           href: localizedPath("/movement-therapy-center", locale),
         },
         {
@@ -43,7 +43,7 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
           href: "/cancer-prevention",
         },
         {
-          label: isFrench ? "Zones desservies" : "Service Areas",
+          label: isFrench ? "Zones desservies prévues" : "Projected Service Areas",
           href: localizedPath("/service-areas", locale),
         },
       ],

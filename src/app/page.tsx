@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
+import overviewImage from "@/img/generated/home-overview.webp";
 import newsletterImage from "@/img/charlesdeluvio-FdDkfYFHqe4-unsplash.jpg";
 import scoreGoalImage from "@/img/hockey-goal.jpg";
 import silverGuardianLogo from "@/img/silver-guardian-w-child.png";
@@ -90,6 +91,29 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <section className="home-overview" aria-labelledby="home-overview-title">
+            <div className="home-overview__inner">
+              <div className="home-overview__image">
+                <Image
+                  src={overviewImage}
+                  alt="A child holding a hockey helmet with a parent and care professional beside an ice rink"
+                  placeholder="blur"
+                  sizes="(max-width: 767px) calc(100vw - 3rem), 50vw"
+                  unoptimized
+                />
+              </div>
+              <div className="home-overview__content">
+                <p className="section-kicker">The vision</p>
+                <h2 id="home-overview-title">Overview</h2>
+                <p>
+                  The Silver Guardian desires to bring clinical research, community-based movement therapy, and hockey-inspired wish granting together in order to increase the quality of life for children facing life-threatening illness such as cancer or heart disease, while also strengthening their support network.
+                </p>
+                <Link className="site-button site-button--secondary" href="/overview/">
+                  Explore the overview
+                </Link>
+              </div>
+            </div>
+          </section>
           <div className="feature-callout-list">
             {[
               {
@@ -142,13 +166,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="mission-note-section">
-          <div className="mx-auto w-full max-w-6xl px-6 py-12">
-            <p>
-              The Silver Guardian is a group of business owners and community advocates who have joined together to gather community support for an innovative pediatric care facility with a kid friendly ice hockey theme designed to inspire hope and healing in the face of life threatening conditions, primarily cancer and heart disease.
-            </p>
-          </div>
-        </section>
       </main>
       <Footer />
     </div>
