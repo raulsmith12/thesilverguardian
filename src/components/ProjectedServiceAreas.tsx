@@ -12,6 +12,7 @@ type Region = {
   population: string;
   capital: string;
   largestCity: string;
+  teamsLabel?: string;
   teams: string;
   landmarks: string;
 };
@@ -40,6 +41,15 @@ const serviceAreas: Record<Locale, CountrySection[]> = {
           largestCity: "Jacksonville",
           teams: "Florida Panthers and Tampa Bay Lightning",
           landmarks: "Everglades National Park, Kennedy Space Center, and Walt Disney World",
+        },
+        {
+          name: "Georgia",
+          population: "11,302,748 (July 1, 2025 estimate)",
+          capital: "Atlanta",
+          largestCity: "Atlanta",
+          teamsLabel: "Past home teams",
+          teams: "Atlanta Flames (1972–1980) and Atlanta Thrashers (1999–2011)",
+          landmarks: "Georgia Aquarium, Martin Luther King Jr. National Historical Park, and Savannah Historic District",
         },
         {
           name: "Nevada",
@@ -132,6 +142,15 @@ const serviceAreas: Record<Locale, CountrySection[]> = {
           largestCity: "Jacksonville",
           teams: "Panthers de la Floride et Lightning de Tampa Bay",
           landmarks: "Parc national des Everglades, Centre spatial Kennedy et Walt Disney World",
+        },
+        {
+          name: "Géorgie",
+          population: "11 302 748 (estimation au 1er juillet 2025)",
+          capital: "Atlanta",
+          largestCity: "Atlanta",
+          teamsLabel: "Anciennes équipes locales",
+          teams: "Flames d’Atlanta (1972–1980) et Thrashers d’Atlanta (1999–2011)",
+          landmarks: "Aquarium de Géorgie, parc historique national Martin Luther King Jr. et quartier historique de Savannah",
         },
         {
           name: "Nevada",
@@ -239,7 +258,7 @@ export function ProjectedServiceAreas({ locale }: { locale: Locale }) {
         population: "Population Size",
         capital: "Capital City",
         largestCity: "Largest City",
-        teams: "Home Ice Hockey Team(s)",
+        teams: "Current home teams",
         landmarks: "Known For",
         notice:
           "These are projected service areas. Inclusion does not announce an active program, facility, event, partnership, or registration process in any province, state, or city.",
@@ -252,7 +271,7 @@ export function ProjectedServiceAreas({ locale }: { locale: Locale }) {
   return (
     <div className="flex min-h-screen flex-col">
       <Navigation locale={locale} />
-      <main className="flex-1">
+      <main className="service-areas-page flex-1">
         <section className="service-areas-hero">
           <Image
             src={hockeyHero}
@@ -300,7 +319,7 @@ export function ProjectedServiceAreas({ locale }: { locale: Locale }) {
                       <li><strong>{labels.population}:</strong> {region.population}</li>
                       <li><strong>{labels.capital}:</strong> {region.capital}</li>
                       <li><strong>{labels.largestCity}:</strong> {region.largestCity}</li>
-                      <li><strong>{labels.teams}:</strong> {region.teams}</li>
+                      <li><strong>{region.teamsLabel ?? labels.teams}:</strong> {region.teams}</li>
                       <li><strong>{labels.landmarks}:</strong> {region.landmarks}</li>
                     </ul>
                   </article>

@@ -29,7 +29,6 @@ export function GolfTournamentContent({ locale = "en" }: { locale?: "en" | "fr-C
             ? "Les événements de golf caritatifs seront des occasions privilégiées de démontrer notre appui à la communauté touchée par le cancer et les maladies cardiaques pédiatriques."
             : "Charity golf events will be signature opportunities to demonstrate support for the pediatric cancer/heart disease community."}
         </p>
-        <span>{isFrench ? "À venir" : "Coming soon"}</span>
         <a
           className="site-button site-button--primary"
           href={isFrench ? "/fr-ca/contact/#newsletter-title-fr" : "/contact/#newsletter-title"}

@@ -9,7 +9,7 @@ export function FundraisingContent({ locale = "en" }: { locale?: "en" | "fr-CA" 
     <div className="fundraising-layout">
       <section className="fundraising-intro">
         <div>
-          <h2 className="section-title">
+          <h2 className="section-title gold-text">
             {isFrench ? "Campagne communautaire" : "Community Campaign"}
           </h2>
         </div>

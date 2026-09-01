@@ -489,21 +489,8 @@ function WishesContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
           </div>
         </section>
 
-        <section className="page-content">
+        <section className="page-content page-content--gold">
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
-            <div className="wishes-intro">
-              <p>
-                {isFrench
-                  ? "L’un de nos objectifs est de réaliser chaque année 32 souhaits liés au hockey sur glace pour de courageux enfants dans 32 villes, lors d’un seul événement conçu pour répandre l’espoir et la joie au sein de la communauté touchée par le cancer et les maladies cardiaques pédiatriques."
-                  : "One of our goals is to annually grant 32 ice hockey related wishes to brave children in 32 cities at a single event designed to spread hope and joy within the pediatric cancer/heart disease community."}
-              </p>
-              <p>
-                {isFrench
-                  ? "Revenez régulièrement pour découvrir quels membres de la communauté nord-américaine du hockey professionnel ont accepté de s’associer à nous dans cette initiative."
-                  : "Please check back regularly to see which members of the North American professional ice hockey community have agreed to partner with us in this endeavor."}
-              </p>
-            </div>
-
             <aside className="petition-cta" aria-labelledby="wishes-petition-title">
               <div>
                 <p className="section-kicker">Add your voice</p>

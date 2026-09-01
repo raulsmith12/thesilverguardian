@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
-import silverGuardianLogo from "@/img/silver-guardian-logo.png";
+import silverGuardianLogo from "@/img/silver-guardian-w-child.png";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -21,13 +21,16 @@ export default function CancerPreventionPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Navigation />
-      <main className="flex-1">
+      <main className="flex flex-1 flex-col">
         <section className="page-hero page-hero--compact">
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
             <h1>Cancer Prevention</h1>
           </div>
         </section>
-        <section aria-labelledby="cancer-prevention-status">
+        <section
+          aria-labelledby="cancer-prevention-status"
+          className="page-content page-content--green flex-1"
+        >
           <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-6 py-16 text-center">
             <Image
               alt="The Silver Guardian logo"
@@ -35,7 +38,7 @@ export default function CancerPreventionPage() {
               src={silverGuardianLogo}
             />
             <h2
-              className="text-2xl font-bold text-[var(--color-primary)] sm:text-3xl"
+              className="text-2xl font-bold text-white sm:text-3xl"
               id="cancer-prevention-status"
             >
               Check Back Soon for More Details

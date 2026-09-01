@@ -23,7 +23,7 @@ const overviewSections = [
     number: "01",
     title: "What is The Silver Guardian?",
     paragraphs: [
-      "The Silver Guardian is an innovative initiative to empower and inspire a holistic approach to helping members of the community who are battling life-threatening illness, such as pediatric cancer and heart disease. Through this initiative we hope to increase the quality of life, not only for these individuals, but the support network that surrounds them.",
+      "The Silver Guardian is an innovative initiative to empower and inspire a holistic approach to helping members of the community who are battling life-threatening illness, such as childhood cancer and heart disease. Through this initiative we hope to increase the quality of life, not only for these individuals, but the support network that surrounds them.",
       "It is our intention to make a generational impact across all three major care points of the journey: Clinically via the founding of a new pediatric cancer and heart disease research facility, Non-clinically via the establishment of a unique chain of “Movement Therapy Centers” in communities across the US and Canada, and Charitably through the coordination of hockey related wish granting at an annual, one of a kind music/charity festival.",
     ],
   },
@@ -31,7 +31,7 @@ const overviewSections = [
     number: "02",
     title: "Why Ice Hockey?",
     paragraphs: [
-      "Ice hockey requires intentional focus and specialized equipment to participate. Similarly, it requires these same elements to provide effective care holistically to pediatric cancer and heart disease patients in our communities. The sport of ice hockey also provides a unique platform to boost morale and a positive fighting spirit in patients who battle for their lives every day against impossible odds.",
+      "Ice hockey requires intentional focus and specialized equipment to participate. Similarly, it requires these same elements to provide effective care holistically to childhood cancer and heart disease patients in our communities. The sport of ice hockey also provides a unique platform to boost morale and a positive fighting spirit in patients who battle for their lives every day against impossible odds.",
     ],
   },
   {
@@ -39,14 +39,14 @@ const overviewSections = [
     title: "Why Ballroom Dancing and Boxing?",
     paragraphs: [
       "Not everyone has access to or possesses the ability to play the sport of ice hockey, however, participating in competitive ballroom dancing and non-contact boxing provides a very similar, hands on opportunity to strengthen bodies and minds in a similar way through artistically competitive activities. It is our intention to increase access to these immensely beneficial activities in innovative ways throughout the US and Canada.",
-      "Our facilities would also incorporate a unique Ice Hockey Lounge based on a European coffee house design, and a Physical Therapy suite which will help bridge the gap between clinical and non-clinical support for these courageous individuals who have had their world radically altered by life threatening illness, such as pediatric cancer and heart disease.",
+      "Our facilities would also incorporate a unique Ice Hockey Lounge based on a European coffee house design, and a Physical Therapy suite which will help bridge the gap between clinical and non-clinical support for these courageous individuals who have had their world radically altered by life threatening illness, such as childhood cancer and heart disease.",
     ],
   },
   {
     number: "04",
     title: "Why Wish Granting?",
     paragraphs: [
-      "Annual wish granting has the potential to start a cascade of hope amongst patients whose lives have been radically altered by life threatening illness, such as pediatric cancer and heart disease. In light of this fact, we have a vision to annually grant 32 ice hockey related wishes at a single, innovative music festival event, starting in 2027.",
+      "Annual wish granting has the potential to start a cascade of hope amongst patients whose lives have been radically altered by life threatening illness, such as childhood cancer and heart disease. In light of this fact, we have a vision to annually grant 32 ice hockey related wishes at a single, innovative music festival event, starting in 2027.",
     ],
   },
 ];
@@ -88,7 +88,7 @@ export default function OverviewPage() {
               You can help The Silver Guardian Initiative bring this vision to life
               in two unique ways. One, you can sign our non-monetary, 32 Wishes
               petition which will allow your voice to be heard in support of patients
-              battling life threatening illness, such as pediatric cancer and heart
+              battling life threatening illness, such as childhood cancer and heart
               disease, across every professional ice hockey market in the US and
               Canada. Two, you can participate monetarily through our Score a Goal
               campaign. This campaign is essentially a tangible petition that will

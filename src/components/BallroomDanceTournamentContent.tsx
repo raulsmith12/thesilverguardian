@@ -27,7 +27,6 @@ export function BallroomDanceTournamentContent({ locale = "en" }: { locale?: "en
             ? "Un concours de danse de salon unique est en préparation afin de renforcer les communautés touchées par le cancer et les maladies cardiaques pédiatriques grâce au mouvement artistique et au dépassement de soi."
             : "A one of a kind ballroom dance competition is being developed to strengthen pediatric cancer/heart disease communities through artistic movement and competitive resilience."}
         </p>
-        <span>{isFrench ? "À venir" : "Coming soon"}</span>
         <a
           className="site-button site-button--primary"
           href={isFrench ? "/fr-ca/contact/#newsletter-title-fr" : "/contact/#newsletter-title"}

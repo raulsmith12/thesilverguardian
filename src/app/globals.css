@@ -433,6 +433,12 @@ a {
   background: #04672f;
 }
 
+.page-content--gold {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 242, 184, 0.34), transparent 42%),
+    linear-gradient(135deg, #6f5314, #b8891e);
+}
+
 .page-content--green .fundraising-intro > p,
 .page-content--green .contact-email a,
 .page-content--green .contact-email .section-kicker,
@@ -1922,8 +1928,31 @@ a {
   .hero-section::before {
     z-index: -2;
     background: #011038
-      url("../img/hockey-goal.png") top right / contain
+      url("../img/hockey-goal.png") center / cover
       no-repeat;
+  }
+
+  .hero-section::after {
+    background: rgba(24, 27, 31, 0.24);
+  }
+
+  .hero-section > div {
+    justify-content: center;
+    padding-block: 7rem;
+  }
+
+  .hero-section > div > div {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-section .hero-message {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .hero-section .hero-message + div {
+    justify-content: center;
   }
 }
 
@@ -1934,6 +1963,10 @@ a {
   place-items: end start;
   overflow: hidden;
   color: var(--color-white);
+}
+
+.service-areas-page {
+  background: #04672f;
 }
 
 .service-areas-hero > img {
@@ -2002,7 +2035,7 @@ a {
 
 .service-country + .service-country {
   margin-top: clamp(4rem, 8vw, 7rem);
-  border-top: 1px solid #d8e0e5;
+  border-top: 1px solid rgba(255, 255, 255, 0.28);
 }
 
 .service-country__header {
@@ -2026,7 +2059,7 @@ a {
 
 .service-country__header h2 {
   margin: 0;
-  color: var(--color-primary);
+  color: #ffd700;
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 850;
   letter-spacing: -0.045em;
@@ -2035,7 +2068,7 @@ a {
 
 .service-country__header > div:last-child > p:not(.section-kicker) {
   margin: 1.25rem 0 0;
-  color: #4f5b61;
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.08rem;
   line-height: 1.75;
 }
@@ -2085,13 +2118,13 @@ a {
 
 .service-areas-sources {
   margin-top: 3rem;
-  color: #4f5b61;
+  color: rgba(255, 255, 255, 0.85);
   font-size: 0.9rem;
   line-height: 1.7;
 }
 
 .service-areas-sources a {
-  color: var(--color-primary);
+  color: #ffd700;
   font-weight: 750;
 }
 
@@ -2395,4 +2428,8 @@ a {
   .geo-supporting-images {
     grid-template-columns: 1fr;
   }
+}
+
+.gold-text {
+  color: #ffd700 !important;
 }

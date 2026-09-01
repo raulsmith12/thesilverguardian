@@ -30,7 +30,6 @@ export function SeedsOfHopeFestivalContent({ locale = "en" }: { locale?: "en" | 
             ? "Un festival musical et caritatif unique est en préparation afin de créer une vague d’espoir grâce à une célébration communautaire et à l’octroi annuel de 32 souhaits liés au hockey sur glace."
             : "A one-of-a-kind music and charity festival is being developed to create a cascade of hope through community celebration and the annual granting of 32 ice hockey-related wishes."}
         </p>
-        <span>{isFrench ? "À venir" : "Coming soon"}</span>
         <a
           className="site-button site-button--primary"
           href={isFrench ? "/fr-ca/contact/#newsletter-title-fr" : "/contact/#newsletter-title"}
