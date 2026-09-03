@@ -1,5 +1,5 @@
 import Image from "next/image";
-import golfTournamentImage from "@/img/e4f884df0b93d4eb7d893f327084b05c3ccbf956-1.jpg";
+import golfTournamentImage from "@/img/Golf-Tournament-2301669502.jpg";
 
 export function GolfTournamentContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
   const isFrench = locale === "fr-CA";
@@ -17,7 +17,7 @@ export function GolfTournamentContent({ locale = "en" }: { locale?: "en" | "fr-C
         <div className="fundraising-card__image">
           <Image
             src={golfTournamentImage}
-            alt={isFrench ? "Balle de golf près d’un trou sur un terrain de golf" : "Golf ball resting beside a hole on a golf course"}
+            alt={isFrench ? "Balle de golf sur un té devant un bois de départ" : "Golf ball on a tee in front of a driver"}
             fill
             placeholder="blur"
             sizes="(max-width: 767px) 100vw, 760px"

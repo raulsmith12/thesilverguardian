@@ -268,7 +268,7 @@ a {
 .page-hero::before {
   z-index: -2;
   background: #f1f2f2
-    url("../img/hockey-goal.png") right center / contain
+    url("../img/hockey-goal.png") right center / cover
     no-repeat;
 }
 
@@ -311,7 +311,7 @@ a {
 }
 
 .hero-title__logo {
-  height: 6em;
+  height: 8em;
   filter:
     drop-shadow(0 0 8px rgba(255, 255, 255, 0.55))
     drop-shadow(0 2px 5px rgba(0, 28, 87, 0.7));
@@ -1928,7 +1928,7 @@ a {
   .hero-section::before {
     z-index: -2;
     background: #011038
-      url("../img/hockey-goal.png") center / cover
+      url("../img/hockey-goal.png") center calc(50% - 4rem) / cover
       no-repeat;
   }
 
@@ -1938,7 +1938,8 @@ a {
 
   .hero-section > div {
     justify-content: center;
-    padding-block: 7rem;
+    padding-top: 7.5rem;
+    padding-bottom: 7rem;
   }
 
   .hero-section > div > div {
@@ -1966,7 +1967,7 @@ a {
 }
 
 .service-areas-page {
-  background: #04672f;
+  background: var(--color-white);
 }
 
 .service-areas-hero > img {
@@ -2035,7 +2036,7 @@ a {
 
 .service-country + .service-country {
   margin-top: clamp(4rem, 8vw, 7rem);
-  border-top: 1px solid rgba(255, 255, 255, 0.28);
+  border-top: 1px solid rgba(0, 28, 87, 0.18);
 }
 
 .service-country__header {
@@ -2059,7 +2060,7 @@ a {
 
 .service-country__header h2 {
   margin: 0;
-  color: #ffd700;
+  color: var(--color-primary);
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 850;
   letter-spacing: -0.045em;
@@ -2068,7 +2069,7 @@ a {
 
 .service-country__header > div:last-child > p:not(.section-kicker) {
   margin: 1.25rem 0 0;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--color-charcoal);
   font-size: 1.08rem;
   line-height: 1.75;
 }
@@ -2118,7 +2119,7 @@ a {
 
 .service-areas-sources {
   margin-top: 3rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--color-charcoal);
   font-size: 0.9rem;
   line-height: 1.7;
 }

@@ -67,14 +67,14 @@ export function MovementTherapyCenter({ locale }: { locale: Locale }) {
             </div>
 
             <div
-              className="hidden grid-cols-3 grid-rows-3 gap-5 md:grid"
+              className="hidden grid-cols-3 grid-rows-3 md:grid"
               aria-label={
                 isFrench
                   ? "Espaces des Centres de thérapie par le mouvement"
                   : "Movement Therapy Center spaces"
               }
             >
-              <div>
+              <div className="flex flex-col [&>article]:flex-1">
                 <a
                   className="mb-3 block text-center font-bold text-white underline underline-offset-4"
                   href="https://academic.oup.com/heapro/article/38/4/daad077/7236781?login=false"
@@ -87,13 +87,15 @@ export function MovementTherapyCenter({ locale }: { locale: Locale }) {
                 </a>
                 <MovementTherapyCard panel={panels[0]} />
               </div>
-              <div aria-hidden="true" />
+              <div className="flex items-center justify-center text-center text-5xl font-black text-[#ffd700] xl:text-6xl">
+                Featuring:
+              </div>
               <MovementTherapyCard panel={panels[1]} />
               <div aria-hidden="true" />
               <div className="flex items-center justify-center">
                 <Image
                   alt={isFrench ? "Logo de The Silver Guardian" : "The Silver Guardian logo"}
-                  className="h-auto w-[115%] max-w-none drop-shadow-lg"
+                  className="h-auto w-[135%] max-w-none drop-shadow-lg"
                   src={silverGuardianLogo}
                 />
               </div>
@@ -130,8 +132,8 @@ export function MovementTherapyCenter({ locale }: { locale: Locale }) {
 
 function MovementTherapyCard({ panel }: { panel: (typeof panels)[number] }) {
   return (
-    <article className="overflow-hidden rounded-lg bg-white p-4 shadow-lg">
-      <h2 className="mb-4 text-center text-lg font-bold text-[var(--color-primary)] lg:text-xl">
+    <article className="overflow-hidden rounded-lg bg-[var(--color-primary)] p-4 shadow-lg">
+      <h2 className="mb-4 text-center text-lg font-bold text-white lg:text-xl">
         {panel.title}
       </h2>
       <Image
