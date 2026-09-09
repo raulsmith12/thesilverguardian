@@ -1292,6 +1292,32 @@ a {
   line-height: 1.75;
 }
 
+.initiative-allies {
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.initiative-allies__circles {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1rem, 5vw, 4rem);
+  margin-bottom: 1.5rem;
+}
+
+.initiative-allies__circle {
+  display: grid;
+  place-items: center;
+  width: min(40%, 26svh, 220px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #000;
+  color: #fff;
+  font-size: min(12vw, 16svh, 7rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
 .fundraising-grid {
   display: grid;
   gap: 1.25rem;

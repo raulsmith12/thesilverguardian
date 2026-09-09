@@ -188,6 +188,9 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
                 }}
                 title={isFrench ? "Campagnes de lancement" : "Groundfloor Campaigns"}
               >
+                <NavDropdown.Item href={localizedPath("/initiative-allies", locale)}>
+                  {isFrench ? "Alliés de l’initiative" : "Initiative Allies"}
+                </NavDropdown.Item>
                 {campaignGroups.map((group) => {
                   const isOpen = openCampaignGroup === group.id;
 

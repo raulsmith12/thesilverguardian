@@ -1,0 +1,9 @@
+project: the-silver-guardian
+
+services:
+  website:
+    type: static
+    path: .
+    build: npm run build
+    output: out
+    spa: false

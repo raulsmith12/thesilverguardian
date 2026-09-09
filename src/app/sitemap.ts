@@ -7,6 +7,7 @@ const routes = [
   { path: "/", priority: 1, changeFrequency: "monthly" },
   { path: "/overview/", priority: 0.9, changeFrequency: "monthly" },
   { path: "/fundraising/", priority: 0.9, changeFrequency: "weekly" },
+  { path: "/initiative-allies/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/golf-tournament/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/ballroom-dance-tournament/", priority: 0.7, changeFrequency: "monthly" },
   { path: "/seeds-of-hope-festival/", priority: 0.7, changeFrequency: "monthly" },

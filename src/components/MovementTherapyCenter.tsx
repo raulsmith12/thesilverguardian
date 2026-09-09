@@ -87,9 +87,6 @@ export function MovementTherapyCenter({ locale }: { locale: Locale }) {
                 </a>
                 <MovementTherapyCard panel={panels[0]} />
               </div>
-              <div className="flex items-center justify-center text-center text-5xl font-black text-[#ffd700] xl:text-6xl">
-                Featuring:
-              </div>
               <MovementTherapyCard panel={panels[1]} />
               <div aria-hidden="true" />
               <div className="flex items-center justify-center">
