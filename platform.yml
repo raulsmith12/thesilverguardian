@@ -7,3 +7,8 @@ services:
     build: npm run build
     output: out
     spa: false
+  api:
+    type: node
+    path: .
+    start: node app.js
+    healthcheck: /health
