@@ -8,7 +8,7 @@ const cityAliases = {
   Chicago: ["chicago", "chicago blackhawks", "blackhawks"],
   Columbus: ["columbus", "columbus blue jackets", "blue jackets"],
   Dallas: ["dallas", "dallas stars", "stars"],
-  Denver: ["denver", "colorado", "colorado avalanche", "avalanche"],
+  Colorado: ["denver", "colorado", "colorado avalanche", "avalanche"],
   Detroit: ["detroit", "detroit red wings", "red wings"],
   Edmonton: ["edmonton", "edmonton oilers", "oilers"],
   "Long Island": ["long island", "new york islanders", "ny islanders", "islanders"],

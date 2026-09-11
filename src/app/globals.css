@@ -2049,8 +2049,8 @@ a {
 .service-areas-notice {
   margin: 0;
   border-left: 4px solid var(--color-secondary);
-  background: #f4f6f7;
-  color: #4f5b61;
+  background: #04672f;
+  color: var(--color-white);
   font-weight: 650;
   line-height: 1.7;
   padding: 1.25rem 1.5rem;
@@ -2151,7 +2151,7 @@ a {
 }
 
 .service-areas-sources a {
-  color: #ffd700;
+  color: #04672f;
   font-weight: 750;
 }
 

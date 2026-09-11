@@ -441,7 +441,7 @@ const eastSkylines: Skyline[] = [
 ];
 
 const westCities = [
-  "Anaheim", "Calgary", "Chicago", "Dallas", "Denver", "Edmonton", "Los Angeles", "Minnesota", "Nashville",
+  "Anaheim", "Calgary", "Chicago", "Dallas", "Colorado", "Edmonton", "Los Angeles", "Minnesota", "Nashville",
   "San Jose", "Seattle", "St. Louis", "Utah", "Vancouver", "Vegas", "Winnipeg",
 ] as const;
 

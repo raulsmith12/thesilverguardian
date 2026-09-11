@@ -39,7 +39,7 @@ const serviceAreas: Record<Locale, CountrySection[]> = {
           population: "23,462,518 (July 1, 2025 estimate)",
           capital: "Tallahassee",
           largestCity: "Jacksonville",
-          teams: "Florida Panthers and Tampa Bay Lightning",
+          teams: "Florida Panthers, Tampa Bay Lightning",
           landmarks: "Everglades National Park, Kennedy Space Center, and Walt Disney World",
         },
         {
@@ -47,8 +47,8 @@ const serviceAreas: Record<Locale, CountrySection[]> = {
           population: "11,302,748 (July 1, 2025 estimate)",
           capital: "Atlanta",
           largestCity: "Atlanta",
-          teamsLabel: "Past home teams",
-          teams: "Atlanta Flames (1972–1980) and Atlanta Thrashers (1999–2011)",
+          teamsLabel: "Past home team(s)",
+          teams: "Atlanta Flames (1972–1980), Atlanta Thrashers (1999–2011)",
           landmarks: "Georgia Aquarium, Martin Luther King Jr. National Historical Park, and Savannah Historic District",
         },
         {
@@ -62,8 +62,8 @@ const serviceAreas: Record<Locale, CountrySection[]> = {
         {
           name: "North and South Carolina",
           population: "16,768,242 combined (July 1, 2025 estimates)",
-          capital: "Raleigh and Columbia",
-          largestCity: "Charlotte and Charleston",
+          capital: "Raleigh, Columbia",
+          largestCity: "Charlotte, Charleston",
           teams: "Carolina Hurricanes",
           landmarks: "Outer Banks, Great Smoky Mountains, and Charleston Historic District",
         },
@@ -81,7 +81,7 @@ const serviceAreas: Record<Locale, CountrySection[]> = {
           capital: "Olympia",
           largestCity: "Seattle",
           teams: "Seattle Kraken",
-          landmarks: "Space Needle, Mount Rainier, and Chihuly Garden and Glass",
+          landmarks: "Space Needle, Mount Rainier, and Pike Place Market",
         },
       ],
     },
@@ -97,7 +97,7 @@ const serviceAreas: Record<Locale, CountrySection[]> = {
           population: "5,057,077 (April 1, 2026 estimate)",
           capital: "Edmonton",
           largestCity: "Calgary",
-          teams: "Calgary Flames and Edmonton Oilers",
+          teams: "Calgary Flames, Edmonton Oilers",
           landmarks: "Banff National Park, Jasper National Park, and West Edmonton Mall",
         },
         {
@@ -113,7 +113,7 @@ const serviceAreas: Record<Locale, CountrySection[]> = {
           population: "16,103,890 (April 1, 2026 estimate)",
           capital: "Toronto",
           largestCity: "Toronto",
-          teams: "Toronto Maple Leafs and Ottawa Senators",
+          teams: "Toronto Maple Leafs, Ottawa Senators",
           landmarks: "CN Tower, Niagara Falls, and Parliament Hill",
         },
         {
@@ -182,7 +182,7 @@ const serviceAreas: Record<Locale, CountrySection[]> = {
           capital: "Olympia",
           largestCity: "Seattle",
           teams: "Kraken de Seattle",
-          landmarks: "Space Needle, mont Rainier et Chihuly Garden and Glass",
+          landmarks: "Space Needle, mont Rainier et Pike Place Market",
         },
       ],
     },
@@ -258,14 +258,14 @@ export function ProjectedServiceAreas({ locale }: { locale: Locale }) {
         population: "Population Size",
         capital: "Capital City",
         largestCity: "Largest City",
-        teams: "Current home teams",
+        teams: "Current home team(s)",
         landmarks: "Known For",
         notice:
           "These are projected service areas. Inclusion does not announce an active program, facility, event, partnership, or registration process in any province, state, or city.",
         sources: "Population sources",
         canadaSource: "Statistics Canada",
         usSource: "U.S. Census Bureau",
-        cta: "Explore the full vision",
+        cta: "Explore the Full Initiative Overview",
       };
 
   return (

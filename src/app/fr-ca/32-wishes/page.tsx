@@ -22,7 +22,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function FrenchWishesPage() {
   const regions = {
-    Ouest: ["Anaheim", "Calgary", "Chicago", "Dallas", "Denver", "Edmonton", "Los Angeles", "Minnesota", "Nashville", "San Jose", "Seattle", "St. Louis", "Utah", "Vancouver", "Vegas", "Winnipeg"],
+    Ouest: ["Anaheim", "Calgary", "Chicago", "Dallas", "Colorado", "Edmonton", "Los Angeles", "Minnesota", "Nashville", "San Jose", "Seattle", "St. Louis", "Utah", "Vancouver", "Vegas", "Winnipeg"],
     Est: ["Boston", "Buffalo", "Carolina", "Columbus", "Detroit", "Florida", "Long Island", "Montreal", "New Jersey", "New York", "Ottawa", "Philadelphia", "Pittsburgh", "Tampa", "Toronto", "Washington DC"],
   } as const;
 
