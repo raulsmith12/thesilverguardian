@@ -7,7 +7,7 @@ export function InitiativeAlliesContent({ locale = "en" }: { locale?: Locale }) 
         <div className="initiative-allies__circle">?</div>
         <div className="initiative-allies__circle">?</div>
       </div>
-      <h2>{locale === "fr-CA" ? "À venir" : "Coming Soon"}</h2>
+      <h2>{locale === "fr-CA" ? "Revenez bientôt" : "Check Back Soon"}</h2>
     </div>
   );
 }

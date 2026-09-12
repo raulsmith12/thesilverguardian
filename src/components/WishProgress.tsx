@@ -48,7 +48,7 @@ export function WishSignatureCount({ city, locale = "en" }: { city: string; loca
     <p className="wish-signature-count" aria-busy={isLoading} aria-live="polite">
       {failed
         ? (isFrench ? "Signatures indisponibles" : "Signatures unavailable")
-        : `${countLabel} signatures`}
+        : `${countLabel} ${count === 1 ? "signature" : "signatures"}`}
     </p>
   );
 }

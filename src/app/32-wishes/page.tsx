@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import anaheimImage from "@/img/0CAD6E6D-D0BA-49FA-9C50-54A8CB29EEF0.jpeg";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import { WishSignatureCount } from "@/components/WishProgress";
@@ -451,11 +453,18 @@ const eastCities = [
 ] as const;
 
 function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city: string; locale?: "en" | "fr-CA" }) {
-  return (
+  const card = (
     <article
       className="wish-skyline-card"
-      aria-label={`${city} skyline silhouette`}
+      aria-label={`${city} wish`}
     >
+      {city === "Anaheim" ? (
+        <Image
+          className="wish-skyline-card__image"
+          src={anaheimImage}
+          alt="Anaheim at dusk with palm trees and illuminated streets, labeled #anaheim #32wishes"
+        />
+      ) : (
       <div className="wish-skyline-card__sky" aria-hidden="true">
         <div className="wish-skyline-card__buildings">
           {skyline.buildings.map((building, index) => (
@@ -470,10 +479,25 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
           ))}
         </div>
       </div>
-      <h3>{city}</h3>
+      )}
+      <h3>
+        {city}
+        {city === "Anaheim" && (
+          <>
+            <br />
+            <span>(orange, white, black)</span>
+          </>
+        )}
+      </h3>
       <WishSignatureCount city={city} locale={locale} />
     </article>
   );
+
+  return city === "Anaheim" ? (
+    <Link href="/more-info/#petition" style={{ color: "inherit", textDecoration: "none" }}>
+      {card}
+    </Link>
+  ) : card;
 }
 
 function WishesContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
@@ -489,7 +513,7 @@ function WishesContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
           </div>
         </section>
 
-        <section className="page-content page-content--gold">
+        <section className="page-content page-content--green">
           <div className="mx-auto w-full max-w-6xl px-6 py-16">
             <aside className="petition-cta" aria-labelledby="wishes-petition-title">
               <div>
@@ -533,6 +557,11 @@ function WishesContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
                 </div>
               </section>
             </div>
+            <aside className="wishes-note">
+              <p>
+                <strong>Note:</strong>{"\u00a0"}Don&apos;t have a favorite hockey team to sign the 32 Wishes Petition with? Feel free to pick one with a cancer awareness color you would like to support.
+              </p>
+            </aside>
           </div>
         </section>
       </main>
