@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import anaheimImage from "@/img/0CAD6E6D-D0BA-49FA-9C50-54A8CB29EEF0.jpeg";
+import bostonImage from "@/img/37D0B9CB-FA7F-4352-A827-1988CE836B36.jpeg";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import { WishSignatureCount } from "@/components/WishProgress";
@@ -464,6 +465,12 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
           src={anaheimImage}
           alt="Anaheim at dusk with palm trees and illuminated streets, labeled #anaheim #32wishes"
         />
+      ) : city === "Boston" ? (
+        <Image
+          className="wish-skyline-card__image"
+          src={bostonImage}
+          alt="Boston harbor and skyline at dusk, labeled #32wishes #boston"
+        />
       ) : (
       <div className="wish-skyline-card__sky" aria-hidden="true">
         <div className="wish-skyline-card__buildings">
@@ -488,12 +495,18 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
             <span>(orange, white, black)</span>
           </>
         )}
+        {city === "Boston" && (
+          <>
+            <br />
+            <span>(gold, black, white)</span>
+          </>
+        )}
       </h3>
       <WishSignatureCount city={city} locale={locale} />
     </article>
   );
 
-  return city === "Anaheim" ? (
+  return city === "Anaheim" || city === "Boston" ? (
     <Link href="/more-info/#petition" style={{ color: "inherit", textDecoration: "none" }}>
       {card}
     </Link>
@@ -514,19 +527,23 @@ function WishesContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
         </section>
 
         <section className="page-content page-content--green">
-          <div className="mx-auto w-full max-w-6xl px-6 py-16">
-            <aside className="petition-cta" aria-labelledby="wishes-petition-title">
-              <div>
-                <p className="section-kicker">Add your voice</p>
-                <h2 id="wishes-petition-title">Help move 32 Wishes forward</h2>
-                <p>Show your support for the vision by adding your name to the community petition.</p>
+          <div className="w-full">
+            <div className="mx-auto w-full page-content--gold">
+              <div className="px-6 py-16 max-w-6xl mx-auto">
+                <aside className="petition-cta" aria-labelledby="wishes-petition-title">
+                  <div>
+                    <p className="section-kicker">Add your voice</p>
+                    <h2 id="wishes-petition-title">Help move 32 Wishes forward</h2>
+                    <p>Show your support for the vision by adding your name to the community petition.</p>
+                  </div>
+                  <Link className="site-button site-button--secondary" href="/more-info/#petition">
+                    Sign the 32 Wishes petition
+                  </Link>
+                </aside>
               </div>
-              <Link className="site-button site-button--secondary" href="/more-info/#petition">
-                Sign the 32 Wishes petition
-              </Link>
-            </aside>
+            </div>
 
-            <div className="wishes-grid">
+            <div className="wishes-grid px-6 py-16">
               <section className="wishes-region" aria-labelledby="west-title">
                 <h2 id="west-title">{isFrench ? "Ouest" : "West"}</h2>
                 <h4 className="text-center">{isFrench ? "Qui sera le premier?" : "Who Will Be First?"}</h4>
@@ -557,11 +574,14 @@ function WishesContent({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
                 </div>
               </section>
             </div>
-            <aside className="wishes-note">
-              <p>
-                <strong>Note:</strong>{"\u00a0"}Don&apos;t have a favorite hockey team to sign the 32 Wishes Petition with? Feel free to pick one with a cancer awareness color you would like to support.
-              </p>
-            </aside>
+
+            <div className="px-6 py-16 max-w-6xl mx-auto">
+              <aside className="wishes-note">
+                <p>
+                  <strong>Note:</strong>{"\u00a0"}Don&apos;t have a favorite hockey team to sign the 32 Wishes Petition with? Feel free to pick one with a cancer awareness color you would like to support.
+                </p>
+              </aside>
+            </div>
           </div>
         </section>
       </main>
