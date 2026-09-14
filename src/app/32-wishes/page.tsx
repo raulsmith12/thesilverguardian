@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import anaheimImage from "@/img/0CAD6E6D-D0BA-49FA-9C50-54A8CB29EEF0.jpeg";
 import bostonImage from "@/img/37D0B9CB-FA7F-4352-A827-1988CE836B36.jpeg";
+import buffaloImage from "@/img/E92CB8AE-08B7-45A7-BB03-60BB7A921CC6.jpeg";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import { WishSignatureCount } from "@/components/WishProgress";
@@ -444,7 +445,7 @@ const eastSkylines: Skyline[] = [
 ];
 
 const westCities = [
-  "Anaheim", "Calgary", "Chicago", "Dallas", "Colorado", "Edmonton", "Los Angeles", "Minnesota", "Nashville",
+  "Anaheim", "Calgary", "Chicago", "Colorado", "Dallas", "Edmonton", "Los Angeles", "Minnesota", "Nashville",
   "San Jose", "Seattle", "St. Louis", "Utah", "Vancouver", "Vegas", "Winnipeg",
 ] as const;
 
@@ -470,6 +471,12 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
           className="wish-skyline-card__image"
           src={bostonImage}
           alt="Boston harbor and skyline at dusk, labeled #32wishes #boston"
+        />
+      ) : city === "Buffalo" ? (
+        <Image
+          className="wish-skyline-card__image"
+          src={buffaloImage}
+          alt="Buffalo skyline at sunset, labeled #buffalo #32wishes"
         />
       ) : (
       <div className="wish-skyline-card__sky" aria-hidden="true">
@@ -501,12 +508,18 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
             <span>(gold, black, white)</span>
           </>
         )}
+        {city === "Buffalo" && (
+          <>
+            <br />
+            <span>(gold, dark blue, white)</span>
+          </>
+        )}
       </h3>
       <WishSignatureCount city={city} locale={locale} />
     </article>
   );
 
-  return city === "Anaheim" || city === "Boston" ? (
+  return city === "Anaheim" || city === "Boston" || city === "Buffalo" ? (
     <Link href="/more-info/#petition" style={{ color: "inherit", textDecoration: "none" }}>
       {card}
     </Link>
