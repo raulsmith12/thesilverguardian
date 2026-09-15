@@ -4,6 +4,7 @@ import Image from "next/image";
 import anaheimImage from "@/img/0CAD6E6D-D0BA-49FA-9C50-54A8CB29EEF0.jpeg";
 import bostonImage from "@/img/37D0B9CB-FA7F-4352-A827-1988CE836B36.jpeg";
 import buffaloImage from "@/img/E92CB8AE-08B7-45A7-BB03-60BB7A921CC6.jpeg";
+import calgaryImage from "@/img/00B1565F-6D54-4D8C-8B2F-2C8BE49881FA.jpeg";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import { WishSignatureCount } from "@/components/WishProgress";
@@ -478,6 +479,12 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
           src={buffaloImage}
           alt="Buffalo skyline at sunset, labeled #buffalo #32wishes"
         />
+      ) : city === "Calgary" ? (
+        <Image
+          className="wish-skyline-card__image"
+          src={calgaryImage}
+          alt="Calgary skyline and illuminated bridge at dusk, labeled #calgary #32wishes"
+        />
       ) : (
       <div className="wish-skyline-card__sky" aria-hidden="true">
         <div className="wish-skyline-card__buildings">
@@ -514,12 +521,18 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
             <span>(gold, dark blue, white)</span>
           </>
         )}
+        {city === "Calgary" && (
+          <>
+            <br />
+            <span>(red, gold, white)</span>
+          </>
+        )}
       </h3>
       <WishSignatureCount city={city} locale={locale} />
     </article>
   );
 
-  return city === "Anaheim" || city === "Boston" || city === "Buffalo" ? (
+  return city === "Anaheim" || city === "Boston" || city === "Buffalo" || city === "Calgary" ? (
     <Link href="/more-info/#petition" style={{ color: "inherit", textDecoration: "none" }}>
       {card}
     </Link>
