@@ -5,6 +5,8 @@ import anaheimImage from "@/img/0CAD6E6D-D0BA-49FA-9C50-54A8CB29EEF0.jpeg";
 import bostonImage from "@/img/37D0B9CB-FA7F-4352-A827-1988CE836B36.jpeg";
 import buffaloImage from "@/img/E92CB8AE-08B7-45A7-BB03-60BB7A921CC6.jpeg";
 import calgaryImage from "@/img/00B1565F-6D54-4D8C-8B2F-2C8BE49881FA.jpeg";
+import northCarolinaImage from "@/img/F949AC77-362D-4146-B910-FB3BADA12DE1.jpeg";
+import southCarolinaImage from "@/img/1607A2FB-52CF-4A26-BD20-B3289542BAE4.jpeg";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
 import { WishSignatureCount } from "@/components/WishProgress";
@@ -485,6 +487,21 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
           src={calgaryImage}
           alt="Calgary skyline and illuminated bridge at dusk, labeled #calgary #32wishes"
         />
+      ) : city === "Carolina" ? (
+        <div className="wish-skyline-card__image-swap">
+          <div className="wish-skyline-card__image-flipper">
+          <Image
+            className="wish-skyline-card__image wish-skyline-card__image--front"
+            src={northCarolinaImage}
+            alt="North Carolina skyline at night, labeled #32wishes #north #carolina"
+          />
+          <Image
+            className="wish-skyline-card__image wish-skyline-card__image--back"
+            src={southCarolinaImage}
+            alt="South Carolina skyline at sunset, labeled #32wishes #south #carolina"
+          />
+          </div>
+        </div>
       ) : (
       <div className="wish-skyline-card__sky" aria-hidden="true">
         <div className="wish-skyline-card__buildings">
@@ -527,12 +544,18 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
             <span>(red, gold, white)</span>
           </>
         )}
+        {city === "Carolina" && (
+          <>
+            <br />
+            <span>(red, black, gray, white)</span>
+          </>
+        )}
       </h3>
       <WishSignatureCount city={city} locale={locale} />
     </article>
   );
 
-  return city === "Anaheim" || city === "Boston" || city === "Buffalo" || city === "Calgary" ? (
+  return city === "Anaheim" || city === "Boston" || city === "Buffalo" || city === "Calgary" || city === "Carolina" ? (
     <Link href="/more-info/#petition" style={{ color: "inherit", textDecoration: "none" }}>
       {card}
     </Link>

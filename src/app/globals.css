@@ -1097,6 +1097,47 @@ a {
   border-radius: 6px;
 }
 
+.wish-skyline-card__image-swap {
+  perspective: 1000px;
+}
+
+.wish-skyline-card__image-flipper {
+  position: relative;
+  transform-style: preserve-3d;
+  animation: wish-carolina-flip 3600ms ease-in-out infinite;
+}
+
+.wish-skyline-card__image--front,
+.wish-skyline-card__image--back {
+  backface-visibility: hidden;
+}
+
+.wish-skyline-card__image--back {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+  transform: rotateY(180deg);
+}
+
+@keyframes wish-carolina-flip {
+  0%, 37.5% {
+    transform: rotateY(0deg);
+  }
+  50%, 87.5% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wish-skyline-card__image-flipper {
+    animation: none;
+  }
+}
+
 .wish-skyline-card__sky {
   position: relative;
   min-height: 104px;
