@@ -1,11 +1,37 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import anaheimImage from "@/img/0CAD6E6D-D0BA-49FA-9C50-54A8CB29EEF0.jpeg";
 import bostonImage from "@/img/37D0B9CB-FA7F-4352-A827-1988CE836B36.jpeg";
 import buffaloImage from "@/img/E92CB8AE-08B7-45A7-BB03-60BB7A921CC6.jpeg";
 import calgaryImage from "@/img/00B1565F-6D54-4D8C-8B2F-2C8BE49881FA.jpeg";
 import chicagoImage from "@/img/2FD23278-24DB-4F7F-A63B-7DECB243D52B.jpeg";
+import coloradoImage from "@/img/2C3066F6-BF53-420A-8B5A-AD296A714B19.jpeg";
+import dallasImage from "@/img/5BEF0750-76AE-4E6B-8A65-03619B07A0FC.jpeg";
+import edmontonImage from "@/img/10FA096D-7F2B-4517-8774-6281C75587C0.jpeg";
+import losAngelesImage from "@/img/7EFE1B20-6F55-4B05-8078-8237F640A133.jpeg";
+import minnesotaImage from "@/img/7EDC0FF4-1C3D-40CB-B858-69F5D2563FFA.jpeg";
+import nashvilleImage from "@/img/25C22C75-B2F7-4BBC-8D2B-F5C5897D93C0.jpeg";
+import sanJoseImage from "@/img/B519AD6B-03E6-4741-A643-1F198A24842D.jpeg";
+import seattleImage from "@/img/4ED020C1-8681-4AA1-A02C-7FA7214F86F6.jpeg";
+import stLouisImage from "@/img/115AAD96-9008-46EB-8D56-AABB9128F719.jpeg";
+import utahImage from "@/img/13A5D2EC-39CF-4663-8D0E-46BCB10889F5.jpeg";
+import vancouverImage from "@/img/5CC2837A-06C4-48A9-95EA-045A1A76CCA8.jpeg";
+import vegasImage from "@/img/13F159C3-9E36-4D97-853C-2720B8C103A0.jpeg";
+import winnipegImage from "@/img/5403F140-1B4C-4899-8EE7-14802B036C9A.jpeg";
+import columbusImage from "@/img/A53A4CDD-A36E-42F9-B706-5B3D6905D942.jpeg";
+import detroitImage from "@/img/6DFDDE6E-A8E4-47A1-B2A2-89D42E7F6149.jpeg";
+import floridaImage from "@/img/39FC2AA9-084A-4E23-B101-21837314617E.jpeg";
+import longIslandImage from "@/img/B7055CC7-F8A1-4ACF-A808-C0BF1FC5BDAF.jpeg";
+import montrealImage from "@/img/CFEB02BA-2936-42B4-9C6B-B373D2588C76.jpeg";
+import newJerseyImage from "@/img/1ED02E63-F630-48F8-A366-E257F7F8D19F.jpeg";
+import newYorkImage from "@/img/6444487A-76E3-4A9A-BACA-0398A1C134C8.jpeg";
+import ottawaImage from "@/img/BD982F8D-D493-4BC9-B026-04C21E15D803.jpeg";
+import philadelphiaImage from "@/img/3CCD3D9A-83F3-4B1D-8D45-1D0DE885379D.jpeg";
+import pittsburghImage from "@/img/FE7681D0-1700-4388-A972-C735BA228C50.jpeg";
+import tampaImage from "@/img/D6B6E0E1-A7EA-44D9-A4F4-3F4787237010.jpeg";
+import torontoImage from "@/img/FAD24A8E-E82B-4963-97F4-108F942A9617.jpeg";
+import washingtonDCImage from "@/img/E7728361-D246-4A5D-B391-170BB627C3A7.jpeg";
 import { CarolinaWishImage } from "@/components/CarolinaWishImage";
 import { Footer } from "@/components/Footer";
 import { Navigation } from "@/components/Navigation";
@@ -457,7 +483,37 @@ const eastCities = [
   "Ottawa", "Philadelphia", "Pittsburgh", "Tampa", "Toronto", "Washington DC",
 ] as const;
 
+const remainingWishImages: Record<string, StaticImageData> = {
+  "Colorado": coloradoImage,
+  "Dallas": dallasImage,
+  "Edmonton": edmontonImage,
+  "Los Angeles": losAngelesImage,
+  "Minnesota": minnesotaImage,
+  "Nashville": nashvilleImage,
+  "San Jose": sanJoseImage,
+  "Seattle": seattleImage,
+  "St. Louis": stLouisImage,
+  "Utah": utahImage,
+  "Vancouver": vancouverImage,
+  "Vegas": vegasImage,
+  "Winnipeg": winnipegImage,
+  "Columbus": columbusImage,
+  "Detroit": detroitImage,
+  "Florida": floridaImage,
+  "Long Island": longIslandImage,
+  "Montreal": montrealImage,
+  "New Jersey": newJerseyImage,
+  "New York": newYorkImage,
+  "Ottawa": ottawaImage,
+  "Philadelphia": philadelphiaImage,
+  "Pittsburgh": pittsburghImage,
+  "Tampa": tampaImage,
+  "Toronto": torontoImage,
+  "Washington DC": washingtonDCImage,
+};
+
 function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city: string; locale?: "en" | "fr-CA" }) {
+  const remainingImage = remainingWishImages[city];
   const card = (
     <article
       className="wish-skyline-card"
@@ -494,6 +550,12 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
           className="wish-skyline-card__image"
           src={chicagoImage}
           alt="Chicago skyline along Lake Michigan with sailboats, labeled #chicago #32wishes"
+        />
+      ) : remainingImage ? (
+        <Image
+          className="wish-skyline-card__image"
+          src={remainingImage}
+          alt={`${city} cityscape, labeled with the city name and #32wishes`}
         />
       ) : (
       <div className="wish-skyline-card__sky" aria-hidden="true">
@@ -549,12 +611,18 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
             <span>(red, black, yellow)</span>
           </>
         )}
+        {city === "Colorado" && (
+          <>
+            <br />
+            <span>(white, burgundy, teal)</span>
+          </>
+        )}
       </h3>
       <WishSignatureCount city={city} locale={locale} />
     </article>
   );
 
-  return city === "Anaheim" || city === "Boston" || city === "Buffalo" || city === "Calgary" || city === "Carolina" || city === "Chicago" ? (
+  return city === "Anaheim" || city === "Boston" || city === "Buffalo" || city === "Calgary" || city === "Carolina" || city === "Chicago" || city === "Colorado" ? (
     <Link href="/more-info/#petition" style={{ color: "inherit", textDecoration: "none" }}>
       {card}
     </Link>
