@@ -11,7 +11,7 @@ import wishesImage from "@/img/hockey-hero-rising-stockcake.jpg";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Innovative Pediatric Care and Community Support",
+  title: "Innovative Community Support Inspired by Ice Hockey",
   description:
     "Discover The Silver Guardian's mission to inspire hope and healing through innovative pediatric care, hockey-related wishes, fundraising, and movement therapy.",
   path: "/",

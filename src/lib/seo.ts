@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import socialPreviewImage from "@/img/silver-guardian-w-child.png";
 import { getLocalizedAlternates, type Locale } from "@/lib/i18n";
 
 const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
@@ -38,6 +39,14 @@ export function createPageMetadata({
   locale = "en",
 }: PageMetadata): Metadata {
   const isTemporarilyNonIndexable = isTemporarilyNonIndexableGeoPage(path);
+  const previewImage = {
+    url: new URL(socialPreviewImage.src, SITE_URL).toString(),
+    width: socialPreviewImage.width,
+    height: socialPreviewImage.height,
+    alt: locale === "fr-CA"
+      ? "Logo de The Silver Guardian avec un enfant et des rubans dorés"
+      : "The Silver Guardian logo with a child and gold awareness ribbons",
+  };
 
   return {
     title,
@@ -54,11 +63,13 @@ export function createPageMetadata({
       title,
       description,
       url: path,
+      images: [previewImage],
     },
     twitter: {
       card: "summary",
       title,
       description,
+      images: [previewImage],
     },
   };
 }
