@@ -7,11 +7,14 @@ import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Navbar from "react-bootstrap/Navbar";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { SiteSearch } from "@/components/SiteSearch";
 import { LanguageSelector } from "@/components/LanguageSelector";
 import { localizedPath, type Locale } from "@/lib/i18n";
 import silverGuardianLogo from "@/img/silver-guardian-w-child.png";
 
 export function Navigation({ locale = "en" }: { locale?: Locale }) {
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const [openImpactGroup, setOpenImpactGroup] = useState<string | null>(null);
   const [openCampaignGroup, setOpenCampaignGroup] = useState<string | null>(null);
   const isFrench = locale === "fr-CA";
@@ -89,7 +92,7 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
       <div className="language-bar">
         <LanguageSelector />
       </div>
-      <Navbar expand="xl" className="site-navbar">
+      <Navbar expanded={expanded} onToggle={setExpanded} expand="xl" className="site-navbar">
       <Container className="site-navbar__inner">
         <Navbar.Brand className="site-navbar__brand h3 mb-0" href={localizedPath("/", locale)}>
           <Image
@@ -105,6 +108,8 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
           className="site-navbar__toggle"
         />
         <Navbar.Offcanvas
+          restoreFocus={!searchOpen}
+          enforceFocus={!searchOpen}
           id="site-navigation"
           aria-labelledby="site-navigation-label"
           placement="end"
@@ -237,11 +242,22 @@ export function Navigation({ locale = "en" }: { locale?: Locale }) {
               <Nav.Link href={localizedPath("/contact", locale)}>
                 {isFrench ? "Nous joindre" : "Contact"}
               </Nav.Link>
+              <button type="button" className="nav-link site-search-trigger" aria-label={isFrench ? "Rechercher sur le site" : "Search the site"} title={isFrench ? "Rechercher" : "Search"} aria-haspopup="dialog" onClick={() => { setExpanded(false); setSearchOpen(true); }}>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                  <circle cx="10.5" cy="10.5" r="6.5" /><path d="m16 16 5 5" />
+                </svg>
+              </button>
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
       </Navbar>
+      <SiteSearch locale={locale} open={searchOpen} onClose={() => {
+        setSearchOpen(false);
+        const toggle = document.querySelector<HTMLButtonElement>(".site-navbar__toggle");
+        const target = toggle?.offsetParent ? toggle : document.querySelector<HTMLButtonElement>(".site-search-trigger");
+        target?.focus();
+      }} />
     </header>
   );
 }

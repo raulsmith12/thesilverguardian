@@ -641,12 +641,48 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
             <span>(dark blue, orange, white)</span>
           </>
         )}
+        {city === "Florida" && (
+          <>
+            <br />
+            <span>(red, gold, dark blue)</span>
+          </>
+        )}
+        {city === "Long Island" && (
+          <>
+            <br />
+            <span>(orange, dark blue, white)</span>
+          </>
+        )}
+        {city === "Los Angeles" && (
+          <>
+            <br />
+            <span>(gray, black, purple)</span>
+          </>
+        )}
+        {city === "Minnesota" && (
+          <>
+            <br />
+            <span>(emerald green, burgundy, gold)</span>
+          </>
+        )}
+        {city === "Nashville" && (
+          <>
+            <br />
+            <span>(yellow, white, dark blue)</span>
+          </>
+        )}
+        {city === "Montreal" && (
+          <>
+            <br />
+            <span>(red, white, dark blue)</span>
+          </>
+        )}
       </h3>
       <WishSignatureCount city={city} locale={locale} />
     </article>
   );
 
-  return city === "Anaheim" || city === "Boston" || city === "Buffalo" || city === "Calgary" || city === "Carolina" || city === "Chicago" || city === "Colorado" || city === "Columbus" || city === "Dallas" || city === "Detroit" || city === "Edmonton" ? (
+  return city === "Anaheim" || city === "Boston" || city === "Buffalo" || city === "Calgary" || city === "Carolina" || city === "Chicago" || city === "Colorado" || city === "Columbus" || city === "Dallas" || city === "Detroit" || city === "Edmonton" || city === "Florida" || city === "Long Island" || city === "Los Angeles" || city === "Minnesota" || city === "Montreal" || city === "Nashville" ? (
     <Link href="/more-info/#petition" style={{ color: "inherit", textDecoration: "none" }}>
       {card}
     </Link>
