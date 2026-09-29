@@ -140,8 +140,8 @@ export function ContactForm({ locale = "en" }: { locale?: "en" | "fr-CA" }) {
 
       <p className="contact-form__disclaimer">
         {isFrench
-          ? "Afin de protéger adéquatement l’intégrité de sa marque, The Silver Guardian LLC se réserve le droit de refuser ses services à toute personne, en tout temps et pour quelque raison que ce soit."
-          : "In order to properly protect brand integrity, The Silver Guardian LLC reserves the right to refuse service to any person at any time or for any reason."}
+          ? "Afin de protéger adéquatement l’intégrité de sa marque, The Silver Guardian se réserve le droit de refuser ses services à toute personne, en tout temps et pour quelque raison que ce soit."
+          : "In order to properly protect brand integrity, The Silver Guardian reserves the right to refuse service to any person at any time or for any reason."}
       </p>
     </form>
   );
