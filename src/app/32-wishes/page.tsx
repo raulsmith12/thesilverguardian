@@ -689,12 +689,18 @@ function SkylineCard({ skyline, city, locale = "en" }: { skyline: Skyline; city:
             <span>(dark blue, white, red)</span>
           </>
         )}
+        {city === "Ottawa" && (
+          <>
+            <br />
+            <span>(gold, red, black)</span>
+          </>
+        )}
       </h3>
       <WishSignatureCount city={city} locale={locale} />
     </article>
   );
 
-  return city === "Anaheim" || city === "Boston" || city === "Buffalo" || city === "Calgary" || city === "Carolina" || city === "Chicago" || city === "Colorado" || city === "Columbus" || city === "Dallas" || city === "Detroit" || city === "Edmonton" || city === "Florida" || city === "Long Island" || city === "Los Angeles" || city === "Minnesota" || city === "Montreal" || city === "Nashville" || city === "New Jersey" || city === "New York" ? (
+  return city === "Anaheim" || city === "Boston" || city === "Buffalo" || city === "Calgary" || city === "Carolina" || city === "Chicago" || city === "Colorado" || city === "Columbus" || city === "Dallas" || city === "Detroit" || city === "Edmonton" || city === "Florida" || city === "Long Island" || city === "Los Angeles" || city === "Minnesota" || city === "Montreal" || city === "Nashville" || city === "New Jersey" || city === "New York" || city === "Ottawa" ? (
     <Link href="/more-info/#petition" style={{ color: "inherit", textDecoration: "none" }}>
       {card}
     </Link>
