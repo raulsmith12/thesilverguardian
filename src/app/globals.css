@@ -1365,16 +1365,18 @@ a {
 }
 
 .initiative-allies__circles {
-  display: flex;
-  justify-content: center;
-  gap: clamp(1rem, 5vw, 4rem);
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  justify-items: center;
+  gap: clamp(1rem, 3vw, 2rem);
   margin-bottom: 1.5rem;
 }
 
 .initiative-allies__circle {
   display: grid;
   place-items: center;
-  width: min(40%, 26svh, 220px);
+  grid-column: span 2;
+  width: min(100%, 26svh, 220px);
   aspect-ratio: 1;
   border-radius: 50%;
   background: #000;
@@ -1382,6 +1384,37 @@ a {
   font-size: min(12vw, 16svh, 7rem);
   font-weight: 700;
   line-height: 1;
+}
+
+.initiative-allies__circle:nth-child(1),
+.initiative-allies__circle:nth-child(7) {
+  grid-column: 3 / span 2;
+}
+
+.initiative-allies__circle:nth-child(2) {
+  grid-column: 1 / span 2;
+}
+
+.initiative-allies__circle:nth-child(5) {
+  grid-column: 2 / span 2;
+}
+
+@media (max-width: 767px) {
+  .initiative-allies__circles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .initiative-allies__circle:nth-child(1) {
+    grid-column: 2 / span 2;
+  }
+
+  .initiative-allies__circle:nth-child(even) {
+    grid-column: 1 / span 2;
+  }
+
+  .initiative-allies__circle:nth-child(odd):not(:first-child) {
+    grid-column: 3 / span 2;
+  }
 }
 
 .fundraising-grid {
